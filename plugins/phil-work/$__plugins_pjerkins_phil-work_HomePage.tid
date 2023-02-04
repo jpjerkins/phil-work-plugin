@@ -1,0 +1,59 @@
+created: 20220120222747184
+creator: jpjerkins
+modified: 20230128045643330
+modifier: jpjerkins
+tags: 
+title: $:/plugins/pjerkins/phil-work/HomePage
+
+!! Follow-Up
+$:/plugins/pjerkins/phil-work/AllFollowUpItems | $:/plugins/pjerkins/phil-work/Utils/BulkMoveFollowUpItems | [[$:/plugins/pjerkins/phil-work/Done]]
+
+<$select tiddler=<<qualify 'selected-follow-up-folder'>> default='Day 01'>
+<$list filter='[tag[FollowUpDayFolder]sortan[follow-up-day-folder-order]]'>
+<option value=<<currentTiddler>>><$view field='title'/></option>
+</$list>
+<$list filter='[tag[FollowUpMonthFolder]sortan[follow-up-month-folder-order]]'>
+<option value=<<currentTiddler>>><$view field='title'/></option>
+</$list>
+</$select>
+
+<$edit-text tiddler="$:/state/new-button-caption" tag="input" default="" />
+<$button>
+<$action-createtiddler $basetitle={{$:/state/new-button-caption}} tags="ToDo"/>
+<$action-deletetiddler $tiddler="$:/state/new-button-caption" />
+Add
+</$button>
+
+<$let currentTiddler=<<qualify "selected-follow-up-folder">> selectedFollowUpFolder={{!!text}}>
+<ul>
+<$list filter="[field:follow-up-folder<selectedFollowUpFolder>tag[FollowUpItem]!tag[$:/plugins/pjerkins/phil-work/Done]]">
+<li>
+<$button>
+<$action-listops $tags="-FollowUpItem" />
+<$action-deletefield $field="follow-up-folder" />
+&#9660;
+</$button>
+<$button>
+<$action-listops $tags="Done" />
+&#10004;
+</$button>
+<$link />
+<$list filter="[tag{!!title}tag[$:/plugins/pjerkins/phil-work/TodoAction]!tag[$:/plugins/pjerkins/phil-work/Done]sort[created]nth[1]]">
+<br/>{{!!title}}
+</$list>
+</li>
+</$list>
+</ul>
+</$let>
+
+<$list variable="firstWaitingItem" filter="[tag[ToDo]!tag[FollowUp]tag[$:/plugins/pjerkins/phil-work/Waiting]!tag[$:/plugins/pjerkins/phil-work/Done]first[1]]">
+
+!! Waiting
+{{$:/plugins/pjerkins/phil-work/WaitingList}}
+</$list>
+
+<$list variable="firstTodoItem" filter="[tag[ToDo]!tag[FollowUp]!tag[$:/plugins/pjerkins/phil-work/Waiting]!tag[$:/plugins/pjerkins/phil-work/Done]first[1]]">
+
+!! To Do
+{{$:/plugins/pjerkins/phil-work/ToDoList}}
+</$list>

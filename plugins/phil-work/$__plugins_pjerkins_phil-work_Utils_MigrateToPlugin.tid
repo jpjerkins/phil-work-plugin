@@ -1,0 +1,76 @@
+created: 20230201015020062
+modified: 20230201022414501
+tags: 
+title: $:/plugins/pjerkins/phil-work/Utils/MigrateToPlugin
+
+!! IdentityStatements
+<$button>
+<$list filter="[!has[draft.of]tag[IdentityStatements]!tag[$:/plugins/pjerkins/phil-work/IdentityStatements]]">
+<$action-listops $tiddler=<<currentTag>> $tags="-IdentityStatements $:/plugins/pjerkins/phil-work/IdentityStatements" />
+</$list>
+Switch for all!
+</$button>
+
+<$list filter="[!has[draft.of]tag[IdentityStatements]!tag[$:/plugins/pjerkins/phil-work/IdentityStatements]sort[created]]">
+<$link /><br/>
+</$list>
+
+!! MyInitiatives
+<$button>
+<$list filter="[!has[draft.of]tag[MyInitiatives]!tag[$:/plugins/pjerkins/phil-work/MyInitiatives]]" >
+<$action-listops $tiddler=<<currentTag>> $tags="-MyInitiatives $:/plugins/pjerkins/phil-work/MyInitiatives" />
+</$list>
+Switch for all!
+</$button>
+
+<$list filter="[!has[draft.of]tag[MyInitiatives]!tag[$:/plugins/pjerkins/phil-work/MyInitiatives]sort[created]]">
+<$link /><br/>
+</$list>
+
+!! Teams
+<$button>
+<$list filter="[!has[draft.of]tag[Teams]!tag[$:/plugins/pjerkins/phil-work/Teams]]" >
+<$action-listops $tiddler=<<currentTag>> $tags="-Teams $:/plugins/pjerkins/phil-work/Teams" />
+</$list>
+Switch for all!
+</$button>
+
+<$list filter="[!has[draft.of]tag[Teams]!tag[$:/plugins/pjerkins/phil-work/Teams]sort[created]]">
+<$link /><br/>
+</$list>
+
+!! Roles
+<$button>
+<$list filter="[!has[draft.of]tag[Roles]!tag[$:/plugins/pjerkins/phil-work/Roles]]" >
+<$action-listops $tiddler=<<currentTag>> $tags="-Roles $:/plugins/pjerkins/phil-work/Roles" />
+</$list>
+Switch for all!
+</$button>
+
+<$list filter="[!has[draft.of]tag[Roles]!tag[$:/plugins/pjerkins/phil-work/Roles]sort[created]]">
+<$link /><br/>
+</$list>
+
+!! Expertise
+<$button>
+<$list filter="[!has[draft.of]tag[Expertise]!tag[$:/plugins/pjerkins/phil-work/Expertise]]" >
+<$action-listops $tiddler=<<currentTag>> $tags="-Expertise $:/plugins/pjerkins/phil-work/Expertise" />
+</$list>
+Switch for all!
+</$button>
+
+<$list filter="[!has[draft.of]tag[Expertise]!tag[$:/plugins/pjerkins/phil-work/Expertise]sort[created]]">
+<$link /><br/>
+</$list>
+
+! MyCode
+!! //Delete tiddlers tagged with MyCode//
+
+<$list filter="[tag[MyCode]]">
+<$button>
+<$action-deletetiddler $tiddler={{!!title}} />
+&#x1f5d1;
+</$button>
+<$link />
+<br/>
+</$list>

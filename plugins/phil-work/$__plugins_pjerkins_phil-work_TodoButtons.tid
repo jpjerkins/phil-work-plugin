@@ -1,0 +1,9 @@
+created: 20220321182212657
+modified: 20230128044400050
+tags: 
+title: $:/plugins/pjerkins/phil-work/TodoButtons
+
+<$button>
+<$action-listops $tiddler={{!!title}} $field="tags" $subfilter="+[append[Done]]" />
+Done
+</$button>

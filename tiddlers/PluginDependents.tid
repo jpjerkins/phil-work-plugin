@@ -1,0 +1,7 @@
+created: 20230128042459801
+modified: 20230128051313151
+title: PluginDependents
+
+<$let prefix="[[" suffix="]] ">
+{{{ [all[shadows+tiddlers]search:title[$:/plugins/pjerkins/phil-work/]sort[title]addprefix<prefix>addsuffix<suffix>!search:title[state/tree]] }}}
+</$let>

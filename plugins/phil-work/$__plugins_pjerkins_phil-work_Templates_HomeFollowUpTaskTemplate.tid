@@ -1,0 +1,13 @@
+created: 20221005051925179
+creator: jpjerkins
+modified: 20230203180054664
+modifier: jpjerkins
+tags: 
+title: $:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate
+todo-action-box-state: 
+
+{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBarHamburger}}<$link />
+@@color:gray;
+//(<<selectedFollowUpFolder>>)//
+@@
+{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBar}}

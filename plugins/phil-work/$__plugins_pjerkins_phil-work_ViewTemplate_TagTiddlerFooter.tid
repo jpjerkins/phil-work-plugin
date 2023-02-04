@@ -1,0 +1,13 @@
+created: 20230201045617276
+modified: 20230201045626146
+tags: template $:/tags/ViewTemplate
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/TagTiddlerFooter
+type: text/vnd.tiddlywiki
+
+<$list filter="[is[current]tag[TagTiddler]sortby[created]]">
+<ul>
+<$list filter="[tag{!!title}]">
+<li><$link/></li>
+</$list>
+</ul>
+</$list>

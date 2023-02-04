@@ -1,0 +1,10 @@
+created: 20190514152037074
+modified: 20190529175459801
+tags: 
+title: $:/ui/LearnResourceTemplate
+
+<div>
+<b><a href={{!!url}} target="__new">{{!!name}}</a></b><br/>
+{{!!time}} - {{!!nummodules}} Modules - {{!!resourcetype}} <i><$link><span style="color: #bbb;">Tiddler</span></$link></i><br/>
+&nbsp;
+</div>

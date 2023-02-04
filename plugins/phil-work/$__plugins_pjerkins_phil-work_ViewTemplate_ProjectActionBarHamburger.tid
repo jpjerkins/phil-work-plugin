@@ -1,0 +1,24 @@
+created: 20230203175324359
+modified: 20230203175836738
+tags: 
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBarHamburger
+
+\define openProjectActions()
+<$action-setfield $tiddler=<<actionMenuState>> $field="text" $value="prompt-for-todo-action" />
+\end
+\define closeProjectActions()
+<$action-setfield $tiddler=<<actionMenuState>> $field="text" $value="" />
+\end
+
+<$let actionMenuState={{{ [all[current]addprefix[$:/temp/]addsuffix[/action-menu-state]] }}} >
+	<$reveal state=<<actionMenuState>> type="nomatch" text="prompt-for-todo-action">
+		<$messagecatcher $tm-navigate=<<openProjectActions>> >
+			<$link>&#9776;</$link>
+		</$messagecatcher>
+	</$reveal>
+	<$reveal state=<<actionMenuState>> type="match" text="prompt-for-todo-action">
+		<$messagecatcher $tm-navigate=<<closeProjectActions>> >
+			<$link>&times;</$link>
+		</$messagecatcher> |
+	</$reveal>
+</$let>

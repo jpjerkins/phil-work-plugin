@@ -1,0 +1,26 @@
+caption: by Team
+created: 20190717184659463
+modified: 20230201022147871
+tags: Reference $:/plugins/pjerkins/phil-work/PeopleFinders
+title: $:/plugins/pjerkins/phil-work/Teams
+type: 
+
+!! Teams
+<$list filter="[tag[$:/plugins/pjerkins/phil-work/Teams]sort[]]">
+<$let team={{!!title}}>
+<$list filter="[tag[$:/plugins/pjerkins/phil-work/People]tag<team>first[1]]">
+
+<h3><$link to=<<team>>><<team>></$link></h3>
+
+<ul>
+<$list filter="[tag[$:/plugins/pjerkins/phil-work/People]tag<team>]">
+<li>
+<$link $tiddler={{!!title}}>{{!!title}}</$link>
+</li>
+</$list>
+</ul>
+
+</$list>
+</$let>
+
+</$list>

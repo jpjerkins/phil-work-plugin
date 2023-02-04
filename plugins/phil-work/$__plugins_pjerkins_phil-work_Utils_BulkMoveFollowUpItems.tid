@@ -1,0 +1,36 @@
+created: 20220207134510662
+creator: jpjerkins
+modified: 20230202034255438
+modifier: jpjerkins
+source-folder: 4th
+tags: 
+title: $:/plugins/pjerkins/phil-work/Utils/BulkMoveFollowUpItems
+
+\import [all[shadows]prefix:title[$:/plugins/pjerkins/phil-work/Macros/FollowUp]]
+
+Move From: <<followUpFolderBoundSelect source-folder>>
+
+Move To: <<followUpFolderBoundSelect target-folder>>
+
+<$let currentTiddler=<<qualify "source-folder">> sourceFolder={{!!text}} currentTiddler=<<qualify "target-folder">> targetFolder={{!!text}}>
+
+<$button>
+<$list filter="[field:follow-up-folder<sourceFolder>tag[FollowUpItem]!tag[Done]]">
+<$action-setfield follow-up-folder=<<targetFolder>>/>
+</$list>
+Move all
+</$button>
+
+<ul>
+<$list filter="[field:follow-up-folder<sourceFolder>tag[FollowUpItem]!tag[Done]]">
+<li>
+<$button>
+<$action-setfield follow-up-folder=<<targetFolder>>/>
+Move
+</$button>
+{{!!title}}
+</li>
+</$list>
+</ul>
+
+</$let>

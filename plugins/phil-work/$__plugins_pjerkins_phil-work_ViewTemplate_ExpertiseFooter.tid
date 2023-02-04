@@ -1,0 +1,16 @@
+created: 20230201045200318
+modified: 20230201045222110
+tags: template $:/tags/ViewTemplate
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/ExpertiseFooter
+
+<$list filter="[is[current]tag[$:/plugins/pjerkins/phil-work/Expertise]]">
+
+<$let expertiseTag={{!!title}}>
+
+!! Experts
+
+<<list-links filter:"[tag<expertiseTag>tag[People]]">>
+
+</$let>
+
+</$list>

@@ -1,0 +1,13 @@
+created: 20220224033156840
+modified: 20230128045012476
+tags: 
+title: $:/plugins/pjerkins/phil-work/Utils/TagFromSearch
+
+|!Search: | <$edit-text tiddler="$:/temp/TagFromSearch/search" tag="input" type="text"/> |
+|!Tag to Apply: | <$edit-text tiddler="$:/temp/TagFromSearch/tag" tag="input" type="text"/> |
+
+! Tiddlers to Tag
+!!//Apply the tag <$tiddler tiddler={{$:/temp/TagFromSearch/tag}}><$transclude tiddler="$:/core/ui/TagTemplate"/></$tiddler> to the following tiddlers//
+<$list filter="[!has[draft.of]search:title{$:/temp/TagFromSearch/search}!tag{$:/temp/TagFromSearch/tag}sort[]]">
+<$checkbox tag={{$:/temp/TagFromSearch/tag}}> <$link to={{!!title}}><$view field="title"/></$link></$checkbox><br/>
+</$list>

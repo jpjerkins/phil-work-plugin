@@ -1,0 +1,12 @@
+created: 20220301191638712
+modified: 20230128044503052
+tags: 
+title: $:/plugins/pjerkins/phil-work/TechSmithsEraTiddlers
+
+//List all tiddlers created after [[Team Guardians - Purpose, Roadmap - 2019-06-07]] and before [[Nebula's Team Kickoff|2021-09-23 - Team Kickoff]]//
+
+! Tiddlers to Tag
+!!//Apply the tag <$tiddler tiddler="TechSmiths"><$transclude tiddler="$:/core/ui/TagTemplate"/></$tiddler> to the following tiddlers//
+<$list filter="[!has[draft.of]untagged[]!search:title[$]days:created[-998]!days:created[-159]sort[]]">
+<$checkbox tag="TechSmiths"> <$link to={{!!title}}><$view field="title"/></$link></$checkbox><br/>
+</$list>

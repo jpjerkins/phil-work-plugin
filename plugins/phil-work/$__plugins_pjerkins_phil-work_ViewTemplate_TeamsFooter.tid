@@ -1,0 +1,19 @@
+created: 20230201045650983
+modified: 20230201045657812
+tags: template $:/tags/ViewTemplate
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/TeamsFooter
+
+<$list filter="[is[current]tag[$:/plugins/pjerkins/phil-work/Teams]]">
+<$set name="currentTiddlerTitle" value={{!!title}}>
+
+<$list variable="firstPerson" filter="[tag<currentTiddlerTitle>tag[People]first[1]]">
+<h2>Team Members</h2>
+<ul>
+<$list filter="[tag<currentTiddlerTitle>tag[People]]">
+<li><$link>{{!!title}}</$link></li>
+</$list>
+</ul>
+</$list>
+
+</$set>
+</$list>

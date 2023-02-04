@@ -1,0 +1,21 @@
+created: 20190401130822042
+creator: jpjerkins
+modified: 20230201031547111
+modifier: jpjerkins
+tags: $:/tags/SideBarSegment
+title: $:/plugins/pjerkins/phil-work/GtdTabs
+
+\define linkRow(rowNumber)
+<$list filter="[tag[$:/plugins/pjerkins/phil-work/GtdTabs]link-row[$rowNumber$]]">
+| <$link><$view field=caption>{{!!title}}</$view></$link>
+</$list>
+\end
+
+[[What IS this "Work Notes Journal"?|$:/plugins/pjerkins/phil-work/What IS This Thing?]]<br/>
+[[Today|$:/plugins/pjerkins/phil-work/Today]] | [[Home|$:/plugins/pjerkins/phil-work/Home]] <<linkRow 1>><br/>
+[[MDScratch]] <<linkRow 2>>
+<div class="tc-table-of-contents">
+<<toc-selective-expandable 'TableOfContents' "sort[title]">>
+</div>
+
+[[Notes|NotesWithSupervisor]] <<linkRow 3>>

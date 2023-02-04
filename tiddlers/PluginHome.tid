@@ -1,0 +1,13 @@
+created: 20230128034918506
+modified: 20230130042845290
+tags: 
+title: PluginHome
+
+* [[$:/plugins/pjerkins/phil-work]]
+* PluginTiddlers
+* PluginDependents
+* PluginRepackParam
+* [[Today|$:/plugins/pjerkins/phil-work/Today]]
+* [[Home|$:/plugins/pjerkins/phil-work/Home]]
+
+{{{ [all[shadows]tag[FollowUpDayFolder]] [all[shadows]tag[FollowUpMonthFolder]] +[addprefix["]addsuffix[", ]] }}}

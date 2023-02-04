@@ -1,0 +1,52 @@
+created: 20220302155112961
+modified: 20230202034801701
+tags: 
+title: $:/plugins/pjerkins/phil-work/Utils/DoneToDoCleanup
+
+<$list variable="todo" filter="[tag[Done]!tag[ToDo]!tag[TodoAction]]">
+<h3>
+<$link to=<<todo>> />
+</h3>
+<$button>
+<$action-deletetiddler $tiddler=<<todo>> />
+Del
+</$button>
+<$list variable="doneFlag" filter="[<todo>tag[Done]]">
+<$button>
+<$action-listops $tiddler=<<todo>> $field="tags" $subfilter="-Done" />
+-Done
+</$button>
+</$list>
+<$list variable="waitingFlag" filter="[<todo>tag[Waiting]]">
+<$button>
+<$action-listops $tiddler=<<todo>> $field="tags" $subfilter="-Waiting" />
+-Waiting
+</$button>
+</$list>
+<br/>
+<$transclude tiddler=<<todo>> />
+
+<ul>
+<$list filter="[kin:tags:to<todo>!match<todo>]">
+<li>
+<$button>
+<$action-deletetiddler $tiddler=<<currentTiddler>> />
+Del
+</$button>
+<$list variable="doneFlag" filter="[is[current]tag[Done]]">
+<$button>
+<$action-listops $tiddler={{!!title}} $field="tags" $subfilter="-Done" />
+-Done
+</$button>
+</$list>
+<$list variable="waitingFlag" filter="[is[current]tag[Waiting]]">
+<$button>
+<$action-listops $tiddler={{!!title}} $field="tags" $subfilter="-Waiting" />
+-Waiting
+</$button>
+</$list>
+<$link /> {{!!text}}
+</li>
+</$list>
+</ul>
+</$list>

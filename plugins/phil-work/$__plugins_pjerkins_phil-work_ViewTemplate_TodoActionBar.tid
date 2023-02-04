@@ -1,0 +1,37 @@
+created: 20230203045011008
+modified: 20230203174417729
+tags: 
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBar
+todo-action-box-state: 
+
+\define newDatedCandidateLabel() $(newCandidateLabel)$ $(newCandidateLabelDate)$
+\define newDatedCandidateTags() $(currentTags)$ ToDo TodayCandidate
+\import [[$:/plugins/pjerkins/phil-work/Macros/FollowUpActionsSelect]]
+
+<br/>
+<$let actionMenuState={{{ [all[current]addprefix[$:/temp/]addsuffix[/action-menu-state]] }}} >
+	<$reveal state=<<actionMenuState>> type="match" text="prompt-for-todo-action">
+		<div>
+			<$button set=<<actionMenuState>> setTo="">
+				<$action-listops $tags="TodayCandidate" />
+				T!
+			</$button> 
+			<$let currentTags={{!!tags}} newCandidateLabel={{!!title}} newCandidateLabelDate=<<now "YYYY-0MM-0DD" >> >
+				<$button set=<<actionMenuState>> setTo="">
+					<$action-createtiddler $basetitle=<<newDatedCandidateLabel>> tags=<<newDatedCandidateTags>> />
+					<$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem" />
+					T,,dt,,!
+				</$button>
+			</$let>
+			<$button set=<<actionMenuState>> setTo="">
+				<$action-listops $tags="Done" />
+				&#10004;
+			</$button> 
+			<$button>
+				<$action-deletetiddler $tiddler={{!!title}} />
+				&#x1f5d1;
+			</$button>
+			<<followUpFolderActionsSelect follow-up-folder '<$action-listops $tags="FollowUpItem"/><$action-setfield $tiddler=<<actionMenuState>> $field="text" $value=""/>' >>
+		</div>
+	</$reveal>
+</$let>

@@ -1,0 +1,10 @@
+created: 20230114194419224
+modified: 20230128044154395
+tags: 
+title: $:/plugins/pjerkins/phil-work/NewCode
+
+<$list filter="[tag[$:/plugins/pjerkins/phil-work/NewCode]]">
+<$checkbox tag='$:/plugins/pjerkins/phil-work/NewCode' />
+<$macrocall $name="copy-to-clipboard" src={{!!text}}/>
+<$link/><br/>
+</$list>

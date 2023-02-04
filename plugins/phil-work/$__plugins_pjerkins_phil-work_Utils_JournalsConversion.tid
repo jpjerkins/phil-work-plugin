@@ -1,0 +1,25 @@
+created: 20220301155808060
+modified: 20230128044952846
+tags: 
+title: $:/plugins/pjerkins/phil-work/Utils/JournalsConversion
+
+!! Notes To Convert
+<$list variable="folder" filter="[tag[Journal]sort[]]">
+
+!!! <$link to=<<folder>> ><<folder>></$link>
+<$list filter="[tag<folder>first[1]]">
+<ul>
+<$list filter="[tag<folder>]">
+<li>
+<$checkbox tag=<<folder>>/> <$link $tiddler={{!!title}}>{{!!title}}</$link>
+</li>
+</$list>
+</ul>
+
+</$list>
+
+<$button>
+<$action-deletetiddler $tiddler=<<folder>> />
+Delete
+</$button>
+</$list>

@@ -1,0 +1,59 @@
+created: 20190409215002461
+creator: jpjerkins
+modified: 20230202034939799
+modifier: jpjerkins
+order: 3
+tags: Global GtdCategories
+title: $:/plugins/pjerkins/phil-work/Done
+
+!! [[Done]]
+
+<$button>
+<$list filter="ToDo TodoAction +[tagging[]tag[Done]!tag[$:/plugins/pjerkins/phil-work/Today]sort[title]]">
+<$let todo=<<currentTiddler>> actionFilter={{{[tag<todo>]}}}>
+<$list filter="[is[current]!has[text]!filter<actionFilter>]">
+<$action-deletetiddler $tiddler={{!!title}} />
+</$list>
+</$let>
+</$list>
+Delete Vanilla Done To-Dos
+</$button>
+
+<$list filter="ToDo TodoAction Done +[tagging[]tag[Done]!tag[$:/plugins/pjerkins/phil-work/Today]sort[title]]">
+<div styles="width:100%; border: solid 1px #888;">
+<div styles="width:100%; border: solid 1px #888; background-color: #AAA;">
+<$button>
+<$action-listops $tiddler={{!!title}} $field="tags" $subfilter="-Done" />
+Not Done
+</$button>
+<div style="float: right;">
+<$let todo=<<currentTiddler>> actionFilter={{{[tag[TodoAction]tag<todo>]}}}>
+<$button>
+<$action-deletetiddler $tiddler={{!!title}} />
+Delete
+</$button>
+<$list filter="[is[current]has[text]tag[ToDo]!filter<actionFilter>]"><$button><$action-listops $tiddler={{!!title}} $field="tags" $subfilter="-ToDo" />-ToDo</$button></$list>
+<$list filter="[is[current]has[text]tag[TodoAction]!filter<actionFilter>]"><$button><$action-listops $tiddler={{!!title}} $field="tags" $subfilter="-TodoAction" />-TodoAction</$button></$list>
+<$list filter="[is[current]has[text]!tag[ToDo]!tag[TodoAction]tag[Done]!filter<actionFilter>]"><$button><$action-listops $tiddler={{!!title}} $field="tags" $subfilter="-Done" />-Done</$button></$list>
+<$list filter="[is[current]!tag[ToDo]filter<actionFilter>]">
+$:/plugins/pjerkins/phil-work/Utils/DoneToDoCleanup
+</$list>
+</$let>
+</div>
+</div>
+<div>
+<$list filter="[is[current]has[text]]">
+<$link to={{!!title}}>__{{!!title}}__</$link>
+</$list>
+<$list filter="[is[current]!has[text]]">
+<$link to={{!!title}}>{{!!title}}</$link>
+</$list>
+</div>
+<$list filter="[is[current]has[text]]">
+<div style="padding-left: 1em; padding-top: 0.5em; padding-bottom: 0.5em; border-left: solid 1px gray; font-size: small;">
+<$transclude tiddler=<<currentTiddler>> mode=block />
+</div>
+</$list>
+<hr />
+</div>
+</$list>

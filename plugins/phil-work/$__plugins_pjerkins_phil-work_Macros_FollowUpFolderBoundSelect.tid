@@ -1,0 +1,23 @@
+created: 20230131035700065
+modified: 20230131040806625
+tags: 
+title: $:/plugins/pjerkins/phil-work/Macros/FollowUpFolderBoundSelect
+
+\define followUpFolderBoundSelect(boundTiddler)
+<$select tiddler=<<qualify '$boundTiddler$'>> default='1st'>
+<$list filter='[list[$:/plugins/pjerkins/phil-work/FollowUpFolders]]'>
+<option value=<<currentTiddler>>><$view field='title'/></option>
+</$list>
+</$select>
+\end
+
+!! Generated Wikitext
+<pre><$text text=<<followUpFolderBoundSelect test>> />
+</pre>
+
+!! Running example
+<<followUpFolderBoundSelect test>>
+
+Arguments
+
+|boundTiddler |!test |

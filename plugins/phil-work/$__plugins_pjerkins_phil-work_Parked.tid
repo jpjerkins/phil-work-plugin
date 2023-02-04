@@ -1,0 +1,8 @@
+created: 20230114194437286
+modified: 20230202041216863
+tags: 
+title: $:/plugins/pjerkins/phil-work/Parked
+
+<$list filter="[tag[Initiative]tag[Parked]]">
+<$checkbox tag='Parked' /> <$link /><br/>
+</$list>

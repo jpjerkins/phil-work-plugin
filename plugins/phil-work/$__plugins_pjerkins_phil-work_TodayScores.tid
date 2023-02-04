@@ -1,0 +1,16 @@
+created: 20220908025846849
+creator: jpjerkins
+modified: 20230201043519820
+modifier: jpjerkins
+tags: 
+title: $:/plugins/pjerkins/phil-work/TodayScores
+
+!! Weekly Scores
+<$list filter="[tag[WeeklyScore]!sort[title]]">
+<$link /> - {{!!totalScore}} ({{!!totalActualPoints}}/{{!!totalPotentialPoints}})<br/>
+</$list>
+
+!! Daily Scores
+<$list filter="[tag[DailyScore]!sort[title]]">
+<$link /> - {{!!score}} ({{!!totalActualPoints}}/{{!!totalPotentialPoints}})<br/>
+</$list>

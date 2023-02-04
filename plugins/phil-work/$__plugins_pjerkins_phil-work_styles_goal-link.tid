@@ -1,0 +1,11 @@
+class: goal-link
+created: 20221004021407496
+creator: jpjerkins
+modified: 20230128044218483
+modifier: jpjerkins
+tags: $:/tags/Stylesheet
+title: $:/plugins/pjerkins/phil-work/styles/goal-link
+
+.goal-link {
+  color: red;
+}

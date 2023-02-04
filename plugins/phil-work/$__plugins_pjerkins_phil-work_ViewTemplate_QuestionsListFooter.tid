@@ -1,0 +1,72 @@
+created: 20230201045543154
+modified: 20230201045551309
+tags: $:/tags/ViewTemplate template
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/QuestionsListFooter
+
+\define newQuestionTiddlerMacro(question parentTiddler)
+<$action-createtiddler $basetitle="$question$ - $parentTiddler$" $savetitle="$:/state/new-question-title" />
+\end
+<$list filter="[is[current]tag[QuestionsList]]">
+<$set name="questionsListTitle" value={{!!title}}>
+
+New Question: <$edit-text tiddler="$:/state/new-question" tag="input" default="" />
+<$button>
+<$macrocall $name="newQuestionTiddlerMacro" question={{$:/state/new-question}} parentTiddler={{!!title}} />
+<$action-listops $tiddler={{$:/state/new-question-title}} $field="tags" $subfilter="[{!!title}] +[append[Question]]" />
+<$action-setfield $tiddler={{$:/state/new-question-title}} $field="question" $value={{$:/state/new-question}} />
+<$action-deletetiddler $tiddler="$:/state/new-question" />
+{{$:/core/images/save-button}}
+</$button>
+<$button>
+<$action-deletetiddler $tiddler="$:/state/new-question" />
+{{$:/core/images/cancel-button}}
+</$button>
+
+<$list filter="[tag<questionsListTitle>tag[Question]!tag[Answered]first]">
+<h2>Questions</h2>
+<dl>
+<$list filter="[tag<questionsListTitle>tag[Question]!tag[Answered]]">
+<dt>{{!!question}}</dt>
+<dd>
+<div>
+<$button>
+<$action-listops $field="tags" $subfilter="+[append[Answered]]" />
+{{$:/core/images/save-button}}
+</$button>
+<$button>
+<$action-navigate />
+<$action-sendmessage $message="tm-edit-tiddler" param={{currentTiddler}} />
+Edit
+</$button>
+</div>
+<$transclude mode="block" />
+</dd>
+</$list>
+</dl>
+</$list>
+
+<$list filter="[tag<questionsListTitle>tag[Question]tag[Answered]first]">
+<h2>Answered Questions</h2>
+<dl>
+<$list filter="[tag<questionsListTitle>tag[Question]tag[Answered]]">
+<dt>{{!!question}}</dt>
+<dd>
+<div>
+<$button>
+<$action-listops $field="tags" $subfilter="-Answered" />
+{{$:/core/images/cancel-button}}
+</$button>
+<$button>
+<$action-navigate />
+<$action-sendmessage $message="tm-edit-tiddler" param={{currentTiddler}} />
+Edit
+</$button>
+</div>
+<$transclude mode="block" />
+</dd>
+</$list>
+</dl>
+</$list>
+
+</$set>
+</$list>

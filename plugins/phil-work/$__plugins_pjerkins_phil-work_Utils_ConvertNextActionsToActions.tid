@@ -1,0 +1,18 @@
+created: 20220307135424633
+modified: 20230201023406790
+tags: 
+title: $:/plugins/pjerkins/phil-work/Utils/ConvertNextActionsToActions
+
+!! Set action-date Field on Done TodoNextActions
+<$list filter="[!has[draft.of]tag[TodoNextAction]tag[Done]field:action-date[]sort[]]">
+<$set name="actionDate" filter="[is[current]get[modified]format:date[ddd, MM/0DD]]" select="0">
+<$button>
+<$action-setfield $field="action-date" $value=<<actionDate>>/>
+Set action-date to <<actionDate>>
+</$button>
+<$link to=<<currentTiddler>> /><br/>
+</$set>
+</$list>
+
+!! Next
+* $:/plugins/pjerkins/phil-work/Utils/RenameTags from ''~TodoNextAction'' to ''~TodoAction''

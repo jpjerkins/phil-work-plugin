@@ -1,0 +1,15 @@
+{
+    "plugins": [
+        "tiddlywiki/async",
+        "tiddlywiki/aws",
+        "tiddlywiki/jszip",
+        "tiddlywiki/markdown",
+        "tiddlywiki/sax",
+        "tiddlywiki/text-slicer",
+        "tiddlywiki/tiddlyweb"
+    ],
+    "themes": [
+        "tiddlywiki/snowwhite",
+        "tiddlywiki/vanilla"
+    ]
+}

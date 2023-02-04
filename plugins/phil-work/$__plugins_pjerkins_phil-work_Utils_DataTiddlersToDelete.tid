@@ -1,0 +1,16 @@
+created: 20220329203326747
+modified: 20230128044915827
+tags: 
+title: $:/plugins/pjerkins/phil-work/Utils/DataTiddlersToDelete
+
+<ul>
+<$list filter="[is[tiddler]!search:title[$]!is[draft]!tag[MyCode]sort[title]]">
+<li>
+<$button>
+<$action-deletetiddler $tiddler={{!!title}} />
+Del
+</$button>
+<$link />
+</li>
+</$list>
+</ul>

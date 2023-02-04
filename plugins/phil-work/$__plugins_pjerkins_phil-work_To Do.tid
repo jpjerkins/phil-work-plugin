@@ -1,0 +1,18 @@
+created: 20190409214637438
+modified: 20230128045650401
+order: 1
+tags: Global GtdCategories
+title: $:/plugins/pjerkins/phil-work/To Do
+
+!! [[To-Do|$:/plugins/pjerkins/phil-work/To Do]]
+
+!!! //What Scares You?//
+
+<$edit-text tiddler="$:/state/new-button-caption" tag="input" default="" />
+<$button>
+<$action-createtiddler $basetitle={{$:/state/new-button-caption}} tags="ToDo"/>
+<$action-deletetiddler $tiddler="$:/state/new-button-caption" />
+Add
+</$button>
+
+{{$:/plugins/pjerkins/phil-work/ToDoList}}

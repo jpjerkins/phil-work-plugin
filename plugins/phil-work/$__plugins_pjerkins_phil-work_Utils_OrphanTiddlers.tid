@@ -1,0 +1,12 @@
+created: 20220224141232398
+modified: 20230128045004267
+tags: 
+title: $:/plugins/pjerkins/phil-work/Utils/OrphanTiddlers
+
+|!Tag to Apply: | <$edit-text tiddler="$:/temp/OrphanTiddlers/tag" tag="input" type="text"/> |
+
+! Tiddlers to Tag
+!!//Apply the tag <$tiddler tiddler={{$:/temp/OrphanTiddlers/tag}}><$transclude tiddler="$:/core/ui/TagTemplate"/></$tiddler> to the following tiddlers//
+<$list filter="[!has[draft.of]!search:title[$]untagged[]sort[]]">
+<$checkbox tag={{$:/temp/OrphanTiddlers/tag}}> <$link to={{!!title}}><$view field="title"/></$link></$checkbox><br/>
+</$list>

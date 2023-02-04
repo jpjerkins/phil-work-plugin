@@ -1,0 +1,54 @@
+created: 20220120223403878
+creator: jpjerkins
+modified: 20230202034838975
+modifier: jpjerkins
+tags: 
+title: $:/plugins/pjerkins/phil-work/ToDoList
+
+<$list filter="[tag[ToDo]!tag[Waiting]!tag[Done]!tag[FollowUpItem]!tag[TodayCandidate]!tag[$:/plugins/pjerkins/phil-work/Today]sort[title]]">
+<$list filter="[is[current]has[text]]">
+<$link to={{!!title}}>__{{!!title}}__</$link>
+</$list>
+<$list filter="[is[current]!has[text]]">
+<$link to={{!!title}}>{{!!title}}</$link>
+</$list>
+<$list filter="[tag{!!title}tag[TodoAction]!tag[Done]sort[created]nth[1]]">
+{{!!title}}
+</$list>
+<div styles="width:100%; border: solid 1px #888; background-color: #AAA;">
+<$button>
+<$action-listops $tiddler={{!!title}} $field="tags" $subfilter="+[append[TodayCandidate]]" />
+<$action-listops $tiddler="$:/plugins/pjerkins/phil-work/Today" $filter="[tag[TodayCandidate]]"/>
+Today
+</$button>
+| <$button>
+<$action-listops $tiddler={{!!title}} $field="tags" $subfilter="+[append[Done]]" />
+Done
+</$button>
+<$reveal state="!!todo-action-box-state" type="nomatch" text="prompt-for-todo-action">
+| <$button set="!!todo-action-box-state" setTo="prompt-for-todo-action">
+Waiting
+</$button>
+</$reveal>
+<$reveal state="!!todo-action-box-state" type="match" text="prompt-for-todo-action">
+| <$button>
+<$action-setfield waiting=<<now format:"ddd, MM/0DD">> />
+<$action-listops $field="tags" $subfilter="+[append[Waiting]]" />
+<$action-createtiddler $basetitle={{$:/state/new-todo-action}} $savetitle="$:/state/new-todo-action" />
+<$action-setfield $tiddler={{$:/state/new-todo-action}} action-date=<<now format:"ddd, MM/0DD">> />
+<$action-listops $tiddler={{$:/state/new-todo-action}} $field="tags" $subfilter="[{!!title}] +[append[TodoAction Done]]" />
+<$action-setfield $field="todo-action-box-state" $value="" />
+<$action-deletetiddler $tiddler="$:/state/new-todo-action" />
+{{$:/core/images/save-button}}
+</$button>
+<$button>
+<$action-setfield $field="todo-action-box-state" $value="" />
+<$action-deletetiddler $tiddler="$:/state/new-todo-action" />
+{{$:/core/images/cancel-button}}
+</$button>
+<br/>
+Why: <$edit-text tiddler="$:/state/new-todo-action" tag="input" default="" />
+</$reveal>
+</div>
+<hr/>
+</$list>

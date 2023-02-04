@@ -1,0 +1,12 @@
+created: 20230201045254139
+modified: 20230201045303077
+tags: $:/tags/ViewTemplate
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/GenericFooter
+
+<$let thisTiddler=<<currentTiddler>>>
+<$list filter="[<thisTiddler>backlinks[]first[]]">
+<h2>Backlinks</h2>
+
+<<list-links filter:"[<thisTiddler>backlinks[]]">>
+</$list>
+</$let>

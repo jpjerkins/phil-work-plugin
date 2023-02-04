@@ -1,0 +1,10 @@
+created: 20220307222824343
+modified: 20230202034054392
+tags: 
+title: $:/plugins/pjerkins/phil-work/TagTodoActionsWithActionDateAsDone
+
+! Tiddlers to Tag
+!!//Apply the tag <$tiddler tiddler="Done"><$transclude tiddler="$:/core/ui/TagTemplate"/></$tiddler> to the following tiddlers//
+<$list filter="[!has[draft.of]tag[TodoAction]!tag[Done]!field:action-date[]sort[]]">
+<$checkbox tag="Done"> <$link to={{!!title}}><$view field="title"/></$link></$checkbox><br/>
+</$list>

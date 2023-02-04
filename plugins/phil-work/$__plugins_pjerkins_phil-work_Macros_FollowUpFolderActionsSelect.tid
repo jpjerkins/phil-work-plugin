@@ -1,0 +1,27 @@
+created: 20230131042940677
+modified: 20230202040501700
+tags: 
+title: $:/plugins/pjerkins/phil-work/Macros/FollowUpFolderActionsSelect
+
+\define followUpFolderActionsSelect(field, actions)
+<$select field=$field$ actions='$actions$'>
+<$list filter='[list[$:/plugins/pjerkins/phil-work/FollowUpFolders]]'>
+<option value=<<currentTiddler>>><$view field='title'/></option>
+</$list>
+</$select>
+\end
+\define testActions() <$action-listops $tags="FollowUpItem"/>
+
+!! Generated Wikitext
+<pre><$text text=<<followUpFolderActionsSelect follow-up-folder '<<testActions>>'>> />
+</pre>
+
+!! Running example
+<<followUpFolderActionsSelect follow-up-folder '<<testActions>>'>>
+
+follow-up-folder: {{!!follow-up-folder}}
+
+!!! Arguments
+
+|field |!`follow-up-folder` |
+|actions |!`<<testActions>>` |

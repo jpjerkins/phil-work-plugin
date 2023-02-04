@@ -1,0 +1,23 @@
+caption: by Expertise
+created: 20220324135411691
+modified: 20230201022102083
+tags: $:/plugins/pjerkins/phil-work/PeopleFinders
+title: $:/plugins/pjerkins/phil-work/Expertise
+
+!! Experts
+<$list variable="expertise" filter="[tag[$:/plugins/pjerkins/phil-work/Expertise]sort[]]">
+
+<$list filter="[tag[$:/plugins/pjerkins/phil-work/People]tag<expertise>first[1]]">
+<h3><$link to=<<expertise>> /></h3>
+
+<ul>
+<$list filter="[tag[$:/plugins/pjerkins/phil-work/People]tag<expertise>]">
+<li>
+<$link $tiddler={{!!title}}>{{!!title}}</$link>
+</li>
+</$list>
+</ul>
+
+</$list>
+
+</$list>

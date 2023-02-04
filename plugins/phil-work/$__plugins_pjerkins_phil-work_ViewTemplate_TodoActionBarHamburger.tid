@@ -1,0 +1,17 @@
+created: 20230203051612275
+modified: 20230203175322480
+tags: 
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBarHamburger
+
+<$let actionMenuState={{{ [all[current]addprefix[$:/temp/]addsuffix[/action-menu-state]] }}} >
+	<$reveal state=<<actionMenuState>> type="nomatch" text="prompt-for-todo-action">
+		<$button set=<<actionMenuState>> setTo="prompt-for-todo-action">
+			&#9776;
+		</$button>
+	</$reveal>
+	<$reveal state=<<actionMenuState>> type="match" text="prompt-for-todo-action">
+		<$button set=<<actionMenuState>> setTo="">
+			&times;
+		</$button> |
+	</$reveal>
+</$let>

@@ -1,0 +1,9 @@
+created: 20181207144011000
+modified: 20181207144337730
+title: $:/config/NewJournal/Text
+
+<ol>
+<$list filter="[tag<currentTiddler>]">
+<li><$link name="!!title!!">{{!!title}}</$link></li>
+</$list>
+</ol>

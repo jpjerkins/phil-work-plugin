@@ -1,0 +1,47 @@
+created: 20230201045451548
+modified: 20230201045459884
+tags: template $:/tags/ViewTemplate
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter
+
+<$list filter="[is[current]tag[People]]">
+<$set name="currentTiddlerTitle" value={{!!title}}>
+
+<$list filter="[is[current]fields:exclude[title text list tags created creator modified modifier]first[]]">
+<h2>Meta</h2>
+<table>
+<$list filter="[<currentTiddlerTitle>fields:exclude[title text list tags created creator modified modifier]]">
+<$let fieldName=<<currentTiddler>> fieldValue={{{ [<currentTiddlerTitle>get<fieldName>] }}}>
+<tr>
+<td><<fieldName>></td>
+<th style="text-align: left;"><<fieldValue>></th>
+</tr>
+</$let>
+</$list>
+</table>
+</$list>
+
+<$list filter="[tag[People]reports-to<currentTiddlerTitle>first[]]">
+<h2>Directs</h2>
+<<list-links filter:"[tag[People]reports-to<currentTiddlerTitle>]">>
+</$list>
+
+<$list variable="firstTeam" filter="[list[!!tags]tag[$:/plugins/pjerkins/phil-work/Teams]first[1]]">
+<h2>Teams</h2>
+<ul>
+<$list filter="[list[!!tags]tag[$:/plugins/pjerkins/phil-work/Teams]]">
+<li><$link>{{!!title}}</$link></li>
+</$list>
+</ul>
+</$list>
+
+<$list variable="firstNote" filter="[tag<currentTiddlerTitle>first[1]]">
+<h2>Notes</h2>
+<ul>
+<$list filter="[tag<currentTiddlerTitle>!sort[created]]">
+<li><$link>{{!!title}}</$link></li>
+</$list>
+</ul>
+</$list>
+
+</$set>
+</$list>

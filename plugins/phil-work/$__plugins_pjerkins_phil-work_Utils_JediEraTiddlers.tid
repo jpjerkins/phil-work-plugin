@@ -1,0 +1,12 @@
+created: 20220224040647314
+modified: 20230128044940912
+tags: 
+title: $:/plugins/pjerkins/phil-work/Utils/JediEraTiddlers
+
+//List all tiddlers created before [[Team Guardians - Purpose, Roadmap - 2019-06-07]]//
+
+! Tiddlers to Tag
+!!//Apply the tag <$tiddler tiddler="Jedi"><$transclude tiddler="$:/core/ui/TagTemplate"/></$tiddler> to the following tiddlers//
+<$list filter="[!has[draft.of]untagged[]!search:title[$]!days:created[-992]!tag[Jedi]sort[]]">
+<$checkbox tag="Jedi"> <$link to={{!!title}}><$view field="title"/></$link></$checkbox><br/>
+</$list>

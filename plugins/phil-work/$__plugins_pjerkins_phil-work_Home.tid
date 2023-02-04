@@ -1,0 +1,147 @@
+caption: Home
+created: 20221126170151316
+creator: jpjerkins
+modified: 20230203175720034
+modifier: jpjerkins
+tags: 
+title: $:/plugins/pjerkins/phil-work/Home
+todo-action-box-state: 
+
+\define goalProjectsFilter() [[$(currentGoal)$]] Initiative
+\define closeGoalActions()
+<$action-setfield $tiddler=<<actionMenuState>> $field="text" $value="" />
+\end
+\define closeHomeActions()
+<$action-setfield $tiddler=<<actionMenuState>> $field="text" $value="" />
+\end
+\define newGoalTodoTags() [[$(currentGoal)$]] ToDo
+\define newGoalCandidateTags() [[$(currentGoal)$]] ToDo TodayCandidate
+\import [all[shadows]prefix:title[$:/plugins/pjerkins/phil-work/Macros/FollowUp]]
+
+<<followUpFolderBoundSelect selected-follow-up-folder>> | [[AllFollowUpItems|$:/plugins/pjerkins/phil-work/AllFollowUpItems]] | [[Done|$:/plugins/pjerkins/phil-work/Done]]
+
+<$let currentTiddler=<<qualify "selected-follow-up-folder">> selectedFollowUpFolder={{!!text}}>
+	<$list filter="[field:follow-up-folder<selectedFollowUpFolder>tag[FollowUpItem]!tag[Done]!tag[Today]!tag[TodayCandidate]sort[title]]">
+		<$let
+		 doneTagCount={{{ [list[!!tags]join[;]] }}}
+		 hasProject={{{ [kin::from:<currentTiddler>tag[Initiative]count[]] }}}
+		 hasParkedProject={{{ [kin::from:<currentTiddler>tag[Parked]tag[Initiative]count[]multiply[10]] }}}
+		 hasGoal={{{ [kin::from:<currentTiddler>tag[$:/plugins/pjerkins/phil-work/IdentityStatements]count[]multiply[2]] }}}
+		 todoType={{{ [<hasGoal>add<hasProject>subtract<hasParkedProject>] }}} >
+		 	{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBarHamburger}}
+			<$list variable="result" filter="[<todoType>compare:number:gteq[2]]">
+				<$link overrideClass="goal-link" tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
+			</$list>
+			<$list variable="result" filter="[<todoType>compare:number:eq[1]]">
+				<$link overrideClass="project-link" tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
+			</$list>
+			<$list variable="result" filter="[<todoType>compare:number:eq[0]]">
+				<$link tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
+			</$list>
+			{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBar}}
+		</$let>	
+	</$list>
+</$let>
+
+<$let
+ currentTiddler=<<qualify "selected-follow-up-folder">>
+ selectedFollowUpFolder={{!!text}}
+ todoReadyTodayFilter="[tag[ToDo]!tag[Today]!tag[TodayCandidate]!tag[FollowUpItem]!tag[Done]]"
+ todoFollowUpTodayFilter="[tag[ToDo]!tag[Today]!tag[TodayCandidate]tag[FollowUpItem]field:follow-up-folder<selectedFollowUpFolder>!tag[Done]]">
+
+	<$list filter="[list[$:/plugins/pjerkins/phil-work/IdentityStatements]]">
+		<h3><$link overrideClass="goal-link" /></h3>
+		<$let currentGoal=<<currentTiddler>> >
+			<$list filter="[tag<currentGoal>tag[$:/plugins/pjerkins/phil-work/MyInitiatives]!tag[Parked]]">
+				<$let currentProject={{!!title}} >
+					<div style="padding-top: 0.5em">
+						{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBarHamburger}}
+						<$link overrideClass="project-link" />
+					</div>
+					{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBar}}
+					<$list template="$:/plugins/pjerkins/phil-work/Templates/HomeReadyTaskTemplate" filter="[tag<currentProject>filter<todoReadyTodayFilter>]" />
+					<$list template="$:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate" filter="[tag<currentProject>filter<todoFollowUpTodayFilter>]" />
+				</$let>
+			</$list>
+			<div style="padding-top: 0.5em">
+				{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBarHamburger}}
+				No Project
+			</div>
+			<$let actionMenuState={{{ [all[current]addprefix[$:/temp/]addsuffix[/action-menu-state]] }}} >
+				<$reveal state=<<actionMenuState>> type="match" text="prompt-for-todo-action">
+					<div>
+						<$edit-text tiddler="$:/state/new-todo" default="" tag="input" />
+						<$button>
+							<$action-createtiddler $basetitle={{$:/state/new-todo}} tags=<<newGoalTodoTags>> />
+							<$action-deletetiddler $tiddler="$:/state/new-todo" />
+							<<closeGoalActions>>
+							{{$:/core/images/save-button}}
+						</$button>
+						<$button>
+							<$action-createtiddler $basetitle={{$:/state/new-todo}} tags=<<newGoalCandidateTags>> />
+							<$action-deletetiddler $tiddler="$:/state/new-todo" />
+							<<closeGoalActions>>
+							T!
+						</$button>
+						<$button>
+							<<closeGoalActions>>
+							{{$:/core/images/cancel-button}}
+						</$button>
+					</div>
+				</$reveal>
+			</$let>
+			<$list template="$:/plugins/pjerkins/phil-work/Templates/HomeReadyTaskTemplate" filter="[tag<currentGoal>filter<todoReadyTodayFilter>]" />
+			<$list template="$:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate" filter="[tag<currentGoal>filter<todoFollowUpTodayFilter>]" />
+		</$let>
+	</$list>
+
+	!! Other
+
+	<$let
+	 noGoalFilter="[kin::from:[]tag[$:/plugins/pjerkins/phil-work/IdentityStatements]count[]compare:number:eq[0]]"
+	 noProjectFilter="[kin::from:[]tag[$:/plugins/pjerkins/phil-work/MyInitiatives]count[]compare:number:eq[0]]"
+	 noDiscoveryFilter="[kin::from:[]tag[$:/plugins/pjerkins/phil-work/Discovery]count[]compare:number:eq[0]]"
+	 noDecompositionFilter="[kin::from:[]tag[$:/plugins/pjerkins/phil-work/Decomposition]count[]compare:number:eq[0]]">
+		<$list filter="$:/plugins/pjerkins/phil-work/MyInitiatives $:/plugins/pjerkins/phil-work/Discovery $:/plugins/pjerkins/phil-work/Decomposition +[tagging[]filter<noGoalFilter>!tag[Parked]]">
+			<$let currentProject={{!!title}} >
+				<div style="padding-top: 0.5em">
+					{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBarHamburger}}
+					<$link overrideClass="project-link" />
+				</div>
+				{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBar}}
+				<$list template="$:/plugins/pjerkins/phil-work/Templates/HomeReadyTaskTemplate" filter="[tag<currentProject>filter<todoReadyTodayFilter>]" />
+				<$list template="$:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate" filter="[tag<currentProject>filter<todoFollowUpTodayFilter>]" />
+			</$let>
+		</$list>
+		<div style="padding-top: 0.5em">
+			{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBarHamburger}}
+			No Project
+		</div>
+		<$let actionMenuState={{{ [all[current]addprefix[$:/temp/]addsuffix[/action-menu-state]] }}} >
+			<$reveal state=<<actionMenuState>> type="match" text="prompt-for-todo-action">
+				<div>
+					<$edit-text tiddler="$:/state/new-todo" default="" tag="input" />
+					<$button>
+						<$action-createtiddler $basetitle={{$:/state/new-todo}} tags="ToDo" />
+						<$action-deletetiddler $tiddler="$:/state/new-todo" />
+						<<closeHomeActions>>
+						{{$:/core/images/save-button}}
+					</$button>
+					<$button>
+						<$action-createtiddler $basetitle={{$:/state/new-todo}} tags="ToDo TodayCandidate" />
+						<$action-deletetiddler $tiddler="$:/state/new-todo" />
+						<<closeHomeActions>>
+						T!
+					</$button>
+					<$button>
+						<<closeHomeActions>>
+						{{$:/core/images/cancel-button}}
+					</$button>
+				</div>
+			</$reveal>
+		</$let>
+		<$list template="$:/plugins/pjerkins/phil-work/Templates/HomeReadyTaskTemplate" filter="[filter<todoReadyTodayFilter>filter<noGoalFilter>filter<noProjectFilter>filter<noDiscoveryFilter>filter<noDecompositionFilter>]" />
+		<$list template="$:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate" filter="[filter<todoFollowUpTodayFilter>filter<noGoalFilter>filter<noProjectFilter>filter<noDiscoveryFilter>filter<noDecompositionFilter>]" />
+	</$let>
+
+</$let>

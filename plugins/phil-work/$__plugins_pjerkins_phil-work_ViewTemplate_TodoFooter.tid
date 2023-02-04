@@ -1,0 +1,146 @@
+created: 20230201045723080
+creator: jpjerkins
+modified: 20230202035053158
+modifier: jpjerkins
+tags: template $:/tags/ViewTemplate
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/TodoFooter
+
+\import [all[shadows]prefix:title[$:/plugins/pjerkins/phil-work/Macros/FollowUp]]
+
+<$list filter="[is[current]tag[ToDo]]">
+<$set name="currentTiddlerTitle" value={{!!title}}>
+
+<div styles="width:100%; border: solid 1px #888; background-color: #AAA;">
+<$list filter="[is[current]!tag[Done]]">
+<$button>
+<$action-listops $tiddler={{!!title}} $field="tags" $subfilter="+[append[Done]]" />
+<$action-listops $tags="+[remove[FollowUpItem]]"/>
+<$action-deletefield follow-up-folder />
+Done
+</$button>
+</$list>
+<$list filter="[is[current]tag[Done]]">
+<$button>
+<$action-listops $tiddler={{!!title}} $field="tags" $subfilter="-Done" />
+Not Done
+</$button>
+</$list>
+<$reveal state="!!todo-waiting-box-state" type="nomatch" text="prompt-for-todo-waiting">
+| <$button set="!!todo-waiting-box-state" setTo="prompt-for-todo-waiting">
+Waiting
+</$button>
+</$reveal>
+<$reveal state="!!todo-waiting-box-state" type="match" text="prompt-for-todo-waiting">
+| <$button>
+<$action-setfield waiting=<<now format:"ddd, MM/0DD">> />
+<$action-listops $field="tags" $subfilter="+[append[Waiting]]" />
+<$action-createtiddler $basetitle={{$:/state/new-todo-action}} $savetitle="$:/state/new-todo-action" />
+<$action-setfield $tiddler={{$:/state/new-todo-action}} action-date=<<now format:"ddd, MM/0DD">> />
+<$action-listops $tiddler={{$:/state/new-todo-action}} $field="tags" $subfilter="[{!!title}] +[append[TodoAction Done]]" />
+<$action-setfield $field="todo-waiting-box-state" $value="" />
+<$action-deletetiddler $tiddler="$:/state/new-todo-action" />
+{{$:/core/images/save-button}}
+</$button>
+<$button>
+<$action-setfield $field="todo-waiting-box-state" $value="" />
+<$action-deletetiddler $tiddler="$:/state/new-todo-action" />
+{{$:/core/images/cancel-button}}
+</$button>
+Why: <$edit-text tiddler="$:/state/new-todo-action" tag="input" default="" />
+</$reveal>
+<$reveal state="!!todo-not-waiting-box-state" type="nomatch" text="prompt-for-todo-not-waiting">
+| <$button set="!!todo-not-waiting-box-state" setTo="prompt-for-todo-not-waiting">
+Not Waiting
+</$button>
+{{!!waiting}}
+</$reveal>
+<$reveal state="!!todo-not-waiting-box-state" type="match" text="prompt-for-todo-not-waiting">
+| <$button>
+<$action-setfield waiting=<<now format:"ddd, MM/0DD">> />
+<$action-listops $field="tags" $subfilter="-Waiting" />
+<$action-createtiddler $basetitle={{$:/state/new-todo-action}} $savetitle="$:/state/new-todo-action" />
+<$action-setfield $tiddler={{$:/state/new-todo-action}} action-date=<<now format:"ddd, MM/0DD">> />
+<$action-listops $tiddler={{$:/state/new-todo-action}} $field="tags" $subfilter="[{!!title}] +[append[TodoAction Done]]" />
+<$action-setfield $field="todo-not-waiting-box-state" $value="" />
+<$action-deletetiddler $tiddler="$:/state/new-todo-action" />
+{{$:/core/images/save-button}}
+</$button>
+<$button>
+<$action-setfield $field="todo-not-waiting-box-state" $value="" />
+<$action-deletetiddler $tiddler="$:/state/new-todo-action" />
+{{$:/core/images/cancel-button}}
+</$button>
+Why: <$edit-text tiddler="$:/state/new-todo-action" tag="input" default="" />
+</$reveal>
+Follow Up folder:
+<<followUpFolderActionsSelect 'follow-up-folder' '<$action-listops $tags="FollowUpItem"/><$action-listops $tags="+[remove[Done]]"/>' >>
+<$button>
+<$action-listops $tags="+[remove[FollowUpItem]]"/>
+<$action-deletefield follow-up-folder />
+Clear
+</$button>
+<$list filter="[is[current]!tag[TodayCandidate]]">
+<$button>
+<$action-listops $tags="TodayCandidate" />
+Today!
+</$button>
+</$list>
+<$list filter="[is[current]tag[TodayCandidate]]">
+<$button>
+<$action-listops $tags="-TodayCandidate" />
+!Today
+</$button>
+</$list>
+<hr/>
+</div>
+
+New Next Action: <$edit-text tiddler="$:/state/new-todo-next-action" tag="input" default="" />
+<$button>
+<$action-setfield waiting=<<now format:"ddd, MM/0DD">> />
+<$action-createtiddler $basetitle={{$:/state/new-todo-next-action}} $savetitle="$:/state/new-todo-next-action" />
+<$action-listops $tiddler={{$:/state/new-todo-next-action}} $field="tags" $subfilter="[{!!title}] +[append[TodoAction]]" />
+<$action-setfield $field="todo-next-action-box-state" $value="" />
+<$action-deletetiddler $tiddler="$:/state/new-todo-next-action" />
+{{$:/core/images/save-button}}
+</$button>
+<$button>
+<$action-setfield $field="todo-next-action-box-state" $value="" />
+<$action-deletetiddler $tiddler="$:/state/new-todo-next-action" />
+{{$:/core/images/cancel-button}}
+</$button>
+
+<$list variable="topNextAction" filter="[tag<currentTiddlerTitle>tag[TodoAction]!tag[Done]sort[created]first[1]]">
+<h2>Outstanding Next Actions</h2>
+<$list filter="[tag<currentTiddlerTitle>tag[TodoAction]!tag[Done]sort[created]]">
+<div>
+<$button>
+<$action-listops $field="tags" $subfilter="+[append[Done]]" />
+<$action-setfield $field="action-date" $value=<<now format:"ddd, MM/0DD">>/>
+Done
+</$button>
+<$link>{{!!title}}</$link>
+</div>
+</$list>
+</$list>
+
+<$list variable="topActivity" filter="[tag{!!title}tag[TodoAction]sort[created]first[1]]">
+<h2>Activities</h2>
+<table>
+<$list filter="[tag{!!title}tag[TodoAction]tag[Done]!sort[created]]">
+<tr>
+<td>
+<$button>
+<$action-listops $field="tags" $subfilter="-Done" />
+Not Done
+</$button>
+</td>
+<th>{{!!action-date}}</th>
+<td>
+<$link>{{!!title}}</$link>
+</td></tr>
+</$list>
+</table>
+</$list>
+
+</$set>
+</$list>

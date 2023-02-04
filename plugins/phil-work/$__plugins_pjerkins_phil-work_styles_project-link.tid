@@ -1,0 +1,11 @@
+class: project-link
+created: 20221004014029380
+creator: jpjerkins
+modified: 20230128044236977
+modifier: jpjerkins
+tags: $:/tags/Stylesheet
+title: $:/plugins/pjerkins/phil-work/styles/project-link
+
+.project-link {
+  color: green;
+}
