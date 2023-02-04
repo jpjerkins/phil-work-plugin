@@ -1,7 +1,7 @@
 {
     "plugins": [
         "tiddlywiki/async",
-        "tiddlywiki/aws",
+        "tiddlywiki/filesystem",
         "tiddlywiki/jszip",
         "tiddlywiki/markdown",
         "tiddlywiki/sax",

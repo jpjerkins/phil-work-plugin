@@ -1,5 +1,0 @@
-created: 20230128041844498
-modified: 20230128051252428
-title: PluginTiddlers
-
-<<list-links filter:"[all[shadows+tiddlers]search:title[$:/plugins/pjerkins/phil-work/]sort[created]!search:title[state/tree]]">>
