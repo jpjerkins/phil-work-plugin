@@ -1,0 +1,516 @@
+{
+    "tiddlers": {
+        "$:/plugins/pjerkins/phil-work/AllFollowUpItems": {
+            "title": "$:/plugins/pjerkins/phil-work/AllFollowUpItems",
+            "created": "20220123211926992",
+            "creator": "jpjerkins",
+            "modified": "20230202033703448",
+            "modifier": "jpjerkins",
+            "tags": "",
+            "text": "\\import [all[shadows]prefix:title[$:/plugins/pjerkins/phil-work/Macros/FollowUp]]\n\n[[BulkMoveFollowUpItems|$:/plugins/pjerkins/phil-work/Utils/BulkMoveFollowUpItems]]\n\nMove To: <<followUpFolderBoundSelect target-folder>>\n\n<$let\n currentTiddler=<<qualify \"target-folder\">>\n targetFolder={{!!text}}>\n\n!! Follow-up Folders\n<$list filter=\"[list[$:/plugins/pjerkins/phil-work/FollowUpFolders]]\">\n<$let\n folder={{!!title}}\n targetFolderTiddler=<<qualify 'target-folder'>>>\n<$list filter=\"[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]first[1]]\">\n\n!!! <<folder>>\n\n<$button>\n<$list filter=\"[field:follow-up-folder<folder>tag[FollowUpItem]!tag[Done]]\">\n<$action-setfield follow-up-folder=<<targetFolder>>/>\n</$list>\nMove all\n</$button>\n\n<ul>\n<$list filter=\"[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]]\">\n<li>\n<$link $tiddler={{!!title}}>{{!!title}}</$link>\n<$list filter=\"[tag{!!title}tag[TodoNextAction]!tag[Done]sort[created]nth[1]]\">\n<br/>{{!!title}}\n</$list>\n</li>\n</$list>\n</ul>\n\n</$list>\n</$let>\n\n</$list>\n\n</$let>"
+        },
+        "$:/plugins/pjerkins/phil-work/Done": {
+            "title": "$:/plugins/pjerkins/phil-work/Done",
+            "created": "20190409215002461",
+            "creator": "jpjerkins",
+            "modified": "20230202034939799",
+            "modifier": "jpjerkins",
+            "order": "3",
+            "tags": "Global GtdCategories",
+            "text": "!! [[Done]]\n\n<$button>\n<$list filter=\"ToDo TodoAction +[tagging[]tag[Done]!tag[$:/plugins/pjerkins/phil-work/Today]sort[title]]\">\n<$let todo=<<currentTiddler>> actionFilter={{{[tag<todo>]}}}>\n<$list filter=\"[is[current]!has[text]!filter<actionFilter>]\">\n<$action-deletetiddler $tiddler={{!!title}} />\n</$list>\n</$let>\n</$list>\nDelete Vanilla Done To-Dos\n</$button>\n\n<$list filter=\"ToDo TodoAction Done +[tagging[]tag[Done]!tag[$:/plugins/pjerkins/phil-work/Today]sort[title]]\">\n<div styles=\"width:100%; border: solid 1px #888;\">\n<div styles=\"width:100%; border: solid 1px #888; background-color: #AAA;\">\n<$button>\n<$action-listops $tiddler={{!!title}} $field=\"tags\" $subfilter=\"-Done\" />\nNot Done\n</$button>\n<div style=\"float: right;\">\n<$let todo=<<currentTiddler>> actionFilter={{{[tag[TodoAction]tag<todo>]}}}>\n<$button>\n<$action-deletetiddler $tiddler={{!!title}} />\nDelete\n</$button>\n<$list filter=\"[is[current]has[text]tag[ToDo]!filter<actionFilter>]\"><$button><$action-listops $tiddler={{!!title}} $field=\"tags\" $subfilter=\"-ToDo\" />-ToDo</$button></$list>\n<$list filter=\"[is[current]has[text]tag[TodoAction]!filter<actionFilter>]\"><$button><$action-listops $tiddler={{!!title}} $field=\"tags\" $subfilter=\"-TodoAction\" />-TodoAction</$button></$list>\n<$list filter=\"[is[current]has[text]!tag[ToDo]!tag[TodoAction]tag[Done]!filter<actionFilter>]\"><$button><$action-listops $tiddler={{!!title}} $field=\"tags\" $subfilter=\"-Done\" />-Done</$button></$list>\n<$list filter=\"[is[current]!tag[ToDo]filter<actionFilter>]\">\n$:/plugins/pjerkins/phil-work/Utils/DoneToDoCleanup\n</$list>\n</$let>\n</div>\n</div>\n<div>\n<$list filter=\"[is[current]has[text]]\">\n<$link to={{!!title}}>__{{!!title}}__</$link>\n</$list>\n<$list filter=\"[is[current]!has[text]]\">\n<$link to={{!!title}}>{{!!title}}</$link>\n</$list>\n</div>\n<$list filter=\"[is[current]has[text]]\">\n<div style=\"padding-left: 1em; padding-top: 0.5em; padding-bottom: 0.5em; border-left: solid 1px gray; font-size: small;\">\n<$transclude tiddler=<<currentTiddler>> mode=block />\n</div>\n</$list>\n<hr />\n</div>\n</$list>"
+        },
+        "$:/plugins/pjerkins/phil-work/Expertise": {
+            "title": "$:/plugins/pjerkins/phil-work/Expertise",
+            "caption": "by Expertise",
+            "created": "20220324135411691",
+            "modified": "20230201022102083",
+            "tags": "$:/plugins/pjerkins/phil-work/PeopleFinders",
+            "text": "!! Experts\n<$list variable=\"expertise\" filter=\"[tag[$:/plugins/pjerkins/phil-work/Expertise]sort[]]\">\n\n<$list filter=\"[tag[$:/plugins/pjerkins/phil-work/People]tag<expertise>first[1]]\">\n<h3><$link to=<<expertise>> /></h3>\n\n<ul>\n<$list filter=\"[tag[$:/plugins/pjerkins/phil-work/People]tag<expertise>]\">\n<li>\n<$link $tiddler={{!!title}}>{{!!title}}</$link>\n</li>\n</$list>\n</ul>\n\n</$list>\n\n</$list>\n"
+        },
+        "$:/plugins/pjerkins/phil-work/FollowUpFolders": {
+            "title": "$:/plugins/pjerkins/phil-work/FollowUpFolders",
+            "created": "20230130040222606",
+            "list": "1st 2nd 3rd 4th 5th 6th 7th 8th 9th 10th 11th 12th 13th 14th 15th 16th 17th 18th 19th 20th 21st 22nd 23rd 24th 25th 26th 27th 28th 29th 30th 31st January February March April May June July August September October November December",
+            "modified": "20230130040538016",
+            "tags": ""
+        },
+        "$:/plugins/pjerkins/phil-work/GtdTabs": {
+            "title": "$:/plugins/pjerkins/phil-work/GtdTabs",
+            "created": "20190401130822042",
+            "creator": "jpjerkins",
+            "modified": "20230201031547111",
+            "modifier": "jpjerkins",
+            "tags": "$:/tags/SideBarSegment",
+            "text": "\\define linkRow(rowNumber)\n<$list filter=\"[tag[$:/plugins/pjerkins/phil-work/GtdTabs]link-row[$rowNumber$]]\">\n| <$link><$view field=caption>{{!!title}}</$view></$link>\n</$list>\n\\end\n\n[[What IS this \"Work Notes Journal\"?|$:/plugins/pjerkins/phil-work/What IS This Thing?]]<br/>\n[[Today|$:/plugins/pjerkins/phil-work/Today]] | [[Home|$:/plugins/pjerkins/phil-work/Home]] <<linkRow 1>><br/>\n[[MDScratch]] <<linkRow 2>>\n<div class=\"tc-table-of-contents\">\n<<toc-selective-expandable 'TableOfContents' \"sort[title]\">>\n</div>\n\n[[Notes|NotesWithSupervisor]] <<linkRow 3>>"
+        },
+        "$:/plugins/pjerkins/phil-work/hide": {
+            "title": "$:/plugins/pjerkins/phil-work/hide",
+            "created": "20190415135032024",
+            "modified": "20230128045623291",
+            "tags": "",
+            "text": "show"
+        },
+        "$:/plugins/pjerkins/phil-work/Home": {
+            "created": "20221126170151316",
+            "text": "\\define goalProjectsFilter() [[$(currentGoal)$]] Initiative\n\\define closeGoalActions()\n<$action-setfield $tiddler=<<actionMenuState>> $field=\"text\" $value=\"\" />\n\\end\n\\define closeHomeActions()\n<$action-setfield $tiddler=<<actionMenuState>> $field=\"text\" $value=\"\" />\n\\end\n\\define newGoalTodoTags() [[$(currentGoal)$]] ToDo\n\\define newGoalCandidateTags() [[$(currentGoal)$]] ToDo TodayCandidate\n\\import [all[shadows]prefix:title[$:/plugins/pjerkins/phil-work/Macros/FollowUp]]\n\n<<followUpFolderBoundSelect selected-follow-up-folder>> | [[AllFollowUpItems|$:/plugins/pjerkins/phil-work/AllFollowUpItems]] | [[Done|$:/plugins/pjerkins/phil-work/Done]]\n\n<$let currentTiddler=<<qualify \"selected-follow-up-folder\">> selectedFollowUpFolder={{!!text}}>\n\t<$list filter=\"[field:follow-up-folder<selectedFollowUpFolder>tag[FollowUpItem]!tag[Done]!tag[Parked]!tag[Today]!tag[TodayCandidate]sort[title]]\">\n\t\t<$let\n\t\t doneTagCount={{{ [list[!!tags]join[;]] }}}\n\t\t hasProject={{{ [kin::from:<currentTiddler>tag[Initiative]count[]] }}}\n\t\t hasParkedProject={{{ [kin::from:<currentTiddler>tag[Parked]tag[Initiative]count[]multiply[10]] }}}\n\t\t hasGoal={{{ [kin::from:<currentTiddler>tag[$:/plugins/pjerkins/phil-work/IdentityStatements]count[]multiply[2]] }}}\n\t\t todoType={{{ [<hasGoal>add<hasProject>subtract<hasParkedProject>] }}} >\n\t\t \t{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBarHamburger}}\n\t\t\t<$list variable=\"result\" filter=\"[<todoType>compare:number:gteq[2]]\">\n\t\t\t\t<$link overrideClass=\"goal-link\" tiddler=<<currentTiddler>> ><<currentTiddler>></$link>\n\t\t\t</$list>\n\t\t\t<$list variable=\"result\" filter=\"[<todoType>compare:number:eq[1]]\">\n\t\t\t\t<$link overrideClass=\"project-link\" tiddler=<<currentTiddler>> ><<currentTiddler>></$link>\n\t\t\t</$list>\n\t\t\t<$list variable=\"result\" filter=\"[<todoType>compare:number:eq[0]]\">\n\t\t\t\t<$link tiddler=<<currentTiddler>> ><<currentTiddler>></$link>\n\t\t\t</$list>\n\t\t\t{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBar}}\n\t\t</$let>\t\n\t</$list>\n</$let>\n\n<$let\n currentTiddler=<<qualify \"selected-follow-up-folder\">>\n selectedFollowUpFolder={{!!text}}\n todoReadyTodayFilter=\"[tag[ToDo]!tag[Today]!tag[TodayCandidate]!tag[FollowUpItem]!tag[Done]!tag[Parked]]\"\n todoFollowUpTodayFilter=\"[tag[ToDo]!tag[Today]!tag[TodayCandidate]tag[FollowUpItem]field:follow-up-folder<selectedFollowUpFolder>!tag[Done]!tag[Parked]]\">\n\n\t<$list filter=\"[list[$:/plugins/pjerkins/phil-work/IdentityStatements]]\">\n\t\t<h3><$link overrideClass=\"goal-link\" /></h3>\n\t\t<$let currentGoal=<<currentTiddler>> >\n\t\t\t<$list filter=\"[tag<currentGoal>tag[$:/plugins/pjerkins/phil-work/MyInitiatives]!tag[Parked]]\">\n\t\t\t\t<$let currentProject={{!!title}} >\n\t\t\t\t\t<div style=\"padding-top: 0.5em\">\n\t\t\t\t\t\t{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBarHamburger}}\n\t\t\t\t\t\t<$link overrideClass=\"project-link\" />\n\t\t\t\t\t</div>\n\t\t\t\t\t{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBar}}\n\t\t\t\t\t<$list template=\"$:/plugins/pjerkins/phil-work/Templates/HomeReadyTaskTemplate\" filter=\"[tag<currentProject>filter<todoReadyTodayFilter>]\" />\n\t\t\t\t\t<$list template=\"$:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate\" filter=\"[tag<currentProject>filter<todoFollowUpTodayFilter>]\" />\n\t\t\t\t</$let>\n\t\t\t</$list>\n\t\t\t<div style=\"padding-top: 0.5em\">\n\t\t\t\t{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBarHamburger}}\n\t\t\t\tNo Project\n\t\t\t</div>\n\t\t\t<$let actionMenuState={{{ [all[current]addprefix[$:/temp/]addsuffix[/action-menu-state]] }}} >\n\t\t\t\t<$reveal state=<<actionMenuState>> type=\"match\" text=\"prompt-for-todo-action\">\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<$edit-text tiddler=\"$:/state/new-todo\" default=\"\" tag=\"input\" />\n\t\t\t\t\t\t<$button>\n\t\t\t\t\t\t\t<$action-createtiddler $basetitle={{$:/state/new-todo}} tags=<<newGoalTodoTags>> />\n\t\t\t\t\t\t\t<$action-deletetiddler $tiddler=\"$:/state/new-todo\" />\n\t\t\t\t\t\t\t<<closeGoalActions>>\n\t\t\t\t\t\t\t{{$:/core/images/save-button}}\n\t\t\t\t\t\t</$button>\n\t\t\t\t\t\t<$button>\n\t\t\t\t\t\t\t<$action-createtiddler $basetitle={{$:/state/new-todo}} tags=<<newGoalCandidateTags>> />\n\t\t\t\t\t\t\t<$action-deletetiddler $tiddler=\"$:/state/new-todo\" />\n\t\t\t\t\t\t\t<<closeGoalActions>>\n\t\t\t\t\t\t\tT!\n\t\t\t\t\t\t</$button>\n\t\t\t\t\t\t<$button>\n\t\t\t\t\t\t\t<<closeGoalActions>>\n\t\t\t\t\t\t\t{{$:/core/images/cancel-button}}\n\t\t\t\t\t\t</$button>\n\t\t\t\t\t</div>\n\t\t\t\t</$reveal>\n\t\t\t</$let>\n\t\t\t<$list template=\"$:/plugins/pjerkins/phil-work/Templates/HomeReadyTaskTemplate\" filter=\"[tag<currentGoal>filter<todoReadyTodayFilter>]\" />\n\t\t\t<$list template=\"$:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate\" filter=\"[tag<currentGoal>filter<todoFollowUpTodayFilter>]\" />\n\t\t</$let>\n\t</$list>\n\n\t!! Other\n\n\t<$let\n\t noGoalFilter=\"[kin::from:[]tag[$:/plugins/pjerkins/phil-work/IdentityStatements]count[]compare:number:eq[0]]\"\n\t noProjectFilter=\"[kin::from:[]tag[$:/plugins/pjerkins/phil-work/MyInitiatives]count[]compare:number:eq[0]]\"\n\t noDiscoveryFilter=\"[kin::from:[]tag[$:/plugins/pjerkins/phil-work/Discovery]count[]compare:number:eq[0]]\"\n\t noDecompositionFilter=\"[kin::from:[]tag[$:/plugins/pjerkins/phil-work/Decomposition]count[]compare:number:eq[0]]\">\n\t\t<$list filter=\"$:/plugins/pjerkins/phil-work/MyInitiatives $:/plugins/pjerkins/phil-work/Discovery $:/plugins/pjerkins/phil-work/Decomposition +[tagging[]filter<noGoalFilter>!tag[Parked]]\">\n\t\t\t<$let currentProject={{!!title}} >\n\t\t\t\t<div style=\"padding-top: 0.5em\">\n\t\t\t\t\t{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBarHamburger}}\n\t\t\t\t\t<$link overrideClass=\"project-link\" />\n\t\t\t\t</div>\n\t\t\t\t{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBar}}\n\t\t\t\t<$list template=\"$:/plugins/pjerkins/phil-work/Templates/HomeReadyTaskTemplate\" filter=\"[tag<currentProject>filter<todoReadyTodayFilter>]\" />\n\t\t\t\t<$list template=\"$:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate\" filter=\"[tag<currentProject>filter<todoFollowUpTodayFilter>]\" />\n\t\t\t</$let>\n\t\t</$list>\n\t\t<div style=\"padding-top: 0.5em\">\n\t\t\t{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBarHamburger}}\n\t\t\tNo Project\n\t\t</div>\n\t\t<$let actionMenuState={{{ [all[current]addprefix[$:/temp/]addsuffix[/action-menu-state]] }}} >\n\t\t\t<$reveal state=<<actionMenuState>> type=\"match\" text=\"prompt-for-todo-action\">\n\t\t\t\t<div>\n\t\t\t\t\t<$edit-text tiddler=\"$:/state/new-todo\" default=\"\" tag=\"input\" />\n\t\t\t\t\t<$button>\n\t\t\t\t\t\t<$action-createtiddler $basetitle={{$:/state/new-todo}} tags=\"ToDo\" />\n\t\t\t\t\t\t<$action-deletetiddler $tiddler=\"$:/state/new-todo\" />\n\t\t\t\t\t\t<<closeHomeActions>>\n\t\t\t\t\t\t{{$:/core/images/save-button}}\n\t\t\t\t\t</$button>\n\t\t\t\t\t<$button>\n\t\t\t\t\t\t<$action-createtiddler $basetitle={{$:/state/new-todo}} tags=\"ToDo TodayCandidate\" />\n\t\t\t\t\t\t<$action-deletetiddler $tiddler=\"$:/state/new-todo\" />\n\t\t\t\t\t\t<<closeHomeActions>>\n\t\t\t\t\t\tT!\n\t\t\t\t\t</$button>\n\t\t\t\t\t<$button>\n\t\t\t\t\t\t<<closeHomeActions>>\n\t\t\t\t\t\t{{$:/core/images/cancel-button}}\n\t\t\t\t\t</$button>\n\t\t\t\t</div>\n\t\t\t</$reveal>\n\t\t</$let>\n\t\t<$list template=\"$:/plugins/pjerkins/phil-work/Templates/HomeReadyTaskTemplate\" filter=\"[filter<todoReadyTodayFilter>filter<noGoalFilter>filter<noProjectFilter>filter<noDiscoveryFilter>filter<noDecompositionFilter>]\" />\n\t\t<$list template=\"$:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate\" filter=\"[filter<todoFollowUpTodayFilter>filter<noGoalFilter>filter<noProjectFilter>filter<noDiscoveryFilter>filter<noDecompositionFilter>]\" />\n\t</$let>\n\n</$let>",
+            "title": "$:/plugins/pjerkins/phil-work/Home",
+            "caption": "Home",
+            "creator": "jpjerkins",
+            "modified": "20230204190710842",
+            "modifier": "jpjerkins",
+            "tags": "",
+            "todo-action-box-state": ""
+        },
+        "$:/plugins/pjerkins/phil-work/HomePage": {
+            "title": "$:/plugins/pjerkins/phil-work/HomePage",
+            "created": "20220120222747184",
+            "creator": "jpjerkins",
+            "modified": "20230128045643330",
+            "modifier": "jpjerkins",
+            "tags": "",
+            "text": "!! Follow-Up\n$:/plugins/pjerkins/phil-work/AllFollowUpItems | $:/plugins/pjerkins/phil-work/Utils/BulkMoveFollowUpItems | [[$:/plugins/pjerkins/phil-work/Done]]\n\n<$select tiddler=<<qualify 'selected-follow-up-folder'>> default='Day 01'>\n<$list filter='[tag[FollowUpDayFolder]sortan[follow-up-day-folder-order]]'>\n<option value=<<currentTiddler>>><$view field='title'/></option>\n</$list>\n<$list filter='[tag[FollowUpMonthFolder]sortan[follow-up-month-folder-order]]'>\n<option value=<<currentTiddler>>><$view field='title'/></option>\n</$list>\n</$select>\n\n<$edit-text tiddler=\"$:/state/new-button-caption\" tag=\"input\" default=\"\" />\n<$button>\n<$action-createtiddler $basetitle={{$:/state/new-button-caption}} tags=\"ToDo\"/>\n<$action-deletetiddler $tiddler=\"$:/state/new-button-caption\" />\nAdd\n</$button>\n\n<$let currentTiddler=<<qualify \"selected-follow-up-folder\">> selectedFollowUpFolder={{!!text}}>\n<ul>\n<$list filter=\"[field:follow-up-folder<selectedFollowUpFolder>tag[FollowUpItem]!tag[$:/plugins/pjerkins/phil-work/Done]]\">\n<li>\n<$button>\n<$action-listops $tags=\"-FollowUpItem\" />\n<$action-deletefield $field=\"follow-up-folder\" />\n&#9660;\n</$button>\n<$button>\n<$action-listops $tags=\"Done\" />\n&#10004;\n</$button>\n<$link />\n<$list filter=\"[tag{!!title}tag[$:/plugins/pjerkins/phil-work/TodoAction]!tag[$:/plugins/pjerkins/phil-work/Done]sort[created]nth[1]]\">\n<br/>{{!!title}}\n</$list>\n</li>\n</$list>\n</ul>\n</$let>\n\n<$list variable=\"firstWaitingItem\" filter=\"[tag[ToDo]!tag[FollowUp]tag[$:/plugins/pjerkins/phil-work/Waiting]!tag[$:/plugins/pjerkins/phil-work/Done]first[1]]\">\n\n!! Waiting\n{{$:/plugins/pjerkins/phil-work/WaitingList}}\n</$list>\n\n<$list variable=\"firstTodoItem\" filter=\"[tag[ToDo]!tag[FollowUp]!tag[$:/plugins/pjerkins/phil-work/Waiting]!tag[$:/plugins/pjerkins/phil-work/Done]first[1]]\">\n\n!! To Do\n{{$:/plugins/pjerkins/phil-work/ToDoList}}\n</$list>\n"
+        },
+        "$:/plugins/pjerkins/phil-work/IdentityStatements": {
+            "title": "$:/plugins/pjerkins/phil-work/IdentityStatements",
+            "caption": "Identity Statements",
+            "created": "20220904223446346",
+            "creator": "jpjerkins",
+            "list": "",
+            "modified": "20230203180309182",
+            "modifier": "jpjerkins",
+            "tags": "TableOfContents",
+            "text": "<<list-tagged-draggable tag:\"$:/plugins/pjerkins/phil-work/IdentityStatements\" emptyMessage:\"You don't have any identity!\">>\n"
+        },
+        "$:/plugins/pjerkins/phil-work/Macros/FollowUpFolderActionsSelect": {
+            "title": "$:/plugins/pjerkins/phil-work/Macros/FollowUpFolderActionsSelect",
+            "created": "20230131042940677",
+            "modified": "20230202040501700",
+            "tags": "",
+            "text": "\\define followUpFolderActionsSelect(field, actions)\n<$select field=$field$ actions='$actions$'>\n<$list filter='[list[$:/plugins/pjerkins/phil-work/FollowUpFolders]]'>\n<option value=<<currentTiddler>>><$view field='title'/></option>\n</$list>\n</$select>\n\\end\n\\define testActions() <$action-listops $tags=\"FollowUpItem\"/>\n\n!! Generated Wikitext\n<pre><$text text=<<followUpFolderActionsSelect follow-up-folder '<<testActions>>'>> />\n</pre>\n\n!! Running example\n<<followUpFolderActionsSelect follow-up-folder '<<testActions>>'>>\n\nfollow-up-folder: {{!!follow-up-folder}}\n\n!!! Arguments\n\n|field |!`follow-up-folder` |\n|actions |!`<<testActions>>` |"
+        },
+        "$:/plugins/pjerkins/phil-work/Macros/FollowUpFolderBoundSelect": {
+            "title": "$:/plugins/pjerkins/phil-work/Macros/FollowUpFolderBoundSelect",
+            "created": "20230131035700065",
+            "modified": "20230131040806625",
+            "tags": "",
+            "text": "\\define followUpFolderBoundSelect(boundTiddler)\n<$select tiddler=<<qualify '$boundTiddler$'>> default='1st'>\n<$list filter='[list[$:/plugins/pjerkins/phil-work/FollowUpFolders]]'>\n<option value=<<currentTiddler>>><$view field='title'/></option>\n</$list>\n</$select>\n\\end\n\n!! Generated Wikitext\n<pre><$text text=<<followUpFolderBoundSelect test>> />\n</pre>\n\n!! Running example\n<<followUpFolderBoundSelect test>>\n\nArguments\n\n|boundTiddler |!test |"
+        },
+        "$:/plugins/pjerkins/phil-work/Macros/ShowTodayList": {
+            "title": "$:/plugins/pjerkins/phil-work/Macros/ShowTodayList",
+            "created": "20230202014253787",
+            "modified": "20230202015346293",
+            "tags": "",
+            "text": "\\define doneActions() <$action-setfield $field=\"today-actual-points\" $value={{!!today-potential-points}} /><$action-listops $tags=\"Done\"/>\n\\define notDoneActions() <$action-deletefield $field=\"today-actual-points\"/><$action-listops $tags=\"-Done\"/>\n\\define showTodayList(totalPotentialPoints, totalActualPoints, currentScore)\n!! Today!\n<$list filter=\"[tag[Today]!nsort[today-potential-points]]\">\n<$let\n doneTagCount={{{ [list[!!tags]join[;]] }}}\n currentTodo=<<currentTiddler>>\n hasProject={{{ [kin::from:<currentTodo>tag[Initiative]count[]] }}}\n hasGoal={{{ [kin::from:<currentTodo>tag[$:/plugins/pjerkins/phil-work/IdentityStatements]count[]multiply[2]] }}}\n todoType={{{ [<hasGoal>add<hasProject>] }}} >\n<$checkbox filter=\"[list[!!tags]]\" checked=\"Done\" checkactions=<<doneActions>> uncheckactions=<<notDoneActions>>>\n{{!!today-potential-points}}\n<$list variable=\"result\" filter=\"[<todoType>compare:number:gteq[2]]\">\n<$link overrideClass=\"goal-link\" tiddler=<<currentTodo>> ><<currentTodo>></$link>\n</$list>\n<$list variable=\"result\" filter=\"[<todoType>compare:number:eq[1]]\">\n<$link overrideClass=\"project-link\" tiddler=<<currentTodo>> ><<currentTodo>></$link>\n</$list>\n<$list variable=\"result\" filter=\"[<todoType>compare:number:eq[0]]\">\n<$link tiddler=<<currentTodo>> ><<currentTodo>></$link>\n</$list>\n</$checkbox><br/>\n</$let>\n</$list>\n\nPossible: $totalPotentialPoints$<br/>\nActual: $totalActualPoints$<br/>\nScore: <b>$currentScore$</b>\n\\end"
+        },
+        "$:/plugins/pjerkins/phil-work/MyInitiatives": {
+            "title": "$:/plugins/pjerkins/phil-work/MyInitiatives",
+            "caption": "My Initiatives",
+            "created": "20220321202008905",
+            "modified": "20230128044331899",
+            "tags": "TableOfContents"
+        },
+        "$:/plugins/pjerkins/phil-work/MyTeams": {
+            "title": "$:/plugins/pjerkins/phil-work/MyTeams",
+            "caption": "My Teams",
+            "created": "20220321201806355",
+            "modified": "20230128044346261",
+            "tags": "TableOfContents"
+        },
+        "$:/plugins/pjerkins/phil-work/NewCode": {
+            "title": "$:/plugins/pjerkins/phil-work/NewCode",
+            "created": "20230114194419224",
+            "modified": "20230128044154395",
+            "tags": "",
+            "text": "<$list filter=\"[tag[$:/plugins/pjerkins/phil-work/NewCode]]\">\n<$checkbox tag='$:/plugins/pjerkins/phil-work/NewCode' />\n<$macrocall $name=\"copy-to-clipboard\" src={{!!text}}/>\n<$link/><br/>\n</$list>"
+        },
+        "$:/plugins/pjerkins/phil-work/Parked": {
+            "created": "20230114194437286",
+            "text": "!! Parked projects\n<$list filter=\"[tag[Initiative]tag[Parked]]\">\n<$checkbox tag='Parked' /> <$link /><br/>\n</$list>\n\n!! Parked tasks\n<$list filter=\"[tag[ToDo]tag[Parked]]\">\n<$checkbox tag='Parked' /> <$link /><br/>\n</$list>",
+            "title": "$:/plugins/pjerkins/phil-work/Parked",
+            "modified": "20230204191310826",
+            "tags": ""
+        },
+        "$:/plugins/pjerkins/phil-work/People": {
+            "title": "$:/plugins/pjerkins/phil-work/People",
+            "created": "20220223222807791",
+            "modified": "20230128045559594",
+            "tags": "Reference",
+            "text": "!! Meta\n* AreasOfExpertise\n* [[$:/plugins/pjerkins/phil-work/Teams]]\n\n!! People\n<<list-links filter:\"[tag[$:/plugins/pjerkins/phil-work/People]sort[]]\">>"
+        },
+        "$:/plugins/pjerkins/phil-work/PeopleFinders": {
+            "title": "$:/plugins/pjerkins/phil-work/PeopleFinders",
+            "caption": "People Finders",
+            "created": "20220321201658714",
+            "modified": "20230128044353383",
+            "tags": "TableOfContents"
+        },
+        "$:/plugins/pjerkins/phil-work/readme": {
+            "title": "$:/plugins/pjerkins/phil-work/readme",
+            "created": "20230128043433180",
+            "modified": "20230128044129144",
+            "tags": "",
+            "text": "! Welcome to ~PhilWork!"
+        },
+        "$:/plugins/pjerkins/phil-work/Roles": {
+            "title": "$:/plugins/pjerkins/phil-work/Roles",
+            "caption": "by Role",
+            "created": "20220223223244395",
+            "modified": "20230201022122486",
+            "tags": "$:/plugins/pjerkins/phil-work/PeopleFinders",
+            "text": "!! Roles\n<$list variable=\"team\" filter=\"[tag[$:/plugins/pjerkins/phil-work/Roles]sort[]]\">\n\n<$list filter=\"[tag[$:/plugins/pjerkins/phil-work/People]tag<team>first[1]]\">\n<h3><$link to=<<team>> /></h3>\n\n<ul>\n<$list filter=\"[tag[$:/plugins/pjerkins/phil-work/People]tag<team>]\">\n<li>\n<$link $tiddler={{!!title}}>{{!!title}}</$link>\n</li>\n</$list>\n</ul>\n\n</$list>\n\n</$list>\n"
+        },
+        "$:/plugins/pjerkins/phil-work/show": {
+            "title": "$:/plugins/pjerkins/phil-work/show",
+            "created": "20190415134729233",
+            "modified": "20230128045629994",
+            "tags": "",
+            "text": "hide"
+        },
+        "$:/plugins/pjerkins/phil-work/styles/goal-link": {
+            "title": "$:/plugins/pjerkins/phil-work/styles/goal-link",
+            "class": "goal-link",
+            "created": "20221004021407496",
+            "creator": "jpjerkins",
+            "modified": "20230128044218483",
+            "modifier": "jpjerkins",
+            "tags": "$:/tags/Stylesheet",
+            "text": ".goal-link {\n  color: red;\n}"
+        },
+        "$:/plugins/pjerkins/phil-work/styles/project-link": {
+            "title": "$:/plugins/pjerkins/phil-work/styles/project-link",
+            "class": "project-link",
+            "created": "20221004014029380",
+            "creator": "jpjerkins",
+            "modified": "20230128044236977",
+            "modifier": "jpjerkins",
+            "tags": "$:/tags/Stylesheet",
+            "text": ".project-link {\n  color: green;\n}"
+        },
+        "$:/plugins/pjerkins/phil-work/TagTodoActionsWithActionDateAsDone": {
+            "title": "$:/plugins/pjerkins/phil-work/TagTodoActionsWithActionDateAsDone",
+            "created": "20220307222824343",
+            "modified": "20230202034054392",
+            "tags": "",
+            "text": "! Tiddlers to Tag\n!!//Apply the tag <$tiddler tiddler=\"Done\"><$transclude tiddler=\"$:/core/ui/TagTemplate\"/></$tiddler> to the following tiddlers//\n<$list filter=\"[!has[draft.of]tag[TodoAction]!tag[Done]!field:action-date[]sort[]]\">\n<$checkbox tag=\"Done\"> <$link to={{!!title}}><$view field=\"title\"/></$link></$checkbox><br/>\n</$list>\n"
+        },
+        "$:/plugins/pjerkins/phil-work/Teams": {
+            "title": "$:/plugins/pjerkins/phil-work/Teams",
+            "caption": "by Team",
+            "created": "20190717184659463",
+            "modified": "20230201022147871",
+            "tags": "Reference $:/plugins/pjerkins/phil-work/PeopleFinders",
+            "type": "",
+            "text": "!! Teams\n<$list filter=\"[tag[$:/plugins/pjerkins/phil-work/Teams]sort[]]\">\n<$let team={{!!title}}>\n<$list filter=\"[tag[$:/plugins/pjerkins/phil-work/People]tag<team>first[1]]\">\n\n<h3><$link to=<<team>>><<team>></$link></h3>\n\n<ul>\n<$list filter=\"[tag[$:/plugins/pjerkins/phil-work/People]tag<team>]\">\n<li>\n<$link $tiddler={{!!title}}>{{!!title}}</$link>\n</li>\n</$list>\n</ul>\n\n</$list>\n</$let>\n\n</$list>\n"
+        },
+        "$:/plugins/pjerkins/phil-work/TechSmithsEraTiddlers": {
+            "title": "$:/plugins/pjerkins/phil-work/TechSmithsEraTiddlers",
+            "created": "20220301191638712",
+            "modified": "20230128044503052",
+            "tags": "",
+            "text": "//List all tiddlers created after [[Team Guardians - Purpose, Roadmap - 2019-06-07]] and before [[Nebula's Team Kickoff|2021-09-23 - Team Kickoff]]//\n\n! Tiddlers to Tag\n!!//Apply the tag <$tiddler tiddler=\"TechSmiths\"><$transclude tiddler=\"$:/core/ui/TagTemplate\"/></$tiddler> to the following tiddlers//\n<$list filter=\"[!has[draft.of]untagged[]!search:title[$]days:created[-998]!days:created[-159]sort[]]\">\n<$checkbox tag=\"TechSmiths\"> <$link to={{!!title}}><$view field=\"title\"/></$link></$checkbox><br/>\n</$list>\n"
+        },
+        "$:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate": {
+            "title": "$:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate",
+            "created": "20221005051925179",
+            "creator": "jpjerkins",
+            "modified": "20230203180054664",
+            "modifier": "jpjerkins",
+            "tags": "",
+            "todo-action-box-state": "",
+            "text": "{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBarHamburger}}<$link />\n@@color:gray;\n//(<<selectedFollowUpFolder>>)//\n@@\n{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBar}}"
+        },
+        "$:/plugins/pjerkins/phil-work/Templates/HomeReadyTaskTemplate": {
+            "title": "$:/plugins/pjerkins/phil-work/Templates/HomeReadyTaskTemplate",
+            "created": "20221005051740582",
+            "creator": "jpjerkins",
+            "modified": "20230203180047801",
+            "modifier": "jpjerkins",
+            "tags": "",
+            "todo-action-box-state": "",
+            "text": "{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBarHamburger}}<$link />\n{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBar}}"
+        },
+        "$:/plugins/pjerkins/phil-work/Templates/TodayCardDraggableTemplate": {
+            "title": "$:/plugins/pjerkins/phil-work/Templates/TodayCardDraggableTemplate",
+            "created": "20220901001055322",
+            "creator": "jpjerkins",
+            "modified": "20230128044308227",
+            "modifier": "jpjerkins",
+            "tags": "",
+            "text": "<$let\n todayIndex={{{ [list[TodayCandidate]allbefore<currentTiddler>count[]] }}}\n todayOrdinal={{{ [<todayIndex>add[1]] }}}\n todayPoints={{{ [<todayCount>subtract<todayIndex>] }}}\n hasProject={{{ [kin::from:<currentTiddler>tag[Initiative]count[]] }}}\n hasGoal={{{ [kin::from:<currentTiddler>tag[$:/plugins/pjerkins/phil-work/IdentityStatements]count[]multiply[2]] }}}\n todoType={{{ [<hasGoal>add<hasProject>] }}} >\n<<todayPoints>>\n<$button>\n<$action-listops $tags=\"-TodayCandidate\"/>\n<$action-listops $tiddler=\"TodayCandidate\" $filter=\"[tag[TodayCandidate]]\"/>\nRemove\n</$button>\n<$list variable=\"result\" filter=\"[<todoType>compare:number:gteq[2]]\">\n<$link overrideClass=\"goal-link\" tiddler=<<currentTiddler>> ><<currentTiddler>></$link>\n</$list>\n<$list variable=\"result\" filter=\"[<todoType>compare:number:eq[1]]\">\n<$link overrideClass=\"project-link\" tiddler=<<currentTiddler>> ><<currentTiddler>></$link>\n</$list>\n<$list variable=\"result\" filter=\"[<todoType>compare:number:eq[0]]\">\n<$link tiddler=<<currentTiddler>> ><<currentTiddler>></$link>\n</$list>\n</$let>"
+        },
+        "$:/plugins/pjerkins/phil-work/To Do": {
+            "title": "$:/plugins/pjerkins/phil-work/To Do",
+            "created": "20190409214637438",
+            "modified": "20230128045650401",
+            "order": "1",
+            "tags": "Global GtdCategories",
+            "text": "!! [[To-Do|$:/plugins/pjerkins/phil-work/To Do]]\n\n!!! //What Scares You?//\n\n<$edit-text tiddler=\"$:/state/new-button-caption\" tag=\"input\" default=\"\" />\n<$button>\n<$action-createtiddler $basetitle={{$:/state/new-button-caption}} tags=\"ToDo\"/>\n<$action-deletetiddler $tiddler=\"$:/state/new-button-caption\" />\nAdd\n</$button>\n\n{{$:/plugins/pjerkins/phil-work/ToDoList}}"
+        },
+        "$:/plugins/pjerkins/phil-work/Today": {
+            "title": "$:/plugins/pjerkins/phil-work/Today",
+            "caption": "Today",
+            "created": "20220901001209022",
+            "creator": "jpjerkins",
+            "list": "[[Test agility candidate]] [[Test product candidate]]",
+            "modified": "20230202015728516",
+            "modifier": "jpjerkins",
+            "tags": "",
+            "text": "\\define scoreTitle() $(today)$ - Daily Score\n\\define weekTitle() $(year)$-w$(week)$ - Weekly Score\n\\import [[$:/plugins/pjerkins/phil-work/Macros/ShowTodayList]]\n\n<$let totalPotentialPoints={{{ [tag[Today]get[today-potential-points]sum[]] }}} totalActualPoints={{{ [tag[Today]get[today-actual-points]sum[]] }}} currentScore={{{ [<totalActualPoints>divide<totalPotentialPoints>multiply[100]round[]] }}} today=<<now \"YYYY-0MM-0DD\">>  >\n\n<<showTodayList totalPotentialPoints:'<<totalPotentialPoints>>' totalActualPoints:'<<totalActualPoints>>' currentScore:'<<currentScore>>' >>\n\n<p>\n<$button>\n<$action-createtiddler $basetitle=<<scoreTitle>> $overwrite=\"yes\" tags=\"DailyScore\" totalPotentialPoints=<<totalPotentialPoints>> totalActualPoints=<<totalActualPoints>> score=<<currentScore>> weekOfYear=<<weekTitle>> />\n&#9655; D\n</$button>\n\n<$button>\n<$let totalWeekPotentialPoints={{{ [tag[DailyScore]field:weekOfYear<weekTitle>get[totalPotentialPoints]sum[]] }}} totalWeekActualPoints={{{ [tag[DailyScore]field:weekOfYear<weekTitle>get[totalActualPoints]sum[]] }}} totalWeekScore={{{ [<totalWeekActualPoints>divide<totalWeekPotentialPoints>multiply[100]round[]] }}} >\n<$action-createtiddler $basetitle=<<weekTitle>> $overwrite=\"yes\" tags=\"WeeklyScore\" totalPotentialPoints=<<totalWeekPotentialPoints>> totalActualPoints=<<totalWeekActualPoints>> totalScore=<<totalWeekScore>> />\n</$let>\n&#9655; W\n</$button>\n<$button>\n<$list filter=\"[tag[Today]!tag[TodayCandidate]sort[today-potential-points]]\">\n<$action-listops $tiddler=<<currentTag>> $tags=\"TodayCandidate -Today\" />\n<$action-listops $tiddler=TodayCandidate $field=list $filter=\"[tag[TodayCandidate]!nsort[today-potential-points]]\" />\n</$list>\nRemix\n</$button>\n<$button>\n<$list filter=\"[tag[Today]]\">\n<$action-listops $field=\"tags\" $subfilter=\"-Today -FollowUpItem\" />\n</$list>\nDone!\n</$button>\n</p>\n</$let>\n\n!! Candidates\n<$edit-text tiddler=\"$:/state/new-today-candidate\" tag=\"input\" default=\"\" />\n<$button>\n<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags=\"ToDo\"/>\n<$action-deletetiddler $tiddler=\"$:/state/new-today-candidate\" />\n+\n</$button>\n<$button>\n<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags=\"ToDo TodayCandidate\"/>\n<$action-deletetiddler $tiddler=\"$:/state/new-today-candidate\" />\n+C\n</$button>\n<$button>\n<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags=\"Initiative $:/plugins/pjerkins/phil-work/MyInitiatives\" />\n<$action-navigate $to={{$:/state/new-today-candidate}} />\n<$action-deletetiddler $tiddler=\"$:/state/new-today-candidate\" />\n+P\n</$button>\n\n<$let todayCount={{{ [list[TodayCandidate!!list]count[]] }}}>\n<<list-tagged-draggable tag:\"TodayCandidate\" subFilter:\"!has[draft.of]\" itemTemplate:\"$:/plugins/pjerkins/phil-work/Templates/TodayCardDraggableTemplate\" emptyMessage:\"You don't have any candidate tasks to commit\">>\n\n<$list filter=\"[tag[TodayCandidate]first[]]\">\n<$button>\n<$list filter=\"[list[TodayCandidate]]\">\n<$let todayIndex={{{ [list[TodayCandidate]allbefore<currentTiddler>count[]] }}} todayPoints={{{ [<todayCount>subtract<todayIndex>] }}}>\n<$action-listops $tags=\"Today -TodayCandidate\" />\n<$action-setfield today-potential-points=<<todayPoints>> />\n</$let>\n</$list>\n<$action-setfield $tiddler=\"TodayCandidate\" $field=\"list\" $value=\"\" />\nCommit!\n</$button>\n</$list>\n</$let>\n\n[[Scores|$:/plugins/pjerkins/phil-work/TodayScores]] | [[Home|$:/plugins/pjerkins/phil-work/Home]] | [[Screenshot|$:/plugins/pjerkins/phil-work/TodayScreenshot]]"
+        },
+        "$:/plugins/pjerkins/phil-work/TodayScores": {
+            "title": "$:/plugins/pjerkins/phil-work/TodayScores",
+            "created": "20220908025846849",
+            "creator": "jpjerkins",
+            "modified": "20230201043519820",
+            "modifier": "jpjerkins",
+            "tags": "",
+            "text": "!! Weekly Scores\n<$list filter=\"[tag[WeeklyScore]!sort[title]]\">\n<$link /> - {{!!totalScore}} ({{!!totalActualPoints}}/{{!!totalPotentialPoints}})<br/>\n</$list>\n\n!! Daily Scores\n<$list filter=\"[tag[DailyScore]!sort[title]]\">\n<$link /> - {{!!score}} ({{!!totalActualPoints}}/{{!!totalPotentialPoints}})<br/>\n</$list>"
+        },
+        "$:/plugins/pjerkins/phil-work/TodayScreenshot": {
+            "title": "$:/plugins/pjerkins/phil-work/TodayScreenshot",
+            "created": "20230202014050269",
+            "modified": "20230202020643935",
+            "tags": "",
+            "text": "\\import [[$:/plugins/pjerkins/phil-work/Macros/ShowTodayList]]\n\n<div style=\"height: 30em;\">&nbsp;</div>\n\n<$let totalPotentialPoints={{{ [tag[Today]get[today-potential-points]sum[]] }}} totalActualPoints={{{ [tag[Today]get[today-actual-points]sum[]] }}} currentScore={{{ [<totalActualPoints>divide<totalPotentialPoints>multiply[100]round[]] }}} today=<<now \"YYYY-0MM-0DD\">> >\n\n<<showTodayList totalPotentialPoints:'<<totalPotentialPoints>>' totalActualPoints:'<<totalActualPoints>>' currentScore:'<<currentScore>>' >>\n\n</$let>\n\n<div style=\"height: 10em;\">&nbsp;</div>\n"
+        },
+        "$:/plugins/pjerkins/phil-work/TodoAction": {
+            "title": "$:/plugins/pjerkins/phil-work/TodoAction",
+            "created": "20220323211128039",
+            "modified": "20230202035010238",
+            "tags": "",
+            "text": "!! Orphaned TodoAction Tiddlers\n<<list-links filter:\"[tag[TodoAction]kin::from:1[]is[missing]kin::to:1[]is[tiddler]tag[TodoAction]]\">>"
+        },
+        "$:/plugins/pjerkins/phil-work/TodoButtons": {
+            "title": "$:/plugins/pjerkins/phil-work/TodoButtons",
+            "created": "20220321182212657",
+            "modified": "20230128044400050",
+            "tags": "",
+            "text": "<$button>\n<$action-listops $tiddler={{!!title}} $field=\"tags\" $subfilter=\"+[append[Done]]\" />\nDone\n</$button>"
+        },
+        "$:/plugins/pjerkins/phil-work/ToDoList": {
+            "title": "$:/plugins/pjerkins/phil-work/ToDoList",
+            "created": "20220120223403878",
+            "creator": "jpjerkins",
+            "modified": "20230202034838975",
+            "modifier": "jpjerkins",
+            "tags": "",
+            "text": "<$list filter=\"[tag[ToDo]!tag[Waiting]!tag[Done]!tag[FollowUpItem]!tag[TodayCandidate]!tag[$:/plugins/pjerkins/phil-work/Today]sort[title]]\">\n<$list filter=\"[is[current]has[text]]\">\n<$link to={{!!title}}>__{{!!title}}__</$link>\n</$list>\n<$list filter=\"[is[current]!has[text]]\">\n<$link to={{!!title}}>{{!!title}}</$link>\n</$list>\n<$list filter=\"[tag{!!title}tag[TodoAction]!tag[Done]sort[created]nth[1]]\">\n{{!!title}}\n</$list>\n<div styles=\"width:100%; border: solid 1px #888; background-color: #AAA;\">\n<$button>\n<$action-listops $tiddler={{!!title}} $field=\"tags\" $subfilter=\"+[append[TodayCandidate]]\" />\n<$action-listops $tiddler=\"$:/plugins/pjerkins/phil-work/Today\" $filter=\"[tag[TodayCandidate]]\"/>\nToday\n</$button>\n| <$button>\n<$action-listops $tiddler={{!!title}} $field=\"tags\" $subfilter=\"+[append[Done]]\" />\nDone\n</$button>\n<$reveal state=\"!!todo-action-box-state\" type=\"nomatch\" text=\"prompt-for-todo-action\">\n| <$button set=\"!!todo-action-box-state\" setTo=\"prompt-for-todo-action\">\nWaiting\n</$button>\n</$reveal>\n<$reveal state=\"!!todo-action-box-state\" type=\"match\" text=\"prompt-for-todo-action\">\n| <$button>\n<$action-setfield waiting=<<now format:\"ddd, MM/0DD\">> />\n<$action-listops $field=\"tags\" $subfilter=\"+[append[Waiting]]\" />\n<$action-createtiddler $basetitle={{$:/state/new-todo-action}} $savetitle=\"$:/state/new-todo-action\" />\n<$action-setfield $tiddler={{$:/state/new-todo-action}} action-date=<<now format:\"ddd, MM/0DD\">> />\n<$action-listops $tiddler={{$:/state/new-todo-action}} $field=\"tags\" $subfilter=\"[{!!title}] +[append[TodoAction Done]]\" />\n<$action-setfield $field=\"todo-action-box-state\" $value=\"\" />\n<$action-deletetiddler $tiddler=\"$:/state/new-todo-action\" />\n{{$:/core/images/save-button}}\n</$button>\n<$button>\n<$action-setfield $field=\"todo-action-box-state\" $value=\"\" />\n<$action-deletetiddler $tiddler=\"$:/state/new-todo-action\" />\n{{$:/core/images/cancel-button}}\n</$button>\n<br/>\nWhy: <$edit-text tiddler=\"$:/state/new-todo-action\" tag=\"input\" default=\"\" />\n</$reveal>\n</div>\n<hr/>\n</$list>\n"
+        },
+        "$:/plugins/pjerkins/phil-work/Utils/BulkMoveFollowUpItems": {
+            "title": "$:/plugins/pjerkins/phil-work/Utils/BulkMoveFollowUpItems",
+            "created": "20220207134510662",
+            "creator": "jpjerkins",
+            "modified": "20230202034255438",
+            "modifier": "jpjerkins",
+            "source-folder": "4th",
+            "tags": "",
+            "text": "\\import [all[shadows]prefix:title[$:/plugins/pjerkins/phil-work/Macros/FollowUp]]\n\nMove From: <<followUpFolderBoundSelect source-folder>>\n\nMove To: <<followUpFolderBoundSelect target-folder>>\n\n<$let currentTiddler=<<qualify \"source-folder\">> sourceFolder={{!!text}} currentTiddler=<<qualify \"target-folder\">> targetFolder={{!!text}}>\n\n<$button>\n<$list filter=\"[field:follow-up-folder<sourceFolder>tag[FollowUpItem]!tag[Done]]\">\n<$action-setfield follow-up-folder=<<targetFolder>>/>\n</$list>\nMove all\n</$button>\n\n<ul>\n<$list filter=\"[field:follow-up-folder<sourceFolder>tag[FollowUpItem]!tag[Done]]\">\n<li>\n<$button>\n<$action-setfield follow-up-folder=<<targetFolder>>/>\nMove\n</$button>\n{{!!title}}\n</li>\n</$list>\n</ul>\n\n</$let>\n"
+        },
+        "$:/plugins/pjerkins/phil-work/Utils/ConvertNextActionsToActions": {
+            "title": "$:/plugins/pjerkins/phil-work/Utils/ConvertNextActionsToActions",
+            "created": "20220307135424633",
+            "modified": "20230201023406790",
+            "tags": "",
+            "text": "!! Set action-date Field on Done TodoNextActions\n<$list filter=\"[!has[draft.of]tag[TodoNextAction]tag[Done]field:action-date[]sort[]]\">\n<$set name=\"actionDate\" filter=\"[is[current]get[modified]format:date[ddd, MM/0DD]]\" select=\"0\">\n<$button>\n<$action-setfield $field=\"action-date\" $value=<<actionDate>>/>\nSet action-date to <<actionDate>>\n</$button>\n<$link to=<<currentTiddler>> /><br/>\n</$set>\n</$list>\n\n!! Next\n* $:/plugins/pjerkins/phil-work/Utils/RenameTags from ''~TodoNextAction'' to ''~TodoAction''"
+        },
+        "$:/plugins/pjerkins/phil-work/Utils/DataTiddlersToDelete": {
+            "title": "$:/plugins/pjerkins/phil-work/Utils/DataTiddlersToDelete",
+            "created": "20220329203326747",
+            "modified": "20230128044915827",
+            "tags": "",
+            "text": "<ul>\n<$list filter=\"[is[tiddler]!search:title[$]!is[draft]!tag[MyCode]sort[title]]\">\n<li>\n<$button>\n<$action-deletetiddler $tiddler={{!!title}} />\nDel\n</$button>\n<$link />\n</li>\n</$list>\n</ul>"
+        },
+        "$:/plugins/pjerkins/phil-work/Utils/Delete Drafts": {
+            "title": "$:/plugins/pjerkins/phil-work/Utils/Delete Drafts",
+            "created": "20220125142840677",
+            "modified": "20230128044643470",
+            "tags": "DontDeleteThisDraft",
+            "text": "<ul>\n<$list filter=\"[search:title[Draft]!tag[DontDeleteThisDraft]]\">\n<li>\n<$button>\n<$action-deletetiddler $tiddler={{!!title}} />\nDelete\n</$button>\n<$link tiddler={{!!title}}>{{!!title}}</$link>\n</li>\n</$list>\n</ul>"
+        },
+        "$:/plugins/pjerkins/phil-work/Utils/DoneToDoCleanup": {
+            "title": "$:/plugins/pjerkins/phil-work/Utils/DoneToDoCleanup",
+            "created": "20220302155112961",
+            "modified": "20230202034801701",
+            "tags": "",
+            "text": "<$list variable=\"todo\" filter=\"[tag[Done]!tag[ToDo]!tag[TodoAction]]\">\n<h3>\n<$link to=<<todo>> />\n</h3>\n<$button>\n<$action-deletetiddler $tiddler=<<todo>> />\nDel\n</$button>\n<$list variable=\"doneFlag\" filter=\"[<todo>tag[Done]]\">\n<$button>\n<$action-listops $tiddler=<<todo>> $field=\"tags\" $subfilter=\"-Done\" />\n-Done\n</$button>\n</$list>\n<$list variable=\"waitingFlag\" filter=\"[<todo>tag[Waiting]]\">\n<$button>\n<$action-listops $tiddler=<<todo>> $field=\"tags\" $subfilter=\"-Waiting\" />\n-Waiting\n</$button>\n</$list>\n<br/>\n<$transclude tiddler=<<todo>> />\n\n<ul>\n<$list filter=\"[kin:tags:to<todo>!match<todo>]\">\n<li>\n<$button>\n<$action-deletetiddler $tiddler=<<currentTiddler>> />\nDel\n</$button>\n<$list variable=\"doneFlag\" filter=\"[is[current]tag[Done]]\">\n<$button>\n<$action-listops $tiddler={{!!title}} $field=\"tags\" $subfilter=\"-Done\" />\n-Done\n</$button>\n</$list>\n<$list variable=\"waitingFlag\" filter=\"[is[current]tag[Waiting]]\">\n<$button>\n<$action-listops $tiddler={{!!title}} $field=\"tags\" $subfilter=\"-Waiting\" />\n-Waiting\n</$button>\n</$list>\n<$link /> {{!!text}}\n</li>\n</$list>\n</ul>\n</$list>"
+        },
+        "$:/plugins/pjerkins/phil-work/Utils/JediEraTiddlers": {
+            "title": "$:/plugins/pjerkins/phil-work/Utils/JediEraTiddlers",
+            "created": "20220224040647314",
+            "modified": "20230128044940912",
+            "tags": "",
+            "text": "//List all tiddlers created before [[Team Guardians - Purpose, Roadmap - 2019-06-07]]//\n\n! Tiddlers to Tag\n!!//Apply the tag <$tiddler tiddler=\"Jedi\"><$transclude tiddler=\"$:/core/ui/TagTemplate\"/></$tiddler> to the following tiddlers//\n<$list filter=\"[!has[draft.of]untagged[]!search:title[$]!days:created[-992]!tag[Jedi]sort[]]\">\n<$checkbox tag=\"Jedi\"> <$link to={{!!title}}><$view field=\"title\"/></$link></$checkbox><br/>\n</$list>\n"
+        },
+        "$:/plugins/pjerkins/phil-work/Utils/JournalsConversion": {
+            "title": "$:/plugins/pjerkins/phil-work/Utils/JournalsConversion",
+            "created": "20220301155808060",
+            "modified": "20230128044952846",
+            "tags": "",
+            "text": "!! Notes To Convert\n<$list variable=\"folder\" filter=\"[tag[Journal]sort[]]\">\n\n!!! <$link to=<<folder>> ><<folder>></$link>\n<$list filter=\"[tag<folder>first[1]]\">\n<ul>\n<$list filter=\"[tag<folder>]\">\n<li>\n<$checkbox tag=<<folder>>/> <$link $tiddler={{!!title}}>{{!!title}}</$link>\n</li>\n</$list>\n</ul>\n\n</$list>\n\n<$button>\n<$action-deletetiddler $tiddler=<<folder>> />\nDelete\n</$button>\n</$list>"
+        },
+        "$:/plugins/pjerkins/phil-work/Utils/MigrateToPlugin": {
+            "title": "$:/plugins/pjerkins/phil-work/Utils/MigrateToPlugin",
+            "created": "20230201015020062",
+            "modified": "20230201022414501",
+            "tags": "",
+            "text": "!! IdentityStatements\n<$button>\n<$list filter=\"[!has[draft.of]tag[IdentityStatements]!tag[$:/plugins/pjerkins/phil-work/IdentityStatements]]\">\n<$action-listops $tiddler=<<currentTag>> $tags=\"-IdentityStatements $:/plugins/pjerkins/phil-work/IdentityStatements\" />\n</$list>\nSwitch for all!\n</$button>\n\n<$list filter=\"[!has[draft.of]tag[IdentityStatements]!tag[$:/plugins/pjerkins/phil-work/IdentityStatements]sort[created]]\">\n<$link /><br/>\n</$list>\n\n!! MyInitiatives\n<$button>\n<$list filter=\"[!has[draft.of]tag[MyInitiatives]!tag[$:/plugins/pjerkins/phil-work/MyInitiatives]]\" >\n<$action-listops $tiddler=<<currentTag>> $tags=\"-MyInitiatives $:/plugins/pjerkins/phil-work/MyInitiatives\" />\n</$list>\nSwitch for all!\n</$button>\n\n<$list filter=\"[!has[draft.of]tag[MyInitiatives]!tag[$:/plugins/pjerkins/phil-work/MyInitiatives]sort[created]]\">\n<$link /><br/>\n</$list>\n\n!! Teams\n<$button>\n<$list filter=\"[!has[draft.of]tag[Teams]!tag[$:/plugins/pjerkins/phil-work/Teams]]\" >\n<$action-listops $tiddler=<<currentTag>> $tags=\"-Teams $:/plugins/pjerkins/phil-work/Teams\" />\n</$list>\nSwitch for all!\n</$button>\n\n<$list filter=\"[!has[draft.of]tag[Teams]!tag[$:/plugins/pjerkins/phil-work/Teams]sort[created]]\">\n<$link /><br/>\n</$list>\n\n!! Roles\n<$button>\n<$list filter=\"[!has[draft.of]tag[Roles]!tag[$:/plugins/pjerkins/phil-work/Roles]]\" >\n<$action-listops $tiddler=<<currentTag>> $tags=\"-Roles $:/plugins/pjerkins/phil-work/Roles\" />\n</$list>\nSwitch for all!\n</$button>\n\n<$list filter=\"[!has[draft.of]tag[Roles]!tag[$:/plugins/pjerkins/phil-work/Roles]sort[created]]\">\n<$link /><br/>\n</$list>\n\n!! Expertise\n<$button>\n<$list filter=\"[!has[draft.of]tag[Expertise]!tag[$:/plugins/pjerkins/phil-work/Expertise]]\" >\n<$action-listops $tiddler=<<currentTag>> $tags=\"-Expertise $:/plugins/pjerkins/phil-work/Expertise\" />\n</$list>\nSwitch for all!\n</$button>\n\n<$list filter=\"[!has[draft.of]tag[Expertise]!tag[$:/plugins/pjerkins/phil-work/Expertise]sort[created]]\">\n<$link /><br/>\n</$list>\n\n! MyCode\n!! //Delete tiddlers tagged with MyCode//\n\n<$list filter=\"[tag[MyCode]]\">\n<$button>\n<$action-deletetiddler $tiddler={{!!title}} />\n&#x1f5d1;\n</$button>\n<$link />\n<br/>\n</$list>"
+        },
+        "$:/plugins/pjerkins/phil-work/Utils/OrphanTiddlers": {
+            "title": "$:/plugins/pjerkins/phil-work/Utils/OrphanTiddlers",
+            "created": "20220224141232398",
+            "modified": "20230128045004267",
+            "tags": "",
+            "text": "|!Tag to Apply: | <$edit-text tiddler=\"$:/temp/OrphanTiddlers/tag\" tag=\"input\" type=\"text\"/> |\n\n! Tiddlers to Tag\n!!//Apply the tag <$tiddler tiddler={{$:/temp/OrphanTiddlers/tag}}><$transclude tiddler=\"$:/core/ui/TagTemplate\"/></$tiddler> to the following tiddlers//\n<$list filter=\"[!has[draft.of]!search:title[$]untagged[]sort[]]\">\n<$checkbox tag={{$:/temp/OrphanTiddlers/tag}}> <$link to={{!!title}}><$view field=\"title\"/></$link></$checkbox><br/>\n</$list>\n"
+        },
+        "$:/plugins/pjerkins/phil-work/Utils/RenameFields": {
+            "title": "$:/plugins/pjerkins/phil-work/Utils/RenameFields",
+            "created": "20220127133557766",
+            "modified": "20230128044635128",
+            "tags": "",
+            "text": "\\define oldToNewFilter() [tag[$(tag)$]!field:$(oldField)$[]field:$(newField)$[]]\n\\define deleteOldFilter() [tag[$(tag)$]!field:$(oldField)$[]!field:$(newField)$[]]\n|!Search tag: | <$edit-text tiddler=\"$:/temp/RenameFields/tag\" tag=\"input\" type=\"text\"/> |\n|!Old field name: | <$edit-text tiddler=\"$:/temp/RenameFields/old\" tag=\"input\" type=\"text\"/> |\n|!New field name: | <$edit-text tiddler=\"$:/temp/RenameFields/new\" tag=\"input\" type=\"text\"/> |\n\n!! Copy Old to New\n<$let tag={{$:/temp/RenameFields/tag}} oldField={{$:/temp/RenameFields/old}} newField={{$:/temp/RenameFields/new}} filter=<<oldToNewFilter>> >\n<ul>\n<$list filter=<<filter>> >\n<li>\n<$set name=\"newValue\" tiddler={{!!title}} field=<<oldField>> >\n<$button>\n<$action-setfield $field=<<newField>> $value=<<newValue>>/>\nCopy Old to New\n</$button>\n</$set>\n<$link $to={{!!title}}>{{!!title}}</$link>\n</li>\n</$list>\n</ul>\n</$let>\n\n!! Delete Old\n<$let tag={{$:/temp/RenameFields/tag}} oldField={{$:/temp/RenameFields/old}} newField={{$:/temp/RenameFields/new}} filter=<<deleteOldFilter>> >\n<ul>\n<$list filter=<<filter>> >\n<li>\n<$button>\n<$action-deletefield $field=<<oldField>>/>\nRemove Old Field\n</$button>\n<$link $to={{!!title}}>{{!!title}}</$link>\n</li>\n</$list>\n</ul>\n</$let>"
+        },
+        "$:/plugins/pjerkins/phil-work/Utils/RenameTags": {
+            "title": "$:/plugins/pjerkins/phil-work/Utils/RenameTags",
+            "created": "20190319140548607",
+            "modified": "20230128045708076",
+            "tags": "",
+            "text": "//From http://tw5magick.tiddlyspot.com/ //\n\nThis great trick was shown to the tiddlywiki google group by [[Alberto Molina|https://groups.google.com/forum/#!topic/tiddlywiki/OCntQ79DuwM]]. I enhanced it a bit.\n\n|!Search tag: | <$edit-text tiddler=\"$:/temp/RenameTags/search\" tag=\"input\" type=\"text\"/> |\n|!Replace by: | <$edit-text tiddler=\"$:/temp/RenameTags/replace\" tag=\"input\" type=\"text\"/> |\n\n---\n<$reveal type=\"nomatch\" text=\"\" state=\"$:/temp/RenameTags/replace\">\n\n!First step\n!!//Apply the tag <$tiddler tiddler={{$:/temp/RenameTags/replace}}><$transclude tiddler=\"$:/core/ui/TagTemplate\"/></$tiddler> to the following tiddlers//\n<$list filter=\"[!has[draft.of]tag{$:/temp/RenameTags/search}!tag{$:/temp/RenameTags/replace}sort[created]]\">\n<$checkbox tag={{$:/temp/RenameTags/replace}}> <$link to={{!!title}}><$view field=\"title\"/></$link></$checkbox><br/>\n</$list>\n</$reveal>\n\n<$reveal type=\"nomatch\" text=\"\" state=\"$:/temp/RenameTags/search\">\n\n!Second step\n!!//Remove the tag <$tiddler tiddler={{$:/temp/RenameTags/search}}><$transclude tiddler=\"$:/core/ui/TagTemplate\"/></$tiddler> from the following tiddlers//\n<$list filter=\"[!has[draft.of]tag{$:/temp/RenameTags/search}tag{$:/temp/RenameTags/replace}sort[created]]\">\n<$checkbox tag={{$:/temp/RenameTags/search}}> ~~<$link to={{!!title}}><$view field=\"title\"/></$link>~~</$checkbox><br/>\n</$list>\n</$reveal>"
+        },
+        "$:/plugins/pjerkins/phil-work/Utils/TagFromSearch": {
+            "title": "$:/plugins/pjerkins/phil-work/Utils/TagFromSearch",
+            "created": "20220224033156840",
+            "modified": "20230128045012476",
+            "tags": "",
+            "text": "|!Search: | <$edit-text tiddler=\"$:/temp/TagFromSearch/search\" tag=\"input\" type=\"text\"/> |\n|!Tag to Apply: | <$edit-text tiddler=\"$:/temp/TagFromSearch/tag\" tag=\"input\" type=\"text\"/> |\n\n! Tiddlers to Tag\n!!//Apply the tag <$tiddler tiddler={{$:/temp/TagFromSearch/tag}}><$transclude tiddler=\"$:/core/ui/TagTemplate\"/></$tiddler> to the following tiddlers//\n<$list filter=\"[!has[draft.of]search:title{$:/temp/TagFromSearch/search}!tag{$:/temp/TagFromSearch/tag}sort[]]\">\n<$checkbox tag={{$:/temp/TagFromSearch/tag}}> <$link to={{!!title}}><$view field=\"title\"/></$link></$checkbox><br/>\n</$list>\n"
+        },
+        "$:/plugins/pjerkins/phil-work/ViewTemplate/CaptionHeader": {
+            "title": "$:/plugins/pjerkins/phil-work/ViewTemplate/CaptionHeader",
+            "created": "20230201045012764",
+            "list-before": "$:/core/ui/ViewTemplate/title",
+            "modified": "20230201050123227",
+            "tags": "$:/tags/ViewTemplate",
+            "text": "<$list filter=\"[all[current]prefix:title[$:/plugins/pjerkins/]has[caption]]\">\n<div class=\"tc-tiddler-title\">\n<div class=\"tc-titlebar\">\n<h2 class=\"tc-title\">{{!!caption}}</h2>\n</div>\n</div>\n</$list>"
+        },
+        "$:/plugins/pjerkins/phil-work/ViewTemplate/ExpertiseFooter": {
+            "title": "$:/plugins/pjerkins/phil-work/ViewTemplate/ExpertiseFooter",
+            "created": "20230201045200318",
+            "modified": "20230201045222110",
+            "tags": "template $:/tags/ViewTemplate",
+            "text": "<$list filter=\"[is[current]tag[$:/plugins/pjerkins/phil-work/Expertise]]\">\n\n<$let expertiseTag={{!!title}}>\n\n!! Experts\n\n<<list-links filter:\"[tag<expertiseTag>tag[People]]\">>\n\n</$let>\n\n</$list>"
+        },
+        "$:/plugins/pjerkins/phil-work/ViewTemplate/GenericFooter": {
+            "title": "$:/plugins/pjerkins/phil-work/ViewTemplate/GenericFooter",
+            "created": "20230201045254139",
+            "modified": "20230201045303077",
+            "tags": "$:/tags/ViewTemplate",
+            "text": "<$let thisTiddler=<<currentTiddler>>>\n<$list filter=\"[<thisTiddler>backlinks[]first[]]\">\n<h2>Backlinks</h2>\n\n<<list-links filter:\"[<thisTiddler>backlinks[]]\">>\n</$list>\n</$let>"
+        },
+        "$:/plugins/pjerkins/phil-work/ViewTemplate/IdentityFooter": {
+            "title": "$:/plugins/pjerkins/phil-work/ViewTemplate/IdentityFooter",
+            "created": "20230201045328002",
+            "creator": "jpjerkins",
+            "modified": "20230202041404885",
+            "modifier": "jpjerkins",
+            "tags": "$:/tags/ViewTemplate template",
+            "text": "\\define newTodoTags() [[$(currentGoal)$]] ToDo\n\\define newProjectTags() [[$(currentGoal)$]] Initiative $:/plugins/pjerkins/phil-work/MyInitiatives\n<$let\n currentGoal=<<currentTiddler>>\n noProjectFilter=\"[kin::from:[]tag[Initiative]count[]compare:number:eq[0]]\" >\n<$list filter=\"[is[current]tag[$:/plugins/pjerkins/phil-work/IdentityStatements]]\">\n\n<$list filter=\"[tag<currentGoal>tag[Initiative]!tag[Parked]first[]]\">\n<h2>Active Projects</h2>\n<<list-links filter:\"[tag<currentGoal>!tag[Parked]tag[Initiative]]\">>\n</$list>\n\n<$list filter=\"[tag<currentGoal>tag[Initiative]tag[Parked]first[]]\">\n<h2>Parked Projects</h2>\n<<list-links filter:\"[tag<currentGoal>tag[Parked]tag[Initiative]]\">>\n</$list>\n\n<$list filter=\"[tag<currentGoal>tag[ToDo]!tag[Done]filter<noProjectFilter>first[]]\">\n<h2>No Project</h2>\n<ul>\n<$list filter=\"[tag<currentGoal>tag[ToDo]!tag[FollowUpItem]!tag[Done]filter<noProjectFilter>]\">\n<li>\n<$link />\n</li>\n</$list>\n<$list filter=\"[tag<currentGoal>tag[ToDo]tag[FollowUpItem]!tag[Done]filter<noProjectFilter>]\">\n<li>\n<$link />\n<i>({{!!follow-up-folder}})</i>\n</li>\n</$list>\n</ul>\n</$list>\n<$edit-text tiddler=\"$:/state/new-goal-item\" tag=\"input\" default=\"\" />\n<$button>\n<$action-createtiddler $basetitle={{$:/state/new-goal-item}} tags=<<newTodoTags>> />\n<$action-deletetiddler $tiddler=\"$:/state/new-goal-item\" />\n+~ToDo\n</$button>\n<$button>\n<$action-createtiddler $basetitle={{$:/state/new-goal-item}} tags=<<newProjectTags>> />\n<$action-navigate $to={{$:/state/new-goal-item}} />\n<$action-deletetiddler $tiddler=\"$:/state/new-goal-item\" />\n+Project\n</$button>\n\n</$list>\n</$let>"
+        },
+        "$:/plugins/pjerkins/phil-work/ViewTemplate/InitiativeFooter": {
+            "title": "$:/plugins/pjerkins/phil-work/ViewTemplate/InitiativeFooter",
+            "created": "20230201045412126",
+            "modified": "20230202041317905",
+            "tags": "$:/tags/ViewTemplate template",
+            "text": "\\define NewNotesTags() [[$(currentTiddler)$]]\n\\define NewNotesLabel() $(newNotesLabelDate)$ - $(initiativeLabel)$\n\n<$list filter=\"[is[current]tag[Initiative]]\">\n\n<$let initiativeTag={{!!title}} initiativeLabel={{!!title}} newNotesLabelDate=<<now \"YYYY-0MM-0DD\" >> >\n\n<$list filter=\"[is[current]tag[Parked]]\">\n<$button>\n<$action-listops $tags=\"-Parked\" />\n!Park\n</$button>\n</$list>\n<$list filter=\"[is[current]!tag[Parked]]\">\n<$button>\n<$action-listops $tags=\"Parked\" />\nPark!\n</$button>\n</$list>\n\n!! To-Do\n<$edit-text tiddler=\"$:/state/new-button-caption\" tag=\"input\" default=\"\" />\n<$button>\n<$action-createtiddler $basetitle={{$:/state/new-button-caption}} $savetitle=\"$:/state/new-button-caption\" />\n<$action-listops $tiddler={{$:/state/new-button-caption}} $field=\"tags\" $subfilter=\"[{!!title}] +[append[ToDo]]\" />\n<$action-deletetiddler $tiddler=\"$:/state/new-button-caption\" />\nAdd\n</$button>\n<$button>\n<$action-createtiddler $basetitle={{$:/state/new-button-caption}} $savetitle=\"$:/state/new-button-caption\" />\n<$action-listops $tiddler={{$:/state/new-button-caption}} $field=\"tags\" $subfilter=\"[{!!title}] +[append[ToDo TodayCandidate]]\" />\n<$action-deletetiddler $tiddler=\"$:/state/new-button-caption\" />\nCandidate\n</$button>\n\n<$list variable=\"firstToDo\" filter=\"[tag<initiativeTag>tag[ToDo]!tag[Waiting]!tag[Done]!tag[FollowUpItem]first[1]]\">\n<ul>\n<$list filter=\"[tag<initiativeTag>tag[ToDo]!tag[Waiting]!tag[Done]!tag[FollowUpItem]]\">\n<li>\n<$link $tiddler={{!!title}}>{{!!title}}</$link>\n<$list filter=\"[tag{!!title}tag[TodoNextAction]!tag[Done]sort[created]nth[1]]\">\n<br/>{{!!title}}\n</$list>\n</li>\n</$list>\n</ul>\n</$list>\n\n<$list variable=\"firstWaiting\" filter=\"[tag<initiativeTag>tag[ToDo]tag[Waiting]!tag[Done]!tag[FollowUpItem]first[1]]\">\n\n!! Waiting\n<ul>\n<$list filter=\"[tag<initiativeTag>tag[ToDo]tag[Waiting]!tag[Done]!tag[FollowUpItem]]\">\n<li>\n<$link $tiddler={{!!title}}>{{!!title}}</$link>\n<$list filter=\"[tag{!!title}tag[TodoAction]!tag[Done]!sort[created]first[]]\">\n<br/><$view field=\"created\" format=\"date\" template=\"MM/DD\"/> {{!!title}}\n</$list>\n</li>\n</$list>\n</ul>\n</$list>\n\n<$list variable=\"firstFollowUp\" filter=\"[tag<initiativeTag>tag[ToDo]!tag[Done]tag[FollowUpItem]first[1]]\">\n\n!! Follow Up Items\n<ul>\n<$list filter=\"[tag<initiativeTag>tag[ToDo]!tag[Done]tag[FollowUpItem]]\">\n<li>\n<$link $tiddler={{!!title}}>{{!!title}}</$link>\n<$list filter=\"[tag{!!title}tag[TodoNextAction]!tag[Done]sort[created]nth[1]]\">\n<br/>{{!!title}}\n</$list>\n</li>\n</$list>\n</ul>\n</$list>\n\n!! Notes\n<$button>\n<$action-sendmessage $message=\"tm-new-tiddler\" title=<<NewNotesLabel>> tags=<<NewNotesTags>>/>\nNew Notes Tiddler\n</$button>\n<<list-links \"[tag<initiativeTag>!tag[ToDo]!tag[$:/plugins/pjerkins/phil-work/People]!sort[created]]\">>\n</$let>\n\n</$list>"
+        },
+        "$:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter": {
+            "title": "$:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter",
+            "created": "20230201045451548",
+            "modified": "20230201045459884",
+            "tags": "template $:/tags/ViewTemplate",
+            "text": "<$list filter=\"[is[current]tag[People]]\">\n<$set name=\"currentTiddlerTitle\" value={{!!title}}>\n\n<$list filter=\"[is[current]fields:exclude[title text list tags created creator modified modifier]first[]]\">\n<h2>Meta</h2>\n<table>\n<$list filter=\"[<currentTiddlerTitle>fields:exclude[title text list tags created creator modified modifier]]\">\n<$let fieldName=<<currentTiddler>> fieldValue={{{ [<currentTiddlerTitle>get<fieldName>] }}}>\n<tr>\n<td><<fieldName>></td>\n<th style=\"text-align: left;\"><<fieldValue>></th>\n</tr>\n</$let>\n</$list>\n</table>\n</$list>\n\n<$list filter=\"[tag[People]reports-to<currentTiddlerTitle>first[]]\">\n<h2>Directs</h2>\n<<list-links filter:\"[tag[People]reports-to<currentTiddlerTitle>]\">>\n</$list>\n\n<$list variable=\"firstTeam\" filter=\"[list[!!tags]tag[$:/plugins/pjerkins/phil-work/Teams]first[1]]\">\n<h2>Teams</h2>\n<ul>\n<$list filter=\"[list[!!tags]tag[$:/plugins/pjerkins/phil-work/Teams]]\">\n<li><$link>{{!!title}}</$link></li>\n</$list>\n</ul>\n</$list>\n\n<$list variable=\"firstNote\" filter=\"[tag<currentTiddlerTitle>first[1]]\">\n<h2>Notes</h2>\n<ul>\n<$list filter=\"[tag<currentTiddlerTitle>!sort[created]]\">\n<li><$link>{{!!title}}</$link></li>\n</$list>\n</ul>\n</$list>\n\n</$set>\n</$list>"
+        },
+        "$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBar": {
+            "created": "20230203165827930",
+            "text": "\\define newProjectTodoTags() [[$(currentTiddler)$]] ToDo\n\\define newProjectCandidateTags() [[$(currentTiddler)$]] ToDo TodayCandidate\n\\define closeProjectActions()\n<$action-deletetiddler $tiddler=<<actionMenuState>>/>\n\\end\n\n<$let actionMenuState={{{ [all[current]addprefix[$:/temp/]addsuffix[/action-menu-state]] }}} >\n\t<$reveal state=<<actionMenuState>> type=\"match\" text=\"prompt-for-todo-action\">\n\t\t<div>\n\t\t\t<$button>\n\t\t\t\t<$action-listops $tags=\"Parked\" />\n\t\t\t\t<<closeProjectActions>>\n\t\t\t\tP!\n\t\t\t</$button>\n\t\t\t<$edit-text tiddler=\"$:/state/new-todo\" default=\"\" tag=\"input\" />\n\t\t\t<$button>\n\t\t\t\t<$action-createtiddler $basetitle={{$:/state/new-todo}} tags=<<newProjectTodoTags>> />\n\t\t\t\t<$action-deletetiddler $tiddler=\"$:/state/new-todo\" />\n\t\t\t\t<<closeProjectActions>>\n\t\t\t\t{{$:/core/images/save-button}}\n\t\t\t</$button>\n\t\t\t<$button>\n\t\t\t\t<$action-createtiddler $basetitle={{$:/state/new-todo}} tags=<<newProjectCandidateTags>> />\n\t\t\t\t<$action-deletetiddler $tiddler=\"$:/state/new-todo\" />\n\t\t\t\t<<closeProjectActions>>\n\t\t\t\tT!\n\t\t\t</$button>\n\t\t\t<$button>\n\t\t\t\t<<closeProjectActions>>\n\t\t\t\t{{$:/core/images/cancel-button}}\n\t\t\t</$button>\n\t\t</div>\n\t</$reveal>\n</$let>",
+            "title": "$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBar",
+            "modified": "20230204191103659",
+            "tags": ""
+        },
+        "$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBarHamburger": {
+            "title": "$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBarHamburger",
+            "created": "20230203175324359",
+            "modified": "20230203175836738",
+            "tags": "",
+            "text": "\\define openProjectActions()\n<$action-setfield $tiddler=<<actionMenuState>> $field=\"text\" $value=\"prompt-for-todo-action\" />\n\\end\n\\define closeProjectActions()\n<$action-setfield $tiddler=<<actionMenuState>> $field=\"text\" $value=\"\" />\n\\end\n\n<$let actionMenuState={{{ [all[current]addprefix[$:/temp/]addsuffix[/action-menu-state]] }}} >\n\t<$reveal state=<<actionMenuState>> type=\"nomatch\" text=\"prompt-for-todo-action\">\n\t\t<$messagecatcher $tm-navigate=<<openProjectActions>> >\n\t\t\t<$link>&#9776;</$link>\n\t\t</$messagecatcher>\n\t</$reveal>\n\t<$reveal state=<<actionMenuState>> type=\"match\" text=\"prompt-for-todo-action\">\n\t\t<$messagecatcher $tm-navigate=<<closeProjectActions>> >\n\t\t\t<$link>&times;</$link>\n\t\t</$messagecatcher> |\n\t</$reveal>\n</$let>"
+        },
+        "$:/plugins/pjerkins/phil-work/ViewTemplate/QuestionsListFooter": {
+            "title": "$:/plugins/pjerkins/phil-work/ViewTemplate/QuestionsListFooter",
+            "created": "20230201045543154",
+            "modified": "20230201045551309",
+            "tags": "$:/tags/ViewTemplate template",
+            "text": "\\define newQuestionTiddlerMacro(question parentTiddler)\n<$action-createtiddler $basetitle=\"$question$ - $parentTiddler$\" $savetitle=\"$:/state/new-question-title\" />\n\\end\n<$list filter=\"[is[current]tag[QuestionsList]]\">\n<$set name=\"questionsListTitle\" value={{!!title}}>\n\nNew Question: <$edit-text tiddler=\"$:/state/new-question\" tag=\"input\" default=\"\" />\n<$button>\n<$macrocall $name=\"newQuestionTiddlerMacro\" question={{$:/state/new-question}} parentTiddler={{!!title}} />\n<$action-listops $tiddler={{$:/state/new-question-title}} $field=\"tags\" $subfilter=\"[{!!title}] +[append[Question]]\" />\n<$action-setfield $tiddler={{$:/state/new-question-title}} $field=\"question\" $value={{$:/state/new-question}} />\n<$action-deletetiddler $tiddler=\"$:/state/new-question\" />\n{{$:/core/images/save-button}}\n</$button>\n<$button>\n<$action-deletetiddler $tiddler=\"$:/state/new-question\" />\n{{$:/core/images/cancel-button}}\n</$button>\n\n<$list filter=\"[tag<questionsListTitle>tag[Question]!tag[Answered]first]\">\n<h2>Questions</h2>\n<dl>\n<$list filter=\"[tag<questionsListTitle>tag[Question]!tag[Answered]]\">\n<dt>{{!!question}}</dt>\n<dd>\n<div>\n<$button>\n<$action-listops $field=\"tags\" $subfilter=\"+[append[Answered]]\" />\n{{$:/core/images/save-button}}\n</$button>\n<$button>\n<$action-navigate />\n<$action-sendmessage $message=\"tm-edit-tiddler\" param={{currentTiddler}} />\nEdit\n</$button>\n</div>\n<$transclude mode=\"block\" />\n</dd>\n</$list>\n</dl>\n</$list>\n\n<$list filter=\"[tag<questionsListTitle>tag[Question]tag[Answered]first]\">\n<h2>Answered Questions</h2>\n<dl>\n<$list filter=\"[tag<questionsListTitle>tag[Question]tag[Answered]]\">\n<dt>{{!!question}}</dt>\n<dd>\n<div>\n<$button>\n<$action-listops $field=\"tags\" $subfilter=\"-Answered\" />\n{{$:/core/images/cancel-button}}\n</$button>\n<$button>\n<$action-navigate />\n<$action-sendmessage $message=\"tm-edit-tiddler\" param={{currentTiddler}} />\nEdit\n</$button>\n</div>\n<$transclude mode=\"block\" />\n</dd>\n</$list>\n</dl>\n</$list>\n\n</$set>\n</$list>\n"
+        },
+        "$:/plugins/pjerkins/phil-work/ViewTemplate/TagTiddlerFooter": {
+            "title": "$:/plugins/pjerkins/phil-work/ViewTemplate/TagTiddlerFooter",
+            "created": "20230201045617276",
+            "modified": "20230201045626146",
+            "tags": "template $:/tags/ViewTemplate",
+            "type": "text/vnd.tiddlywiki",
+            "text": "<$list filter=\"[is[current]tag[TagTiddler]sortby[created]]\">\n<ul>\n<$list filter=\"[tag{!!title}]\">\n<li><$link/></li>\n</$list>\n</ul>\n</$list>"
+        },
+        "$:/plugins/pjerkins/phil-work/ViewTemplate/TeamsFooter": {
+            "title": "$:/plugins/pjerkins/phil-work/ViewTemplate/TeamsFooter",
+            "created": "20230201045650983",
+            "modified": "20230201045657812",
+            "tags": "template $:/tags/ViewTemplate",
+            "text": "<$list filter=\"[is[current]tag[$:/plugins/pjerkins/phil-work/Teams]]\">\n<$set name=\"currentTiddlerTitle\" value={{!!title}}>\n\n<$list variable=\"firstPerson\" filter=\"[tag<currentTiddlerTitle>tag[People]first[1]]\">\n<h2>Team Members</h2>\n<ul>\n<$list filter=\"[tag<currentTiddlerTitle>tag[People]]\">\n<li><$link>{{!!title}}</$link></li>\n</$list>\n</ul>\n</$list>\n\n</$set>\n</$list>"
+        },
+        "$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBar": {
+            "created": "20230203045011008",
+            "text": "\\define newDatedCandidateLabel() $(newCandidateLabel)$ $(newCandidateLabelDate)$\n\\define newDatedCandidateTags() $(currentTags)$ ToDo TodayCandidate\n\\import [[$:/plugins/pjerkins/phil-work/Macros/FollowUpActionsSelect]]\n\\define closeTodoActions()\n<$action-deletetiddler $tiddler=<<actionMenuState>>/>\n\\end\n\n<br/>\n<$let actionMenuState={{{ [all[current]addprefix[$:/temp/]addsuffix[/action-menu-state]] }}} >\n\t<$reveal state=<<actionMenuState>> type=\"match\" text=\"prompt-for-todo-action\">\n\t\t<div>\n\t\t\t<$button>\n\t\t\t\t<$action-listops $tags=\"Parked\" />\n\t\t\t\t<<closeTodoActions>>\n\t\t\t\tP!\n\t\t\t</$button>\n\t\t\t<$button set=<<actionMenuState>> setTo=\"\">\n\t\t\t\t<$action-listops $tags=\"TodayCandidate\" />\n\t\t\t\tT!\n\t\t\t</$button> \n\t\t\t<$let currentTags={{!!tags}} newCandidateLabel={{!!title}} newCandidateLabelDate=<<now \"YYYY-0MM-0DD\" >> >\n\t\t\t\t<$button set=<<actionMenuState>> setTo=\"\">\n\t\t\t\t\t<$action-createtiddler $basetitle=<<newDatedCandidateLabel>> tags=<<newDatedCandidateTags>> />\n\t\t\t\t\t<$action-listops $tiddler=<<newDatedCandidateLabel>> $tags=\"-FollowUpItem\" />\n\t\t\t\t\tT,,dt,,!\n\t\t\t\t</$button>\n\t\t\t</$let>\n\t\t\t<$button set=<<actionMenuState>> setTo=\"\">\n\t\t\t\t<$action-listops $tags=\"Done\" />\n\t\t\t\t&#10004;\n\t\t\t</$button> \n\t\t\t<$button>\n\t\t\t\t<$action-deletetiddler $tiddler={{!!title}} />\n\t\t\t\t&#x1f5d1;\n\t\t\t</$button>\n\t\t\t<<followUpFolderActionsSelect follow-up-folder '<$action-listops $tags=\"FollowUpItem\"/><$action-setfield $tiddler=<<actionMenuState>> $field=\"text\" $value=\"\"/>' >>\n\t\t</div>\n\t</$reveal>\n</$let>",
+            "title": "$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBar",
+            "modified": "20230204191044872",
+            "tags": "",
+            "todo-action-box-state": ""
+        },
+        "$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBarHamburger": {
+            "title": "$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBarHamburger",
+            "created": "20230203051612275",
+            "modified": "20230203175322480",
+            "tags": "",
+            "text": "<$let actionMenuState={{{ [all[current]addprefix[$:/temp/]addsuffix[/action-menu-state]] }}} >\n\t<$reveal state=<<actionMenuState>> type=\"nomatch\" text=\"prompt-for-todo-action\">\n\t\t<$button set=<<actionMenuState>> setTo=\"prompt-for-todo-action\">\n\t\t\t&#9776;\n\t\t</$button>\n\t</$reveal>\n\t<$reveal state=<<actionMenuState>> type=\"match\" text=\"prompt-for-todo-action\">\n\t\t<$button set=<<actionMenuState>> setTo=\"\">\n\t\t\t&times;\n\t\t</$button> |\n\t</$reveal>\n</$let>"
+        },
+        "$:/plugins/pjerkins/phil-work/ViewTemplate/TodoFooter": {
+            "created": "20230201045723080",
+            "text": "\\import [all[shadows]prefix:title[$:/plugins/pjerkins/phil-work/Macros/FollowUp]]\n\n<$list filter=\"[is[current]tag[ToDo]]\">\n<$set name=\"currentTiddlerTitle\" value={{!!title}}>\n\n<div styles=\"width:100%; border: solid 1px #888; background-color: #AAA;\">\n<$list filter=\"[is[current]!tag[Done]]\">\n<$button>\n<$action-listops $tiddler={{!!title}} $field=\"tags\" $subfilter=\"+[append[Done]]\" />\n<$action-listops $tags=\"+[remove[FollowUpItem]]\"/>\n<$action-deletefield follow-up-folder />\nDone!\n</$button>\n</$list>\n<$list filter=\"[is[current]tag[Done]]\">\n<$button>\n<$action-listops $tiddler={{!!title}} $field=\"tags\" $subfilter=\"-Done\" />\n!Done\n</$button>\n</$list>\n|\n<$list filter=\"[is[current]tag[Parked]]\">\n<$button>\n<$action-listops $tags=\"-Parked\" />\n!Park\n</$button>\n</$list>\n<$list filter=\"[is[current]!tag[Parked]]\">\n<$button>\n<$action-listops $tags=\"Parked\" />\nPark!\n</$button>\n</$list>\n<$reveal state=\"!!todo-waiting-box-state\" type=\"nomatch\" text=\"prompt-for-todo-waiting\">\n| <$button set=\"!!todo-waiting-box-state\" setTo=\"prompt-for-todo-waiting\">\nWaiting\n</$button>\n</$reveal>\n<$reveal state=\"!!todo-waiting-box-state\" type=\"match\" text=\"prompt-for-todo-waiting\">\n| <$button>\n<$action-setfield waiting=<<now format:\"ddd, MM/0DD\">> />\n<$action-listops $field=\"tags\" $subfilter=\"+[append[Waiting]]\" />\n<$action-createtiddler $basetitle={{$:/state/new-todo-action}} $savetitle=\"$:/state/new-todo-action\" />\n<$action-setfield $tiddler={{$:/state/new-todo-action}} action-date=<<now format:\"ddd, MM/0DD\">> />\n<$action-listops $tiddler={{$:/state/new-todo-action}} $field=\"tags\" $subfilter=\"[{!!title}] +[append[TodoAction Done]]\" />\n<$action-setfield $field=\"todo-waiting-box-state\" $value=\"\" />\n<$action-deletetiddler $tiddler=\"$:/state/new-todo-action\" />\n{{$:/core/images/save-button}}\n</$button>\n<$button>\n<$action-setfield $field=\"todo-waiting-box-state\" $value=\"\" />\n<$action-deletetiddler $tiddler=\"$:/state/new-todo-action\" />\n{{$:/core/images/cancel-button}}\n</$button>\nWhy: <$edit-text tiddler=\"$:/state/new-todo-action\" tag=\"input\" default=\"\" />\n</$reveal>\n<$reveal state=\"!!todo-not-waiting-box-state\" type=\"nomatch\" text=\"prompt-for-todo-not-waiting\">\n| <$button set=\"!!todo-not-waiting-box-state\" setTo=\"prompt-for-todo-not-waiting\">\nNot Waiting\n</$button>\n{{!!waiting}}\n</$reveal>\n<$reveal state=\"!!todo-not-waiting-box-state\" type=\"match\" text=\"prompt-for-todo-not-waiting\">\n| <$button>\n<$action-setfield waiting=<<now format:\"ddd, MM/0DD\">> />\n<$action-listops $field=\"tags\" $subfilter=\"-Waiting\" />\n<$action-createtiddler $basetitle={{$:/state/new-todo-action}} $savetitle=\"$:/state/new-todo-action\" />\n<$action-setfield $tiddler={{$:/state/new-todo-action}} action-date=<<now format:\"ddd, MM/0DD\">> />\n<$action-listops $tiddler={{$:/state/new-todo-action}} $field=\"tags\" $subfilter=\"[{!!title}] +[append[TodoAction Done]]\" />\n<$action-setfield $field=\"todo-not-waiting-box-state\" $value=\"\" />\n<$action-deletetiddler $tiddler=\"$:/state/new-todo-action\" />\n{{$:/core/images/save-button}}\n</$button>\n<$button>\n<$action-setfield $field=\"todo-not-waiting-box-state\" $value=\"\" />\n<$action-deletetiddler $tiddler=\"$:/state/new-todo-action\" />\n{{$:/core/images/cancel-button}}\n</$button>\nWhy: <$edit-text tiddler=\"$:/state/new-todo-action\" tag=\"input\" default=\"\" />\n</$reveal>\nFollow Up folder:\n<<followUpFolderActionsSelect 'follow-up-folder' '<$action-listops $tags=\"FollowUpItem\"/><$action-listops $tags=\"+[remove[Done]]\"/>' >>\n<$button>\n<$action-listops $tags=\"+[remove[FollowUpItem]]\"/>\n<$action-deletefield follow-up-folder />\nClear\n</$button>\n<$list filter=\"[is[current]!tag[TodayCandidate]]\">\n<$button>\n<$action-listops $tags=\"TodayCandidate\" />\nToday!\n</$button>\n</$list>\n<$list filter=\"[is[current]tag[TodayCandidate]]\">\n<$button>\n<$action-listops $tags=\"-TodayCandidate\" />\n!Today\n</$button>\n</$list>\n<hr/>\n</div>\n\nNew Next Action: <$edit-text tiddler=\"$:/state/new-todo-next-action\" tag=\"input\" default=\"\" />\n<$button>\n<$action-setfield waiting=<<now format:\"ddd, MM/0DD\">> />\n<$action-createtiddler $basetitle={{$:/state/new-todo-next-action}} $savetitle=\"$:/state/new-todo-next-action\" />\n<$action-listops $tiddler={{$:/state/new-todo-next-action}} $field=\"tags\" $subfilter=\"[{!!title}] +[append[TodoAction]]\" />\n<$action-setfield $field=\"todo-next-action-box-state\" $value=\"\" />\n<$action-deletetiddler $tiddler=\"$:/state/new-todo-next-action\" />\n{{$:/core/images/save-button}}\n</$button>\n<$button>\n<$action-setfield $field=\"todo-next-action-box-state\" $value=\"\" />\n<$action-deletetiddler $tiddler=\"$:/state/new-todo-next-action\" />\n{{$:/core/images/cancel-button}}\n</$button>\n\n<$list variable=\"topNextAction\" filter=\"[tag<currentTiddlerTitle>tag[TodoAction]!tag[Done]sort[created]first[1]]\">\n<h2>Outstanding Next Actions</h2>\n<$list filter=\"[tag<currentTiddlerTitle>tag[TodoAction]!tag[Done]sort[created]]\">\n<div>\n<$button>\n<$action-listops $field=\"tags\" $subfilter=\"+[append[Done]]\" />\n<$action-setfield $field=\"action-date\" $value=<<now format:\"ddd, MM/0DD\">>/>\nDone\n</$button>\n<$link>{{!!title}}</$link>\n</div>\n</$list>\n</$list>\n\n<$list variable=\"topActivity\" filter=\"[tag{!!title}tag[TodoAction]sort[created]first[1]]\">\n<h2>Activities</h2>\n<table>\n<$list filter=\"[tag{!!title}tag[TodoAction]tag[Done]!sort[created]]\">\n<tr>\n<td>\n<$button>\n<$action-listops $field=\"tags\" $subfilter=\"-Done\" />\nNot Done\n</$button>\n</td>\n<th>{{!!action-date}}</th>\n<td>\n<$link>{{!!title}}</$link>\n</td></tr>\n</$list>\n</table>\n</$list>\n\n</$set>\n</$list>",
+            "title": "$:/plugins/pjerkins/phil-work/ViewTemplate/TodoFooter",
+            "creator": "jpjerkins",
+            "modified": "20230204191228538",
+            "modifier": "jpjerkins",
+            "tags": "template $:/tags/ViewTemplate"
+        },
+        "$:/plugins/pjerkins/phil-work/Waiting": {
+            "title": "$:/plugins/pjerkins/phil-work/Waiting",
+            "created": "20190409214856830",
+            "modified": "20230202034903306",
+            "order": "2",
+            "tags": "Global GtdCategories",
+            "text": "!! [[Waiting]]\n\n{{$:/plugins/pjerkins/phil-work/WaitingList}}"
+        },
+        "$:/plugins/pjerkins/phil-work/WaitingList": {
+            "title": "$:/plugins/pjerkins/phil-work/WaitingList",
+            "created": "20220120223213331",
+            "creator": "jpjerkins",
+            "modified": "20230202034437414",
+            "modifier": "jpjerkins",
+            "tags": "",
+            "text": "<$list filter=\"[tag[ToDo]tag[Waiting]!tag[Done]!tag[FollowUpItem]sort[waiting]]\">\n<div styles=\"width:100%; border: solid 1px #888;\">\n<div>\n<$list filter=\"[is[current]has[text]]\">\n<$link to={{!!title}}>__{{!!title}}__</$link>\n</$list>\n<$list filter=\"[is[current]!has[text]]\">\n<$link to={{!!title}}>{{!!title}}</$link>\n</$list>\n<$list filter=\"[tag{!!title}tag[TodoAction]!sort[created]first[]]\">\n<$view field=\"created\" format=\"date\" template=\"MM/DD\"/> {{!!title}}\n</$list>\n</div>\n<div styles=\"width:100%; border: solid 1px #888; background-color: #AAA;\">\n<$button>\n<$action-listops $tiddler={{!!title}} $field=\"tags\" $subfilter=\"+[append[Done]]\" />\nDone\n</$button>\n<$reveal state=\"!!todo-action-box-state\" type=\"nomatch\" text=\"prompt-for-todo-action\">\n| <$button set=\"!!todo-action-box-state\" setTo=\"prompt-for-todo-action\">\nNot Waiting\n</$button>\n{{!!waiting}}\n</$reveal>\n<$reveal state=\"!!todo-action-box-state\" type=\"match\" text=\"prompt-for-todo-action\">\n| <$button>\n<$action-setfield waiting=<<now format:\"ddd, MM/0DD\">> />\n<$action-listops $field=\"tags\" $subfilter=\"-Waiting\" />\n<$action-createtiddler $basetitle={{$:/state/new-todo-action}} $savetitle=\"$:/state/new-todo-action\" />\n<$action-setfield $tiddler={{$:/state/new-todo-action}} action-date=<<now format:\"ddd, MM/0DD\">> />\n<$action-listops $tiddler={{$:/state/new-todo-action}} $field=\"tags\" $subfilter=\"[{!!title}] +[append[TodoAction Done]]\" />\n<$action-setfield $field=\"todo-action-box-state\" $value=\"\" />\n<$action-deletetiddler $tiddler=\"$:/state/new-todo-action\" />\n{{$:/core/images/save-button}}\n</$button>\n<$button>\n<$action-setfield $field=\"todo-action-box-state\" $value=\"\" />\n<$action-deletetiddler $tiddler=\"$:/state/new-todo-action\" />\n{{$:/core/images/cancel-button}}\n</$button>\n<br/>\nWhy: <$edit-text tiddler=\"$:/state/new-todo-action\" tag=\"input\" default=\"\" />\n</$reveal>\n</div>\n<hr />\n</div>\n</$list>"
+        },
+        "$:/plugins/pjerkins/phil-work/What IS This Thing?": {
+            "title": "$:/plugins/pjerkins/phil-work/What IS This Thing?",
+            "created": "20181228201554494",
+            "modified": "20230128045728104",
+            "tags": "",
+            "text": "Welcome to the inside of Phil's head!\n\n!! Finding Information\nYou can find information in any of the following ways:\n\n* ''Search''\n** Just type into the search box.  Title matches will be listed first; full-text matches will be listed below.\n** Good things to search for:\n*** \"PROD\", \"INTG\", etc.\n*** Dates in \"2019-03-14\" format\n*** Technology names - \"~ElasticSearch\", \"Kafka\", \"Powershell\", etc.\n* ''Recent'' - Click this tab, and it'll show you the most-recently edited tiddlers by edit time order.\n\n!! Getting Started Fast\n* Click the {{$:/core/images/edit-button}} icon on the top-right of any tiddler to edit it\n* Click the {{$:/core/images/new-button}} icon above the search box to create a new tiddler\n* The {{$:/core/images/down-arrow}} icon on the top-right of any tiddler has a bunch of cool things you can do.\n** Example: The \"new here\" option will create a new tiddler tagged with the current tiddler's title.  That makes it easy to track a train-of-thought path, while keeping individual thoughts separate.\n* Don't forget to download [[Tiddly Desktop|https://tiddlywiki.com/#TiddlyDesktop]]\n* And, as always, there's http://tiddlywiki.com :-)\n\n!! ~TiddlyWiki [[Core Concepts|https://tiddlywiki.com/#Concepts]]\n* Always remember that [[TiddlyWiki likes small, fine-grained tiddlers|https://tiddlywiki.com/#Philosophy%20of%20Tiddlers]].  It's optimized to find and render them quickly.  Most of the UI (including everything in the menu/nav bar on the right) is composed of small tiddlers.  How small?  Every button in the UI is its own tiddler, and has a tag saying it belongs in that place.  So if you ever find yourself adding to a tiddler that's taller than one page, consider breaking it up and transcluding it in (see the  icon in the editor's toolbar).\n* There are [[many|https://tiddlywiki.com/#list-links%20Macro]] [[ways|https://tiddlywiki.com/#Contents]] to [[list|https://tiddlywiki.com/#ListWidget]] and [[render|https://tiddlywiki.com/#Transclusion]] tiddlers based on a filter.  Playing with this will give you your first taste of ~TiddlyWiki's true power.  Example: [[$:/plugins/pjerkins/phil-work/To Do]]\n* There are [[many|https://tiddlywiki.com/#CheckboxWidget]] [[widgets|https://tiddlywiki.com/#ButtonWidget]] that manipulate [[tiddlers|https://tiddlywiki.com/#ActionCreateTiddlerWidget]] and [[their fields|https://tiddlywiki.com/#ActionListopsWidget]].  These expose yet another level of ~TiddlyWiki's capabilities."
+        }
+    }
+}
