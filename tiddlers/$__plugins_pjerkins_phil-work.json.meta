@@ -7,4 +7,4 @@ name: phil-work
 plugin-type: plugin
 title: $:/plugins/pjerkins/phil-work
 type: application/json
-version: 0.0.34
+version: 0.0.35
