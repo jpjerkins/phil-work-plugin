@@ -1,8 +1,14 @@
 created: 20230114194437286
-modified: 20230202041216863
+modified: 20230204191310826
 tags: 
 title: $:/plugins/pjerkins/phil-work/Parked
 
+!! Parked projects
 <$list filter="[tag[Initiative]tag[Parked]]">
+<$checkbox tag='Parked' /> <$link /><br/>
+</$list>
+
+!! Parked tasks
+<$list filter="[tag[ToDo]tag[Parked]]">
 <$checkbox tag='Parked' /> <$link /><br/>
 </$list>

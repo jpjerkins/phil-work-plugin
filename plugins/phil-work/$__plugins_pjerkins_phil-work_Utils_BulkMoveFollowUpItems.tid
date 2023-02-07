@@ -1,6 +1,6 @@
 created: 20220207134510662
 creator: jpjerkins
-modified: 20230202034255438
+modified: 20230204192541268
 modifier: jpjerkins
 source-folder: 4th
 tags: 
@@ -15,14 +15,14 @@ Move To: <<followUpFolderBoundSelect target-folder>>
 <$let currentTiddler=<<qualify "source-folder">> sourceFolder={{!!text}} currentTiddler=<<qualify "target-folder">> targetFolder={{!!text}}>
 
 <$button>
-<$list filter="[field:follow-up-folder<sourceFolder>tag[FollowUpItem]!tag[Done]]">
+<$list filter="[field:follow-up-folder<sourceFolder>tag[FollowUpItem]!tag[Done]!tag[Parked]]">
 <$action-setfield follow-up-folder=<<targetFolder>>/>
 </$list>
 Move all
 </$button>
 
 <ul>
-<$list filter="[field:follow-up-folder<sourceFolder>tag[FollowUpItem]!tag[Done]]">
+<$list filter="[field:follow-up-folder<sourceFolder>tag[FollowUpItem]!tag[Done]!tag[Parked]]">
 <li>
 <$button>
 <$action-setfield follow-up-folder=<<targetFolder>>/>

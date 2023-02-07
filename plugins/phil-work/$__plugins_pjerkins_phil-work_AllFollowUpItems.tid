@@ -1,6 +1,6 @@
 created: 20220123211926992
 creator: jpjerkins
-modified: 20230202033703448
+modified: 20230204192512895
 modifier: jpjerkins
 tags: 
 title: $:/plugins/pjerkins/phil-work/AllFollowUpItems
@@ -20,19 +20,19 @@ Move To: <<followUpFolderBoundSelect target-folder>>
 <$let
  folder={{!!title}}
  targetFolderTiddler=<<qualify 'target-folder'>>>
-<$list filter="[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]first[1]]">
+<$list filter="[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]!tag[Parked]first[1]]">
 
 !!! <<folder>>
 
 <$button>
-<$list filter="[field:follow-up-folder<folder>tag[FollowUpItem]!tag[Done]]">
+<$list filter="[field:follow-up-folder<folder>tag[FollowUpItem]!tag[Done]!tag[Parked]]">
 <$action-setfield follow-up-folder=<<targetFolder>>/>
 </$list>
 Move all
 </$button>
 
 <ul>
-<$list filter="[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]]">
+<$list filter="[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]!tag[Parked]]">
 <li>
 <$link $tiddler={{!!title}}>{{!!title}}</$link>
 <$list filter="[tag{!!title}tag[TodoNextAction]!tag[Done]sort[created]nth[1]]">

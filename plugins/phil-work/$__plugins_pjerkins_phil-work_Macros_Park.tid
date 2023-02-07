@@ -1,0 +1,10 @@
+created: 20230204191611210
+modified: 20230204194213629
+tags: 
+title: $:/plugins/pjerkins/phil-work/Macros/Park
+
+\define parkCurrent()
+<$action-deletetiddler $tiddler=<<actionMenuState>>/>
+<$action-listops $tags="Parked -FollowUpItem" />
+<$action-deletefield $field="follow-up-folder" />
+\end

@@ -1,5 +1,5 @@
 created: 20230201045412126
-modified: 20230202041317905
+modified: 20230204200438248
 tags: $:/tags/ViewTemplate template
 title: $:/plugins/pjerkins/phil-work/ViewTemplate/InitiativeFooter
 
@@ -71,6 +71,21 @@ Candidate
 !! Follow Up Items
 <ul>
 <$list filter="[tag<initiativeTag>tag[ToDo]!tag[Done]tag[FollowUpItem]]">
+<li>
+<$link $tiddler={{!!title}}>{{!!title}}</$link>
+<$list filter="[tag{!!title}tag[TodoNextAction]!tag[Done]sort[created]nth[1]]">
+<br/>{{!!title}}
+</$list>
+</li>
+</$list>
+</ul>
+</$list>
+
+<$list variable="firstFollowUp" filter="[tag<initiativeTag>tag[ToDo]!tag[Done]tag[Parked]first[1]]">
+
+!! Parked Items
+<ul>
+<$list filter="[tag<initiativeTag>tag[ToDo]!tag[Done]tag[Parked]]">
 <li>
 <$link $tiddler={{!!title}}>{{!!title}}</$link>
 <$list filter="[tag{!!title}tag[TodoNextAction]!tag[Done]sort[created]nth[1]]">

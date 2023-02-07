@@ -1,5 +1,5 @@
 created: 20230203045011008
-modified: 20230203174417729
+modified: 20230204194207672
 tags: 
 title: $:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBar
 todo-action-box-state: 
@@ -7,11 +7,19 @@ todo-action-box-state:
 \define newDatedCandidateLabel() $(newCandidateLabel)$ $(newCandidateLabelDate)$
 \define newDatedCandidateTags() $(currentTags)$ ToDo TodayCandidate
 \import [[$:/plugins/pjerkins/phil-work/Macros/FollowUpActionsSelect]]
+\import [[$:/plugins/pjerkins/phil-work/Macros/Park]]
+\define closeTodoActions()
+<$action-deletetiddler $tiddler=<<actionMenuState>>/>
+\end
 
 <br/>
 <$let actionMenuState={{{ [all[current]addprefix[$:/temp/]addsuffix[/action-menu-state]] }}} >
 	<$reveal state=<<actionMenuState>> type="match" text="prompt-for-todo-action">
 		<div>
+			<$button>
+				<<parkCurrent>>
+				P!
+			</$button>
 			<$button set=<<actionMenuState>> setTo="">
 				<$action-listops $tags="TodayCandidate" />
 				T!

@@ -1,7 +1,7 @@
 caption: Home
 created: 20221126170151316
 creator: jpjerkins
-modified: 20230203175720034
+modified: 20230204200136152
 modifier: jpjerkins
 tags: 
 title: $:/plugins/pjerkins/phil-work/Home
@@ -21,7 +21,7 @@ todo-action-box-state:
 <<followUpFolderBoundSelect selected-follow-up-folder>> | [[AllFollowUpItems|$:/plugins/pjerkins/phil-work/AllFollowUpItems]] | [[Done|$:/plugins/pjerkins/phil-work/Done]]
 
 <$let currentTiddler=<<qualify "selected-follow-up-folder">> selectedFollowUpFolder={{!!text}}>
-	<$list filter="[field:follow-up-folder<selectedFollowUpFolder>tag[FollowUpItem]!tag[Done]!tag[Today]!tag[TodayCandidate]sort[title]]">
+	<$list filter="[field:follow-up-folder<selectedFollowUpFolder>tag[FollowUpItem]!tag[Done]!tag[Parked]!tag[Today]!tag[TodayCandidate]] -[tag[Initiative]tag[Parked]tagging[]] +[sort[title]]">
 		<$let
 		 doneTagCount={{{ [list[!!tags]join[;]] }}}
 		 hasProject={{{ [kin::from:<currentTiddler>tag[Initiative]count[]] }}}
@@ -46,8 +46,8 @@ todo-action-box-state:
 <$let
  currentTiddler=<<qualify "selected-follow-up-folder">>
  selectedFollowUpFolder={{!!text}}
- todoReadyTodayFilter="[tag[ToDo]!tag[Today]!tag[TodayCandidate]!tag[FollowUpItem]!tag[Done]]"
- todoFollowUpTodayFilter="[tag[ToDo]!tag[Today]!tag[TodayCandidate]tag[FollowUpItem]field:follow-up-folder<selectedFollowUpFolder>!tag[Done]]">
+ todoReadyTodayFilter="[tag[ToDo]!tag[Today]!tag[TodayCandidate]!tag[FollowUpItem]!tag[Done]!tag[Parked]]"
+ todoFollowUpTodayFilter="[tag[ToDo]!tag[Today]!tag[TodayCandidate]tag[FollowUpItem]field:follow-up-folder<selectedFollowUpFolder>!tag[Done]!tag[Parked]]">
 
 	<$list filter="[list[$:/plugins/pjerkins/phil-work/IdentityStatements]]">
 		<h3><$link overrideClass="goal-link" /></h3>
@@ -102,7 +102,7 @@ todo-action-box-state:
 	 noProjectFilter="[kin::from:[]tag[$:/plugins/pjerkins/phil-work/MyInitiatives]count[]compare:number:eq[0]]"
 	 noDiscoveryFilter="[kin::from:[]tag[$:/plugins/pjerkins/phil-work/Discovery]count[]compare:number:eq[0]]"
 	 noDecompositionFilter="[kin::from:[]tag[$:/plugins/pjerkins/phil-work/Decomposition]count[]compare:number:eq[0]]">
-		<$list filter="$:/plugins/pjerkins/phil-work/MyInitiatives $:/plugins/pjerkins/phil-work/Discovery $:/plugins/pjerkins/phil-work/Decomposition +[tagging[]filter<noGoalFilter>!tag[Parked]]">
+		<$list filter="[tag[Initiative]] -[tag[$:/plugins/pjerkins/phil-work/IdentityStatements]tagging[]] +[!tag[Parked]sort[title]]">
 			<$let currentProject={{!!title}} >
 				<div style="padding-top: 0.5em">
 					{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBarHamburger}}

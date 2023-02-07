@@ -1,11 +1,12 @@
 created: 20230201045723080
 creator: jpjerkins
-modified: 20230202035053158
+modified: 20230204194227852
 modifier: jpjerkins
 tags: template $:/tags/ViewTemplate
 title: $:/plugins/pjerkins/phil-work/ViewTemplate/TodoFooter
 
 \import [all[shadows]prefix:title[$:/plugins/pjerkins/phil-work/Macros/FollowUp]]
+\import [all[shadows]title[$:/plugins/pjerkins/phil-work/Macros/Park]]
 
 <$list filter="[is[current]tag[ToDo]]">
 <$set name="currentTiddlerTitle" value={{!!title}}>
@@ -16,13 +17,26 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/TodoFooter
 <$action-listops $tiddler={{!!title}} $field="tags" $subfilter="+[append[Done]]" />
 <$action-listops $tags="+[remove[FollowUpItem]]"/>
 <$action-deletefield follow-up-folder />
-Done
+Done!
 </$button>
 </$list>
 <$list filter="[is[current]tag[Done]]">
 <$button>
 <$action-listops $tiddler={{!!title}} $field="tags" $subfilter="-Done" />
-Not Done
+!Done
+</$button>
+</$list>
+|
+<$list filter="[is[current]tag[Parked]]">
+<$button>
+<$action-listops $tags="-Parked" />
+!Park
+</$button>
+</$list>
+<$list filter="[is[current]!tag[Parked]]">
+<$button>
+<<parkCurrent>>
+Park!
 </$button>
 </$list>
 <$reveal state="!!todo-waiting-box-state" type="nomatch" text="prompt-for-todo-waiting">

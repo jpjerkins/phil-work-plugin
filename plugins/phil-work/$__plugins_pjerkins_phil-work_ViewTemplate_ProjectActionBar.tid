@@ -1,12 +1,12 @@
 created: 20230203165827930
-modified: 20230203172620039
+modified: 20230204191103659
 tags: 
 title: $:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBar
 
 \define newProjectTodoTags() [[$(currentTiddler)$]] ToDo
 \define newProjectCandidateTags() [[$(currentTiddler)$]] ToDo TodayCandidate
 \define closeProjectActions()
-<$action-setfield $tiddler=<<actionMenuState>> $field="text" $value="" />
+<$action-deletetiddler $tiddler=<<actionMenuState>>/>
 \end
 
 <$let actionMenuState={{{ [all[current]addprefix[$:/temp/]addsuffix[/action-menu-state]] }}} >

@@ -2,7 +2,7 @@ caption: Today
 created: 20220901001209022
 creator: jpjerkins
 list: [[Test agility candidate]] [[Test product candidate]]
-modified: 20230202015728516
+modified: 20230204193305816
 modifier: jpjerkins
 tags: 
 title: $:/plugins/pjerkins/phil-work/Today
@@ -11,72 +11,95 @@ title: $:/plugins/pjerkins/phil-work/Today
 \define weekTitle() $(year)$-w$(week)$ - Weekly Score
 \import [[$:/plugins/pjerkins/phil-work/Macros/ShowTodayList]]
 
-<$let totalPotentialPoints={{{ [tag[Today]get[today-potential-points]sum[]] }}} totalActualPoints={{{ [tag[Today]get[today-actual-points]sum[]] }}} currentScore={{{ [<totalActualPoints>divide<totalPotentialPoints>multiply[100]round[]] }}} today=<<now "YYYY-0MM-0DD">>  >
+<$let
+ totalPotentialPoints={{{ [tag[Today]get[today-potential-points]sum[]] }}}
+ totalActualPoints={{{ [tag[Today]get[today-actual-points]sum[]] }}}
+ currentScore={{{ [<totalActualPoints>divide<totalPotentialPoints>multiply[100]round[]] }}}
+ today=<<now "YYYY-0MM-0DD">>  >
 
-<<showTodayList totalPotentialPoints:'<<totalPotentialPoints>>' totalActualPoints:'<<totalActualPoints>>' currentScore:'<<currentScore>>' >>
+	<<showTodayList
+	 totalPotentialPoints:'<<totalPotentialPoints>>'
+	 totalActualPoints:'<<totalActualPoints>>'
+	 currentScore:'<<currentScore>>' >>
 
-<p>
-<$button>
-<$action-createtiddler $basetitle=<<scoreTitle>> $overwrite="yes" tags="DailyScore" totalPotentialPoints=<<totalPotentialPoints>> totalActualPoints=<<totalActualPoints>> score=<<currentScore>> weekOfYear=<<weekTitle>> />
-&#9655; D
-</$button>
+	<p>
+		<$button>
+			<$action-createtiddler
+			 $basetitle=<<scoreTitle>>
+			 $overwrite="yes"
+			 tags="DailyScore"
+			 totalPotentialPoints=<<totalPotentialPoints>>
+			 totalActualPoints=<<totalActualPoints>>
+			 score=<<currentScore>>
+			 weekOfYear=<<weekTitle>> />
+			&#9655; D
+		</$button>
 
-<$button>
-<$let totalWeekPotentialPoints={{{ [tag[DailyScore]field:weekOfYear<weekTitle>get[totalPotentialPoints]sum[]] }}} totalWeekActualPoints={{{ [tag[DailyScore]field:weekOfYear<weekTitle>get[totalActualPoints]sum[]] }}} totalWeekScore={{{ [<totalWeekActualPoints>divide<totalWeekPotentialPoints>multiply[100]round[]] }}} >
-<$action-createtiddler $basetitle=<<weekTitle>> $overwrite="yes" tags="WeeklyScore" totalPotentialPoints=<<totalWeekPotentialPoints>> totalActualPoints=<<totalWeekActualPoints>> totalScore=<<totalWeekScore>> />
-</$let>
-&#9655; W
-</$button>
-<$button>
-<$list filter="[tag[Today]!tag[TodayCandidate]sort[today-potential-points]]">
-<$action-listops $tiddler=<<currentTag>> $tags="TodayCandidate -Today" />
-<$action-listops $tiddler=TodayCandidate $field=list $filter="[tag[TodayCandidate]!nsort[today-potential-points]]" />
-</$list>
-Remix
-</$button>
-<$button>
-<$list filter="[tag[Today]]">
-<$action-listops $field="tags" $subfilter="-Today -FollowUpItem" />
-</$list>
-Done!
-</$button>
-</p>
+		<$button>
+			<$let
+			 totalWeekPotentialPoints={{{ [tag[DailyScore]field:weekOfYear<weekTitle>get[totalPotentialPoints]sum[]] }}}
+			 totalWeekActualPoints={{{ [tag[DailyScore]field:weekOfYear<weekTitle>get[totalActualPoints]sum[]] }}}
+			 totalWeekScore={{{ [<totalWeekActualPoints>divide<totalWeekPotentialPoints>multiply[100]round[]] }}} >
+				<$action-createtiddler
+				 $basetitle=<<weekTitle>>
+				 $overwrite="yes"
+				 tags="WeeklyScore"
+				 totalPotentialPoints=<<totalWeekPotentialPoints>>
+				 totalActualPoints=<<totalWeekActualPoints>>
+				 totalScore=<<totalWeekScore>> />
+			</$let>
+			&#9655; W
+		</$button>
+		<$button>
+			<$list filter="[tag[Today]!tag[TodayCandidate]!tag[Parked]sort[today-potential-points]]">
+				<$action-listops $tiddler=<<currentTag>> $tags="TodayCandidate -Today" />
+				<$action-listops $tiddler=TodayCandidate $field=list $filter="[tag[TodayCandidate]!nsort[today-potential-points]]" />
+			</$list>
+			Remix
+		</$button>
+		<$button>
+			<$list filter="[tag[Today]]">
+				<$action-listops $field="tags" $subfilter="-Today -FollowUpItem" />
+			</$list>
+			Done!
+		</$button>
+	</p>
 </$let>
 
 !! Candidates
 <$edit-text tiddler="$:/state/new-today-candidate" tag="input" default="" />
 <$button>
-<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags="ToDo"/>
-<$action-deletetiddler $tiddler="$:/state/new-today-candidate" />
-+
+	<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags="ToDo"/>
+	<$action-deletetiddler $tiddler="$:/state/new-today-candidate" />
+	+
 </$button>
 <$button>
-<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags="ToDo TodayCandidate"/>
-<$action-deletetiddler $tiddler="$:/state/new-today-candidate" />
-+C
+	<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags="ToDo TodayCandidate"/>
+	<$action-deletetiddler $tiddler="$:/state/new-today-candidate" />
+	+C
 </$button>
 <$button>
-<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags="Initiative $:/plugins/pjerkins/phil-work/MyInitiatives" />
-<$action-navigate $to={{$:/state/new-today-candidate}} />
-<$action-deletetiddler $tiddler="$:/state/new-today-candidate" />
-+P
+	<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags="Initiative $:/plugins/pjerkins/phil-work/MyInitiatives" />
+	<$action-navigate $to={{$:/state/new-today-candidate}} />
+	<$action-deletetiddler $tiddler="$:/state/new-today-candidate" />
+	+P
 </$button>
 
 <$let todayCount={{{ [list[TodayCandidate!!list]count[]] }}}>
-<<list-tagged-draggable tag:"TodayCandidate" subFilter:"!has[draft.of]" itemTemplate:"$:/plugins/pjerkins/phil-work/Templates/TodayCardDraggableTemplate" emptyMessage:"You don't have any candidate tasks to commit">>
+	<<list-tagged-draggable tag:"TodayCandidate" subFilter:"!has[draft.of]" itemTemplate:"$:/plugins/pjerkins/phil-work/Templates/TodayCardDraggableTemplate" emptyMessage:"You don't have any candidate tasks to commit">>
 
-<$list filter="[tag[TodayCandidate]first[]]">
-<$button>
-<$list filter="[list[TodayCandidate]]">
-<$let todayIndex={{{ [list[TodayCandidate]allbefore<currentTiddler>count[]] }}} todayPoints={{{ [<todayCount>subtract<todayIndex>] }}}>
-<$action-listops $tags="Today -TodayCandidate" />
-<$action-setfield today-potential-points=<<todayPoints>> />
-</$let>
-</$list>
-<$action-setfield $tiddler="TodayCandidate" $field="list" $value="" />
-Commit!
-</$button>
-</$list>
+	<$list filter="[tag[TodayCandidate]!tag[Parked]first[]]">
+		<$button>
+			<$list filter="[list[TodayCandidate]!tag[Parked]]">
+				<$let todayIndex={{{ [list[TodayCandidate]allbefore<currentTiddler>count[]] }}} todayPoints={{{ [<todayCount>subtract<todayIndex>] }}}>
+					<$action-listops $tags="Today -TodayCandidate" />
+					<$action-setfield today-potential-points=<<todayPoints>> />
+				</$let>
+			</$list>
+			<$action-setfield $tiddler="TodayCandidate" $field="list" $value="" />
+			Commit!
+		</$button>
+	</$list>
 </$let>
 
 [[Scores|$:/plugins/pjerkins/phil-work/TodayScores]] | [[Home|$:/plugins/pjerkins/phil-work/Home]] | [[Screenshot|$:/plugins/pjerkins/phil-work/TodayScreenshot]]
