@@ -52,7 +52,7 @@ todo-action-box-state:
 	<$list filter="[list[$:/plugins/pjerkins/phil-work/IdentityStatements]]">
 		<h3><$link overrideClass="goal-link" /></h3>
 		<$let currentGoal=<<currentTiddler>> >
-			<$list filter="[tag<currentGoal>tag[$:/plugins/pjerkins/phil-work/MyInitiatives]!tag[Parked]]">
+			<$list filter="[tag<currentGoal>tag[Initiative]!tag[Parked]]">
 				<$let currentProject={{!!title}} >
 					<div style="padding-top: 0.5em">
 						{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBarHamburger}}
@@ -99,9 +99,8 @@ todo-action-box-state:
 
 	<$let
 	 noGoalFilter="[kin::from:[]tag[$:/plugins/pjerkins/phil-work/IdentityStatements]count[]compare:number:eq[0]]"
-	 noProjectFilter="[kin::from:[]tag[$:/plugins/pjerkins/phil-work/MyInitiatives]count[]compare:number:eq[0]]"
-	 noDiscoveryFilter="[kin::from:[]tag[$:/plugins/pjerkins/phil-work/Discovery]count[]compare:number:eq[0]]"
-	 noDecompositionFilter="[kin::from:[]tag[$:/plugins/pjerkins/phil-work/Decomposition]count[]compare:number:eq[0]]">
+	 noProjectFilter="[kin::from:[]tag[Initiative]count[]compare:number:eq[0]]"
+	 noParkedProjectFilter="[kin::from:[]tag[Parked]count[]compare:number:eq[0]]">
 		<$list filter="[tag[Initiative]] -[tag[$:/plugins/pjerkins/phil-work/IdentityStatements]tagging[]] +[!tag[Parked]sort[title]]">
 			<$let currentProject={{!!title}} >
 				<div style="padding-top: 0.5em">
@@ -140,8 +139,12 @@ todo-action-box-state:
 				</div>
 			</$reveal>
 		</$let>
-		<$list template="$:/plugins/pjerkins/phil-work/Templates/HomeReadyTaskTemplate" filter="[filter<todoReadyTodayFilter>filter<noGoalFilter>filter<noProjectFilter>filter<noDiscoveryFilter>filter<noDecompositionFilter>]" />
-		<$list template="$:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate" filter="[filter<todoFollowUpTodayFilter>filter<noGoalFilter>filter<noProjectFilter>filter<noDiscoveryFilter>filter<noDecompositionFilter>]" />
+		<$list
+		 template="$:/plugins/pjerkins/phil-work/Templates/HomeReadyTaskTemplate"
+		 filter="[filter<todoReadyTodayFilter>filter<noGoalFilter>filter<noProjectFilter>]" />
+		<$list
+		 template="$:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate"
+		 filter="[filter<todoFollowUpTodayFilter>filter<noGoalFilter>filter<noProjectFilter>]" />
 	</$let>
 
 </$let>
