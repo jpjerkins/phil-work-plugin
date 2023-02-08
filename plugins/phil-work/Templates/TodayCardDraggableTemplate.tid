@@ -9,22 +9,26 @@ title: $:/plugins/pjerkins/phil-work/Templates/TodayCardDraggableTemplate
  todayIndex={{{ [list[TodayCandidate]allbefore<currentTiddler>count[]] }}}
  todayOrdinal={{{ [<todayIndex>add[1]] }}}
  todayPoints={{{ [<todayCount>subtract<todayIndex>] }}}
- hasProject={{{ [kin::from:<currentTiddler>tag[Initiative]count[]] }}}
+ hasProject={{{ [kin::from:<currentTiddler>tag[Project]count[]] }}}
  hasGoal={{{ [kin::from:<currentTiddler>tag[$:/plugins/pjerkins/phil-work/IdentityStatements]count[]multiply[2]] }}}
  todoType={{{ [<hasGoal>add<hasProject>] }}} >
-<<todayPoints>>
-<$button>
-<$action-listops $tags="-TodayCandidate"/>
-<$action-listops $tiddler="TodayCandidate" $filter="[tag[TodayCandidate]]"/>
-Remove
-</$button>
-<$list variable="result" filter="[<todoType>compare:number:gteq[2]]">
-<$link overrideClass="goal-link" tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
-</$list>
-<$list variable="result" filter="[<todoType>compare:number:eq[1]]">
-<$link overrideClass="project-link" tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
-</$list>
-<$list variable="result" filter="[<todoType>compare:number:eq[0]]">
-<$link tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
-</$list>
+    <<todayPoints>>
+    <$button>
+        <$action-deletetiddler $tiddler={{!!title}} />
+        &#x1f5d1;
+    </$button>
+    <$button>
+        <$action-listops $tags="-TodayCandidate"/>
+        <$action-listops $tiddler="TodayCandidate" $filter="[tag[TodayCandidate]]"/>
+        Remove
+    </$button>
+    <$list variable="result" filter="[<todoType>compare:number:gteq[2]]">
+        <$link overrideClass="goal-link" tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
+    </$list>
+    <$list variable="result" filter="[<todoType>compare:number:eq[1]]">
+        <$link overrideClass="project-link" tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
+    </$list>
+    <$list variable="result" filter="[<todoType>compare:number:eq[0]]">
+        <$link tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
+    </$list>
 </$let>

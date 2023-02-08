@@ -6,20 +6,20 @@ order: 3
 tags: Global GtdCategories
 title: $:/plugins/pjerkins/phil-work/Done
 
-!! [[Done]]
+!! Done
 
 <$button>
-<$list filter="ToDo TodoAction +[tagging[]tag[Done]!tag[$:/plugins/pjerkins/phil-work/Today]sort[title]]">
+<$list filter="Task TaskAction +[tagging[]tag[Done]!tag[$:/plugins/pjerkins/phil-work/Today]sort[title]]">
 <$let todo=<<currentTiddler>> actionFilter={{{[tag<todo>]}}}>
 <$list filter="[is[current]!has[text]!filter<actionFilter>]">
 <$action-deletetiddler $tiddler={{!!title}} />
 </$list>
 </$let>
 </$list>
-Delete Vanilla Done To-Dos
+Delete Vanilla Done Tasks
 </$button>
 
-<$list filter="ToDo TodoAction Done +[tagging[]tag[Done]!tag[$:/plugins/pjerkins/phil-work/Today]sort[title]]">
+<$list filter="Task TaskAction Done +[tagging[]tag[Done]!tag[$:/plugins/pjerkins/phil-work/Today]sort[title]]">
 <div styles="width:100%; border: solid 1px #888;">
 <div styles="width:100%; border: solid 1px #888; background-color: #AAA;">
 <$button>
@@ -27,16 +27,16 @@ Delete Vanilla Done To-Dos
 Not Done
 </$button>
 <div style="float: right;">
-<$let todo=<<currentTiddler>> actionFilter={{{[tag[TodoAction]tag<todo>]}}}>
+<$let todo=<<currentTiddler>> actionFilter={{{[tag[TaskAction]tag<todo>]}}}>
 <$button>
 <$action-deletetiddler $tiddler={{!!title}} />
 Delete
 </$button>
-<$list filter="[is[current]has[text]tag[ToDo]!filter<actionFilter>]"><$button><$action-listops $tiddler={{!!title}} $field="tags" $subfilter="-ToDo" />-ToDo</$button></$list>
-<$list filter="[is[current]has[text]tag[TodoAction]!filter<actionFilter>]"><$button><$action-listops $tiddler={{!!title}} $field="tags" $subfilter="-TodoAction" />-TodoAction</$button></$list>
-<$list filter="[is[current]has[text]!tag[ToDo]!tag[TodoAction]tag[Done]!filter<actionFilter>]"><$button><$action-listops $tiddler={{!!title}} $field="tags" $subfilter="-Done" />-Done</$button></$list>
-<$list filter="[is[current]!tag[ToDo]filter<actionFilter>]">
-$:/plugins/pjerkins/phil-work/Utils/DoneToDoCleanup
+<$list filter="[is[current]has[text]tag[Task]!filter<actionFilter>]"><$button><$action-listops $tiddler={{!!title}} $field="tags" $subfilter="-Task" />-Task</$button></$list>
+<$list filter="[is[current]has[text]tag[TaskAction]!filter<actionFilter>]"><$button><$action-listops $tiddler={{!!title}} $field="tags" $subfilter="-TaskAction" />-TaskAction</$button></$list>
+<$list filter="[is[current]has[text]!tag[Task]!tag[TaskAction]tag[Done]!filter<actionFilter>]"><$button><$action-listops $tiddler={{!!title}} $field="tags" $subfilter="-Done" />-Done</$button></$list>
+<$list filter="[is[current]!tag[Task]filter<actionFilter>]">
+$:/plugins/pjerkins/phil-work/Utils/DoneTaskCleanup
 </$list>
 </$let>
 </div>

@@ -3,8 +3,8 @@ modified: 20230204191103659
 tags: 
 title: $:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBar
 
-\define newProjectTodoTags() [[$(currentTiddler)$]] ToDo
-\define newProjectCandidateTags() [[$(currentTiddler)$]] ToDo TodayCandidate
+\define newProjectTodoTags() [[$(currentTiddler)$]] Task
+\define newProjectCandidateTags() [[$(currentTiddler)$]] Task TodayCandidate
 \define closeProjectActions()
 <$action-deletetiddler $tiddler=<<actionMenuState>>/>
 \end

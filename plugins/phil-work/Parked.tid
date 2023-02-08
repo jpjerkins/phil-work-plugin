@@ -4,11 +4,11 @@ tags:
 title: $:/plugins/pjerkins/phil-work/Parked
 
 !! Parked projects
-<$list filter="[tag[Initiative]tag[Parked]]">
+<$list filter="[tag[Project]tag[Parked]]">
 <$checkbox tag='Parked' /> <$link /><br/>
 </$list>
 
 !! Parked tasks
-<$list filter="[tag[ToDo]tag[Parked]]">
+<$list filter="[tag[Task]tag[Parked]]">
 <$checkbox tag='Parked' /> <$link /><br/>
 </$list>

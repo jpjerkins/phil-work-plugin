@@ -8,7 +8,7 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/TodoFooter
 \import [all[shadows]prefix:title[$:/plugins/pjerkins/phil-work/Macros/FollowUp]]
 \import [all[shadows]title[$:/plugins/pjerkins/phil-work/Macros/Park]]
 
-<$list filter="[is[current]tag[ToDo]]">
+<$list filter="[is[current]tag[Task]]">
 <$set name="currentTiddlerTitle" value={{!!title}}>
 
 <div styles="width:100%; border: solid 1px #888; background-color: #AAA;">
@@ -50,7 +50,7 @@ Waiting
 <$action-listops $field="tags" $subfilter="+[append[Waiting]]" />
 <$action-createtiddler $basetitle={{$:/state/new-todo-action}} $savetitle="$:/state/new-todo-action" />
 <$action-setfield $tiddler={{$:/state/new-todo-action}} action-date=<<now format:"ddd, MM/0DD">> />
-<$action-listops $tiddler={{$:/state/new-todo-action}} $field="tags" $subfilter="[{!!title}] +[append[TodoAction Done]]" />
+<$action-listops $tiddler={{$:/state/new-todo-action}} $field="tags" $subfilter="[{!!title}] +[append[TaskAction Done]]" />
 <$action-setfield $field="todo-waiting-box-state" $value="" />
 <$action-deletetiddler $tiddler="$:/state/new-todo-action" />
 {{$:/core/images/save-button}}
@@ -74,7 +74,7 @@ Not Waiting
 <$action-listops $field="tags" $subfilter="-Waiting" />
 <$action-createtiddler $basetitle={{$:/state/new-todo-action}} $savetitle="$:/state/new-todo-action" />
 <$action-setfield $tiddler={{$:/state/new-todo-action}} action-date=<<now format:"ddd, MM/0DD">> />
-<$action-listops $tiddler={{$:/state/new-todo-action}} $field="tags" $subfilter="[{!!title}] +[append[TodoAction Done]]" />
+<$action-listops $tiddler={{$:/state/new-todo-action}} $field="tags" $subfilter="[{!!title}] +[append[TaskAction Done]]" />
 <$action-setfield $field="todo-not-waiting-box-state" $value="" />
 <$action-deletetiddler $tiddler="$:/state/new-todo-action" />
 {{$:/core/images/save-button}}
@@ -112,7 +112,7 @@ New Next Action: <$edit-text tiddler="$:/state/new-todo-next-action" tag="input"
 <$button>
 <$action-setfield waiting=<<now format:"ddd, MM/0DD">> />
 <$action-createtiddler $basetitle={{$:/state/new-todo-next-action}} $savetitle="$:/state/new-todo-next-action" />
-<$action-listops $tiddler={{$:/state/new-todo-next-action}} $field="tags" $subfilter="[{!!title}] +[append[TodoAction]]" />
+<$action-listops $tiddler={{$:/state/new-todo-next-action}} $field="tags" $subfilter="[{!!title}] +[append[TaskAction]]" />
 <$action-setfield $field="todo-next-action-box-state" $value="" />
 <$action-deletetiddler $tiddler="$:/state/new-todo-next-action" />
 {{$:/core/images/save-button}}
@@ -123,9 +123,9 @@ New Next Action: <$edit-text tiddler="$:/state/new-todo-next-action" tag="input"
 {{$:/core/images/cancel-button}}
 </$button>
 
-<$list variable="topNextAction" filter="[tag<currentTiddlerTitle>tag[TodoAction]!tag[Done]sort[created]first[1]]">
+<$list variable="topNextAction" filter="[tag<currentTiddlerTitle>tag[TaskAction]!tag[Done]sort[created]first[1]]">
 <h2>Outstanding Next Actions</h2>
-<$list filter="[tag<currentTiddlerTitle>tag[TodoAction]!tag[Done]sort[created]]">
+<$list filter="[tag<currentTiddlerTitle>tag[TaskAction]!tag[Done]sort[created]]">
 <div>
 <$button>
 <$action-listops $field="tags" $subfilter="+[append[Done]]" />
@@ -137,10 +137,10 @@ Done
 </$list>
 </$list>
 
-<$list variable="topActivity" filter="[tag{!!title}tag[TodoAction]sort[created]first[1]]">
+<$list variable="topActivity" filter="[tag{!!title}tag[TaskAction]sort[created]first[1]]">
 <h2>Activities</h2>
 <table>
-<$list filter="[tag{!!title}tag[TodoAction]tag[Done]!sort[created]]">
+<$list filter="[tag{!!title}tag[TaskAction]tag[Done]!sort[created]]">
 <tr>
 <td>
 <$button>

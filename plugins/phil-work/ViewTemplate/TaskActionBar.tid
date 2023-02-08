@@ -5,7 +5,7 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBar
 todo-action-box-state: 
 
 \define newDatedCandidateLabel() $(newCandidateLabel)$ $(newCandidateLabelDate)$
-\define newDatedCandidateTags() $(currentTags)$ ToDo TodayCandidate
+\define newDatedCandidateTags() $(currentTags)$ Task TodayCandidate
 \import [[$:/plugins/pjerkins/phil-work/Macros/FollowUpActionsSelect]]
 \import [[$:/plugins/pjerkins/phil-work/Macros/Park]]
 \define closeTodoActions()

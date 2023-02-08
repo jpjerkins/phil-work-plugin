@@ -19,7 +19,7 @@ $:/plugins/pjerkins/phil-work/AllFollowUpItems | $:/plugins/pjerkins/phil-work/U
 
 <$edit-text tiddler="$:/state/new-button-caption" tag="input" default="" />
 <$button>
-<$action-createtiddler $basetitle={{$:/state/new-button-caption}} tags="ToDo"/>
+<$action-createtiddler $basetitle={{$:/state/new-button-caption}} tags="Task"/>
 <$action-deletetiddler $tiddler="$:/state/new-button-caption" />
 Add
 </$button>
@@ -38,7 +38,7 @@ Add
 &#10004;
 </$button>
 <$link />
-<$list filter="[tag{!!title}tag[$:/plugins/pjerkins/phil-work/TodoAction]!tag[$:/plugins/pjerkins/phil-work/Done]sort[created]nth[1]]">
+<$list filter="[tag{!!title}tag[$:/plugins/pjerkins/phil-work/TaskAction]!tag[$:/plugins/pjerkins/phil-work/Done]sort[created]nth[1]]">
 <br/>{{!!title}}
 </$list>
 </li>
@@ -46,14 +46,14 @@ Add
 </ul>
 </$let>
 
-<$list variable="firstWaitingItem" filter="[tag[ToDo]!tag[FollowUp]tag[$:/plugins/pjerkins/phil-work/Waiting]!tag[$:/plugins/pjerkins/phil-work/Done]first[1]]">
+<$list variable="firstWaitingItem" filter="[tag[Task]!tag[FollowUp]tag[$:/plugins/pjerkins/phil-work/Waiting]!tag[$:/plugins/pjerkins/phil-work/Done]first[1]]">
 
 !! Waiting
 {{$:/plugins/pjerkins/phil-work/WaitingList}}
 </$list>
 
-<$list variable="firstTodoItem" filter="[tag[ToDo]!tag[FollowUp]!tag[$:/plugins/pjerkins/phil-work/Waiting]!tag[$:/plugins/pjerkins/phil-work/Done]first[1]]">
+<$list variable="firstTodoItem" filter="[tag[Task]!tag[FollowUp]!tag[$:/plugins/pjerkins/phil-work/Waiting]!tag[$:/plugins/pjerkins/phil-work/Done]first[1]]">
 
-!! To Do
+!! Tasks
 {{$:/plugins/pjerkins/phil-work/ToDoList}}
 </$list>

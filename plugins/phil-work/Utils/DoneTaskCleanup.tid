@@ -1,9 +1,9 @@
 created: 20220302155112961
 modified: 20230202034801701
 tags: 
-title: $:/plugins/pjerkins/phil-work/Utils/DoneToDoCleanup
+title: $:/plugins/pjerkins/phil-work/Utils/DoneTaskCleanup
 
-<$list variable="todo" filter="[tag[Done]!tag[ToDo]!tag[TodoAction]]">
+<$list variable="todo" filter="[tag[Done]!tag[Task]!tag[TaskAction]]">
 <h3>
 <$link to=<<todo>> />
 </h3>

@@ -69,17 +69,17 @@ title: $:/plugins/pjerkins/phil-work/Today
 !! Candidates
 <$edit-text tiddler="$:/state/new-today-candidate" tag="input" default="" />
 <$button>
-	<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags="ToDo"/>
+	<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags="Task"/>
 	<$action-deletetiddler $tiddler="$:/state/new-today-candidate" />
 	+
 </$button>
 <$button>
-	<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags="ToDo TodayCandidate"/>
+	<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags="Task TodayCandidate"/>
 	<$action-deletetiddler $tiddler="$:/state/new-today-candidate" />
 	+C
 </$button>
 <$button>
-	<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags="Initiative $:/plugins/pjerkins/phil-work/MyInitiatives" />
+	<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags="Project $:/plugins/pjerkins/phil-work/MyInitiatives" />
 	<$action-navigate $to={{$:/state/new-today-candidate}} />
 	<$action-deletetiddler $tiddler="$:/state/new-today-candidate" />
 	+P

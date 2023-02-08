@@ -7,25 +7,25 @@ tags:
 title: $:/plugins/pjerkins/phil-work/Home
 todo-action-box-state: 
 
-\define goalProjectsFilter() [[$(currentGoal)$]] Initiative
+\define goalProjectsFilter() [[$(currentGoal)$]] Project
 \define closeGoalActions()
 <$action-setfield $tiddler=<<actionMenuState>> $field="text" $value="" />
 \end
 \define closeHomeActions()
 <$action-setfield $tiddler=<<actionMenuState>> $field="text" $value="" />
 \end
-\define newGoalTodoTags() [[$(currentGoal)$]] ToDo
-\define newGoalCandidateTags() [[$(currentGoal)$]] ToDo TodayCandidate
+\define newGoalTodoTags() [[$(currentGoal)$]] Task
+\define newGoalCandidateTags() [[$(currentGoal)$]] Task TodayCandidate
 \import [all[shadows]prefix:title[$:/plugins/pjerkins/phil-work/Macros/FollowUp]]
 
 <<followUpFolderBoundSelect selected-follow-up-folder>> | [[AllFollowUpItems|$:/plugins/pjerkins/phil-work/AllFollowUpItems]] | [[Done|$:/plugins/pjerkins/phil-work/Done]]
 
 <$let currentTiddler=<<qualify "selected-follow-up-folder">> selectedFollowUpFolder={{!!text}}>
-	<$list filter="[field:follow-up-folder<selectedFollowUpFolder>tag[FollowUpItem]!tag[Done]!tag[Parked]!tag[Today]!tag[TodayCandidate]] -[tag[Initiative]tag[Parked]tagging[]] +[sort[title]]">
+	<$list filter="[field:follow-up-folder<selectedFollowUpFolder>tag[FollowUpItem]!tag[Done]!tag[Parked]!tag[Today]!tag[TodayCandidate]] -[tag[Project]tag[Parked]tagging[]] +[sort[title]]">
 		<$let
 		 doneTagCount={{{ [list[!!tags]join[;]] }}}
-		 hasProject={{{ [kin::from:<currentTiddler>tag[Initiative]count[]] }}}
-		 hasParkedProject={{{ [kin::from:<currentTiddler>tag[Parked]tag[Initiative]count[]multiply[10]] }}}
+		 hasProject={{{ [kin::from:<currentTiddler>tag[Project]count[]] }}}
+		 hasParkedProject={{{ [kin::from:<currentTiddler>tag[Parked]tag[Project]count[]multiply[10]] }}}
 		 hasGoal={{{ [kin::from:<currentTiddler>tag[$:/plugins/pjerkins/phil-work/IdentityStatements]count[]multiply[2]] }}}
 		 todoType={{{ [<hasGoal>add<hasProject>subtract<hasParkedProject>] }}} >
 		 	{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBarHamburger}}
@@ -46,13 +46,13 @@ todo-action-box-state:
 <$let
  currentTiddler=<<qualify "selected-follow-up-folder">>
  selectedFollowUpFolder={{!!text}}
- todoReadyTodayFilter="[tag[ToDo]!tag[Today]!tag[TodayCandidate]!tag[FollowUpItem]!tag[Done]!tag[Parked]]"
- todoFollowUpTodayFilter="[tag[ToDo]!tag[Today]!tag[TodayCandidate]tag[FollowUpItem]field:follow-up-folder<selectedFollowUpFolder>!tag[Done]!tag[Parked]]">
+ todoReadyTodayFilter="[tag[Task]!tag[Today]!tag[TodayCandidate]!tag[FollowUpItem]!tag[Done]!tag[Parked]]"
+ todoFollowUpTodayFilter="[tag[Task]!tag[Today]!tag[TodayCandidate]tag[FollowUpItem]field:follow-up-folder<selectedFollowUpFolder>!tag[Done]!tag[Parked]]">
 
 	<$list filter="[list[$:/plugins/pjerkins/phil-work/IdentityStatements]]">
 		<h3><$link overrideClass="goal-link" /></h3>
 		<$let currentGoal=<<currentTiddler>> >
-			<$list filter="[tag<currentGoal>tag[Initiative]!tag[Parked]]">
+			<$list filter="[tag<currentGoal>tag[Project]!tag[Parked]]">
 				<$let currentProject={{!!title}} >
 					<div style="padding-top: 0.5em">
 						{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBarHamburger}}
@@ -99,9 +99,9 @@ todo-action-box-state:
 
 	<$let
 	 noGoalFilter="[kin::from:[]tag[$:/plugins/pjerkins/phil-work/IdentityStatements]count[]compare:number:eq[0]]"
-	 noProjectFilter="[kin::from:[]tag[Initiative]count[]compare:number:eq[0]]"
+	 noProjectFilter="[kin::from:[]tag[Project]count[]compare:number:eq[0]]"
 	 noParkedProjectFilter="[kin::from:[]tag[Parked]count[]compare:number:eq[0]]">
-		<$list filter="[tag[Initiative]] -[tag[$:/plugins/pjerkins/phil-work/IdentityStatements]tagging[]] +[!tag[Parked]sort[title]]">
+		<$list filter="[tag[Project]] -[tag[$:/plugins/pjerkins/phil-work/IdentityStatements]tagging[]] +[!tag[Parked]sort[title]]">
 			<$let currentProject={{!!title}} >
 				<div style="padding-top: 0.5em">
 					{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBarHamburger}}
@@ -121,13 +121,13 @@ todo-action-box-state:
 				<div>
 					<$edit-text tiddler="$:/state/new-todo" default="" tag="input" />
 					<$button>
-						<$action-createtiddler $basetitle={{$:/state/new-todo}} tags="ToDo" />
+						<$action-createtiddler $basetitle={{$:/state/new-todo}} tags="Task" />
 						<$action-deletetiddler $tiddler="$:/state/new-todo" />
 						<<closeHomeActions>>
 						{{$:/core/images/save-button}}
 					</$button>
 					<$button>
-						<$action-createtiddler $basetitle={{$:/state/new-todo}} tags="ToDo TodayCandidate" />
+						<$action-createtiddler $basetitle={{$:/state/new-todo}} tags="Task TodayCandidate" />
 						<$action-deletetiddler $tiddler="$:/state/new-todo" />
 						<<closeHomeActions>>
 						T!

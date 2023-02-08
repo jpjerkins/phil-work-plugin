@@ -5,7 +5,7 @@ modifier: jpjerkins
 tags: 
 title: $:/plugins/pjerkins/phil-work/WaitingList
 
-<$list filter="[tag[ToDo]tag[Waiting]!tag[Done]!tag[FollowUpItem]sort[waiting]]">
+<$list filter="[tag[Task]tag[Waiting]!tag[Done]!tag[FollowUpItem]sort[waiting]]">
 <div styles="width:100%; border: solid 1px #888;">
 <div>
 <$list filter="[is[current]has[text]]">
@@ -14,7 +14,7 @@ title: $:/plugins/pjerkins/phil-work/WaitingList
 <$list filter="[is[current]!has[text]]">
 <$link to={{!!title}}>{{!!title}}</$link>
 </$list>
-<$list filter="[tag{!!title}tag[TodoAction]!sort[created]first[]]">
+<$list filter="[tag{!!title}tag[TaskAction]!sort[created]first[]]">
 <$view field="created" format="date" template="MM/DD"/> {{!!title}}
 </$list>
 </div>
@@ -35,7 +35,7 @@ Not Waiting
 <$action-listops $field="tags" $subfilter="-Waiting" />
 <$action-createtiddler $basetitle={{$:/state/new-todo-action}} $savetitle="$:/state/new-todo-action" />
 <$action-setfield $tiddler={{$:/state/new-todo-action}} action-date=<<now format:"ddd, MM/0DD">> />
-<$action-listops $tiddler={{$:/state/new-todo-action}} $field="tags" $subfilter="[{!!title}] +[append[TodoAction Done]]" />
+<$action-listops $tiddler={{$:/state/new-todo-action}} $field="tags" $subfilter="[{!!title}] +[append[TaskAction Done]]" />
 <$action-setfield $field="todo-action-box-state" $value="" />
 <$action-deletetiddler $tiddler="$:/state/new-todo-action" />
 {{$:/core/images/save-button}}

@@ -15,4 +15,4 @@ Set action-date to <<actionDate>>
 </$list>
 
 !! Next
-* $:/plugins/pjerkins/phil-work/Utils/RenameTags from ''~TodoNextAction'' to ''~TodoAction''
+* $:/plugins/pjerkins/phil-work/Utils/RenameTags from ''~TodoNextAction'' to ''~TaskAction''
