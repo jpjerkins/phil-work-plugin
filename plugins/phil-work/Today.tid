@@ -86,7 +86,7 @@ title: $:/plugins/pjerkins/phil-work/Today
 </$button>
 
 <$let todayCount={{{ [list[TodayCandidate!!list]count[]] }}}>
-	<<list-tagged-draggable tag:"TodayCandidate" subFilter:"!has[draft.of]" itemTemplate:"$:/plugins/pjerkins/phil-work/Templates/TodayCardDraggableTemplate" emptyMessage:"You don't have any candidate tasks to commit">>
+	<<list-tagged-draggable tag:"TodayCandidate" subFilter:"!has[draft.of]" itemTemplate:"$:/plugins/pjerkins/phil-work/ViewTemplate/TodayCardDraggableTemplate" emptyMessage:"You don't have any candidate tasks to commit">>
 
 	<$list filter="[tag[TodayCandidate]!tag[Parked]first[]]">
 		<$button>
