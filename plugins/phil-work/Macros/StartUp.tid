@@ -2,7 +2,7 @@ created: 20230209010000000
 creator: jpjerkins
 modified: 20230209010000000
 modifier: jpjerkins
-tags: $:/tags/StartupAction/Browser
+tags: $:/tags/StartupAction/PostRender
 title: $:/plugins/pjerkins/phil-work/Macros/StartUp
 
 <$action-setfield
@@ -17,3 +17,13 @@ title: $:/plugins/pjerkins/phil-work/Macros/StartUp
  $tiddler="IdentityStatements"
  $field="caption"
  $value="Identity Statements" />
+
+<$action-setfield
+ $tiddler="Home"
+ $field="text"
+ $value="{{||$:/plugins/pjerkins/phil-work/Home}}" />
+
+<$action-setfield
+ $tiddler="Today"
+ $field="text"
+ $value="{{||$:/plugins/pjerkins/phil-work/Today}}" />

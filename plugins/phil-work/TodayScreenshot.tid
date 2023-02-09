@@ -9,6 +9,7 @@ title: $:/plugins/pjerkins/phil-work/TodayScreenshot
 
 <$let totalPotentialPoints={{{ [tag[Today]get[today-potential-points]sum[]] }}} totalActualPoints={{{ [tag[Today]get[today-actual-points]sum[]] }}} currentScore={{{ [<totalActualPoints>divide<totalPotentialPoints>multiply[100]round[]] }}} today=<<now "YYYY-0MM-0DD">> >
 
+!! Today!
 <<showTodayList totalPotentialPoints:'<<totalPotentialPoints>>' totalActualPoints:'<<totalActualPoints>>' currentScore:'<<currentScore>>' >>
 
 </$let>

@@ -7,7 +7,6 @@ title: $:/plugins/pjerkins/phil-work/Macros/ShowTodayList
 \define notDoneActions() <$action-deletefield $field="today-actual-points"/><$action-listops $tags="-Done"/>
 \define showTodayList(totalPotentialPoints, totalActualPoints, currentScore)
 
-!! Today!
 <$list filter="[tag[Today]!nsort[today-potential-points]]">
     <$let
      doneTagCount={{{ [list[!!tags]join[;]] }}}

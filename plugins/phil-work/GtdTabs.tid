@@ -12,7 +12,7 @@ title: $:/plugins/pjerkins/phil-work/GtdTabs
 \end
 
 [[What IS this "Work Notes Journal"?|$:/plugins/pjerkins/phil-work/What IS This Thing?]]<br/>
-[[Today|$:/plugins/pjerkins/phil-work/Today]] | [[Home|$:/plugins/pjerkins/phil-work/Home]] <<linkRow 1>><br/>
+[[Today]] | [[Home]] <<linkRow 1>><br/>
 [[MDScratch]] <<linkRow 2>>
 <div class="tc-table-of-contents">
 <<toc-selective-expandable 'TableOfContents' "sort[title]">>

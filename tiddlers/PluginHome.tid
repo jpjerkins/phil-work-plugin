@@ -1,5 +1,5 @@
 created: 20230128034918506
-modified: 20230204185700682
+modified: 20230209042132803
 tags: 
 title: PluginHome
 type: text/vnd.tiddlywiki
@@ -7,7 +7,7 @@ type: text/vnd.tiddlywiki
 * [[$:/plugins/pjerkins/phil-work]]
 * PluginDependents
 * PluginRepackParam
-* [[Today|$:/plugins/pjerkins/phil-work/Today]]
-* [[Home|$:/plugins/pjerkins/phil-work/Home]]
+* [[Today]]
+* [[Home]]
 
 {{{ [all[shadows]tag[FollowUpDayFolder]] [all[shadows]tag[FollowUpMonthFolder]] +[addprefix["]addsuffix[", ]] }}}

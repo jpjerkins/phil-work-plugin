@@ -102,4 +102,4 @@ title: $:/plugins/pjerkins/phil-work/Today
 	</$list>
 </$let>
 
-[[Scores|$:/plugins/pjerkins/phil-work/TodayScores]] | [[Home|$:/plugins/pjerkins/phil-work/Home]] | [[Screenshot|$:/plugins/pjerkins/phil-work/TodayScreenshot]]
+[[Scores|$:/plugins/pjerkins/phil-work/TodayScores]] | [[Home]] | [[Screenshot|$:/plugins/pjerkins/phil-work/TodayScreenshot]]
