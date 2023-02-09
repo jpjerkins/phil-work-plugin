@@ -40,6 +40,14 @@ todo-action-box-state:
 				&#x1f5d1;
 			</$button>
 			<<followUpFolderActionsSelect follow-up-folder '<$action-listops $tags="FollowUpItem"/><$action-setfield $tiddler=<<actionMenuState>> $field="text" $value=""/>' >>
+			<$list filter="[all[current]tag[FollowUpItem]]" variable="_">
+				<$button>
+					<$action-listops $tags="+[remove[FollowUpItem]]"/>
+					<$action-deletefield follow-up-folder />
+					<<closeTodoActions>>
+					Clear
+				</$button>
+			</$list>
 		</div>
 	</$reveal>
 </$let>
