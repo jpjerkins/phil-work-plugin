@@ -3,6 +3,10 @@ modified: 20230128045708076
 tags: 
 title: $:/plugins/pjerkins/phil-work/Utils/RenameTags
 
+\define replaceTags(search, replace)
+<$action-listops $tags="[[$replace$]] -[[$search$]]" />
+\end
+
 //From http://tw5magick.tiddlyspot.com/ //
 
 This great trick was shown to the tiddlywiki google group by [[Alberto Molina|https://groups.google.com/forum/#!topic/tiddlywiki/OCntQ79DuwM]]. I enhanced it a bit.
@@ -12,19 +16,20 @@ This great trick was shown to the tiddlywiki google group by [[Alberto Molina|ht
 
 ---
 <$reveal type="nomatch" text="" state="$:/temp/RenameTags/replace">
-
-!First step
-!!//Apply the tag <$tiddler tiddler={{$:/temp/RenameTags/replace}}><$transclude tiddler="$:/core/ui/TagTemplate"/></$tiddler> to the following tiddlers//
-<$list filter="[!has[draft.of]tag{$:/temp/RenameTags/search}!tag{$:/temp/RenameTags/replace}sort[created]]">
-<$checkbox tag={{$:/temp/RenameTags/replace}}> <$link to={{!!title}}><$view field="title"/></$link></$checkbox><br/>
-</$list>
-</$reveal>
-
 <$reveal type="nomatch" text="" state="$:/temp/RenameTags/search">
 
-!Second step
-!!//Remove the tag <$tiddler tiddler={{$:/temp/RenameTags/search}}><$transclude tiddler="$:/core/ui/TagTemplate"/></$tiddler> from the following tiddlers//
-<$list filter="[!has[draft.of]tag{$:/temp/RenameTags/search}tag{$:/temp/RenameTags/replace}sort[created]]">
-<$checkbox tag={{$:/temp/RenameTags/search}}> ~~<$link to={{!!title}}><$view field="title"/></$link>~~</$checkbox><br/>
-</$list>
+<$button>
+    <$list filter="[!has[draft.of]tag{$:/temp/RenameTags/search}!tag{$:/temp/RenameTags/replace}sort[created]]">
+        <$macrocall
+         $name=replaceTags
+         search={{$:/temp/RenameTags/search}}
+         replace={{$:/temp/RenameTags/replace}} />
+    </$list>
+    Rename All
+</$button>
+
+!! Tiddlers to be updated
+<<list-links filter:"[!has[draft.of]tag{$:/temp/RenameTags/search}!tag{$:/temp/RenameTags/replace}sort[created]]">>
+
+</$reveal>
 </$reveal>
