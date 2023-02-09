@@ -3,11 +3,13 @@ creator: jpjerkins
 modified: 20230203180054664
 modifier: jpjerkins
 tags: 
-title: $:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/HomeFollowUpTaskTemplate
 todo-action-box-state: 
 
 {{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBarHamburger}}<$link />
-@@color:gray;
-//(<<selectedFollowUpFolder>>)//
-@@
+<$list filter="[all[current]tag[FollowUpItem]]" variable="_">
+    <span style="color: gray;">
+        <i>({{!!follow-up-folder}})</i>
+    </span>
+</$list>
 {{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBar}}
