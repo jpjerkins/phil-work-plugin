@@ -3,7 +3,7 @@ creator: jpjerkins
 modified: 20230128044308227
 modifier: jpjerkins
 tags: 
-title: $:/plugins/pjerkins/phil-work/Templates/TodayCardDraggableTemplate
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/TodayCardDraggableTemplate
 
 <$let
  todayIndex={{{ [list[TodayCandidate]allbefore<currentTiddler>count[]] }}}
