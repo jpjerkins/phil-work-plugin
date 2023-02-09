@@ -42,7 +42,7 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/IdentityFooter
 <$button>
 <$action-createtiddler $basetitle={{$:/state/new-goal-item}} tags=<<newTodoTags>> />
 <$action-deletetiddler $tiddler="$:/state/new-goal-item" />
-+~Task
++Task
 </$button>
 <$button>
 <$action-createtiddler $basetitle={{$:/state/new-goal-item}} tags=<<newProjectTags>> />

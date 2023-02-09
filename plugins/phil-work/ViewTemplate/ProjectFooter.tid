@@ -1,7 +1,7 @@
 created: 20230201045412126
 modified: 20230204200438248
 tags: $:/tags/ViewTemplate template
-title: $:/plugins/pjerkins/phil-work/ViewTemplate/InitiativeFooter
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/ProjectFooter
 
 \define NewNotesTags() [[$(currentTiddler)$]]
 \define NewNotesLabel() $(newNotesLabelDate)$ - $(initiativeLabel)$
