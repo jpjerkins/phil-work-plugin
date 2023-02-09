@@ -10,7 +10,7 @@ title: $:/plugins/pjerkins/phil-work/Templates/TodayCardDraggableTemplate
  todayOrdinal={{{ [<todayIndex>add[1]] }}}
  todayPoints={{{ [<todayCount>subtract<todayIndex>] }}}
  hasProject={{{ [kin::from:<currentTiddler>tag[Project]count[]] }}}
- hasGoal={{{ [kin::from:<currentTiddler>tag[$:/plugins/pjerkins/phil-work/IdentityStatements]count[]multiply[2]] }}}
+ hasGoal={{{ [kin::from:<currentTiddler>tag[IdentityStatements]count[]multiply[2]] }}}
  todoType={{{ [<hasGoal>add<hasProject>] }}} >
     <<todayPoints>>
     <$button>

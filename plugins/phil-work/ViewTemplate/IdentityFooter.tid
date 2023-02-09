@@ -10,7 +10,7 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/IdentityFooter
 <$let
  currentGoal=<<currentTiddler>>
  noProjectFilter="[kin::from:[]tag[Project]count[]compare:number:eq[0]]" >
-<$list filter="[is[current]tag[$:/plugins/pjerkins/phil-work/IdentityStatements]]">
+<$list filter="[is[current]tag[IdentityStatements]]">
 
 <$list filter="[tag<currentGoal>tag[Project]!tag[Parked]first[]]">
 <h2>Active Projects</h2>

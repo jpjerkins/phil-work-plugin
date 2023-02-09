@@ -26,7 +26,7 @@ todo-action-box-state:
 		 doneTagCount={{{ [list[!!tags]join[;]] }}}
 		 hasProject={{{ [kin::from:<currentTiddler>tag[Project]count[]] }}}
 		 hasParkedProject={{{ [kin::from:<currentTiddler>tag[Parked]tag[Project]count[]multiply[10]] }}}
-		 hasGoal={{{ [kin::from:<currentTiddler>tag[$:/plugins/pjerkins/phil-work/IdentityStatements]count[]multiply[2]] }}}
+		 hasGoal={{{ [kin::from:<currentTiddler>tag[IdentityStatements]count[]multiply[2]] }}}
 		 todoType={{{ [<hasGoal>add<hasProject>subtract<hasParkedProject>] }}} >
 		 	{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBarHamburger}}
 			<$list variable="result" filter="[<todoType>compare:number:gteq[2]]">
@@ -49,7 +49,7 @@ todo-action-box-state:
  todoReadyTodayFilter="[tag[Task]!tag[Today]!tag[TodayCandidate]!tag[FollowUpItem]!tag[Done]!tag[Parked]]"
  todoFollowUpTodayFilter="[tag[Task]!tag[Today]!tag[TodayCandidate]tag[FollowUpItem]field:follow-up-folder<selectedFollowUpFolder>!tag[Done]!tag[Parked]]">
 
-	<$list filter="[list[$:/plugins/pjerkins/phil-work/IdentityStatements]]">
+	<$list filter="[list[IdentityStatements]]">
 		<h3><$link overrideClass="goal-link" /></h3>
 		<$let currentGoal=<<currentTiddler>> >
 			<$list filter="[tag<currentGoal>tag[Project]!tag[Parked]]">
@@ -98,10 +98,10 @@ todo-action-box-state:
 	!! Other
 
 	<$let
-	 noGoalFilter="[kin::from:[]tag[$:/plugins/pjerkins/phil-work/IdentityStatements]count[]compare:number:eq[0]]"
+	 noGoalFilter="[kin::from:[]tag[IdentityStatements]count[]compare:number:eq[0]]"
 	 noProjectFilter="[kin::from:[]tag[Project]count[]compare:number:eq[0]]"
 	 noParkedProjectFilter="[kin::from:[]tag[Parked]count[]compare:number:eq[0]]">
-		<$list filter="[tag[Project]] -[tag[$:/plugins/pjerkins/phil-work/IdentityStatements]tagging[]] +[!tag[Parked]sort[title]]">
+		<$list filter="[tag[Project]] -[tag[IdentityStatements]tagging[]] +[!tag[Parked]sort[title]]">
 			<$let currentProject={{!!title}} >
 				<div style="padding-top: 0.5em">
 					{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBarHamburger}}

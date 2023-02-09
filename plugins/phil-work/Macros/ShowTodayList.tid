@@ -13,7 +13,7 @@ title: $:/plugins/pjerkins/phil-work/Macros/ShowTodayList
      doneTagCount={{{ [list[!!tags]join[;]] }}}
      currentTodo=<<currentTiddler>>
      hasProject={{{ [kin::from:<currentTodo>tag[Project]count[]] }}}
-     hasGoal={{{ [kin::from:<currentTodo>tag[$:/plugins/pjerkins/phil-work/IdentityStatements]count[]multiply[2]] }}}
+     hasGoal={{{ [kin::from:<currentTodo>tag[IdentityStatements]count[]multiply[2]] }}}
      todoType={{{ [<hasGoal>add<hasProject>] }}} >
         <$checkbox filter="[list[!!tags]]" checked="Done" checkactions=<<doneActions>> uncheckactions=<<notDoneActions>>>
             {{!!today-potential-points}}

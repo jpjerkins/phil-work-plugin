@@ -5,13 +5,13 @@ title: $:/plugins/pjerkins/phil-work/Utils/MigrateToPlugin
 
 !! IdentityStatements
 <$button>
-<$list filter="[!has[draft.of]tag[IdentityStatements]!tag[$:/plugins/pjerkins/phil-work/IdentityStatements]]">
-<$action-listops $tiddler=<<currentTag>> $tags="-IdentityStatements $:/plugins/pjerkins/phil-work/IdentityStatements" />
+<$list filter="[!has[draft.of]tag[IdentityStatements]!tag[IdentityStatements]]">
+<$action-listops $tiddler=<<currentTag>> $tags="-IdentityStatements IdentityStatements" />
 </$list>
 Switch for all!
 </$button>
 
-<$list filter="[!has[draft.of]tag[IdentityStatements]!tag[$:/plugins/pjerkins/phil-work/IdentityStatements]sort[created]]">
+<$list filter="[!has[draft.of]tag[IdentityStatements]!tag[IdentityStatements]sort[created]]">
 <$link /><br/>
 </$list>
 

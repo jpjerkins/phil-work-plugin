@@ -4,7 +4,10 @@ creator: jpjerkins
 list: 
 modified: 20230203180309182
 modifier: jpjerkins
-tags: TableOfContents
+tags:
 title: $:/plugins/pjerkins/phil-work/IdentityStatements
 
-<<list-tagged-draggable tag:"$:/plugins/pjerkins/phil-work/IdentityStatements" emptyMessage:"You don't have any identity!">>
+<$macrocall
+ $name=list-tagged-draggable
+ tag=<<currentTiddler>>
+ emptyMessage="You don't have any identity!" />

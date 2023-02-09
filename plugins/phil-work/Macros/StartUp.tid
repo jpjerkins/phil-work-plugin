@@ -1,0 +1,19 @@
+created: 20230209010000000
+creator: jpjerkins
+modified: 20230209010000000
+modifier: jpjerkins
+tags: $:/tags/StartupAction/Browser
+title: $:/plugins/pjerkins/phil-work/Macros/StartUp
+
+<$action-setfield
+ $tiddler="IdentityStatements"
+ $field="tags"
+ $value="TableOfContents" />
+<$action-setfield
+ $tiddler="IdentityStatements"
+ $field="text"
+ $value="{{||$:/plugins/pjerkins/phil-work/IdentityStatements}}" />
+<$action-setfield
+ $tiddler="IdentityStatements"
+ $field="caption"
+ $value="Identity Statements" />
