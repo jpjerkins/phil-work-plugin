@@ -26,7 +26,7 @@ todo-action-box-state:
 			</$button> 
 			<$let currentTags={{!!tags}} newCandidateLabel={{!!title}} newCandidateLabelDate=<<now "YYYY-0MM-0DD" >> >
 				<$button set=<<actionMenuState>> setTo="">
-					<$action-createtiddler $basetitle=<<newDatedCandidateLabel>> tags=<<newDatedCandidateTags>> />
+					<$action-createtiddler $basetitle=<<newDatedCandidateLabel>> tags=<<newDatedCandidateTags>> text={{!!text}} />
 					<$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem" />
 					T,,dt,,!
 				</$button>
@@ -37,6 +37,7 @@ todo-action-box-state:
 			</$button> 
 			<$button>
 				<$action-deletetiddler $tiddler={{!!title}} />
+				<<closeTodoActions>>
 				&#x1f5d1;
 			</$button>
 			<<followUpFolderActionsSelect follow-up-folder '<$action-listops $tags="FollowUpItem"/><$action-setfield $tiddler=<<actionMenuState>> $field="text" $value=""/>' >>
