@@ -59,8 +59,8 @@ todo-action-box-state:
 						<$link overrideClass="project-link" />
 					</div>
 					{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBar}}
-					<$list template="$:/plugins/pjerkins/phil-work/Templates/HomeReadyTaskTemplate" filter="[tag<currentProject>filter<taskReadyTodayFilter>]" />
-					<$list template="$:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate" filter="[tag<currentProject>filter<taskFollowUpTodayFilter>]" />
+					<$list template="$:/plugins/pjerkins/phil-work/ViewTemplate/HomeReadyTaskTemplate" filter="[tag<currentProject>filter<taskReadyTodayFilter>]" />
+					<$list template="$:/plugins/pjerkins/phil-work/ViewTemplate/HomeFollowUpTaskTemplate" filter="[tag<currentProject>filter<taskFollowUpTodayFilter>]" />
 				</$let>
 			</$list>
 			<div style="padding-top: 0.5em">
@@ -90,8 +90,8 @@ todo-action-box-state:
 					</div>
 				</$reveal>
 			</$let>
-			<$list template="$:/plugins/pjerkins/phil-work/Templates/HomeReadyTaskTemplate" filter="[tag<currentGoal>filter<taskReadyTodayFilter>]" />
-			<$list template="$:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate" filter="[tag<currentGoal>filter<taskFollowUpTodayFilter>]" />
+			<$list template="$:/plugins/pjerkins/phil-work/ViewTemplate/HomeReadyTaskTemplate" filter="[tag<currentGoal>filter<taskReadyTodayFilter>]" />
+			<$list template="$:/plugins/pjerkins/phil-work/ViewTemplate/HomeFollowUpTaskTemplate" filter="[tag<currentGoal>filter<taskFollowUpTodayFilter>]" />
 		</$let>
 	</$list>
 
@@ -108,8 +108,8 @@ todo-action-box-state:
 					<$link overrideClass="project-link" />
 				</div>
 				{{||$:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBar}}
-				<$list template="$:/plugins/pjerkins/phil-work/Templates/HomeReadyTaskTemplate" filter="[tag<currentProject>filter<taskReadyTodayFilter>]" />
-				<$list template="$:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate" filter="[tag<currentProject>filter<taskFollowUpTodayFilter>]" />
+				<$list template="$:/plugins/pjerkins/phil-work/ViewTemplate/HomeReadyTaskTemplate" filter="[tag<currentProject>filter<taskReadyTodayFilter>]" />
+				<$list template="$:/plugins/pjerkins/phil-work/ViewTemplate/HomeFollowUpTaskTemplate" filter="[tag<currentProject>filter<taskFollowUpTodayFilter>]" />
 			</$let>
 		</$list>
 		<div style="padding-top: 0.5em">
@@ -140,10 +140,10 @@ todo-action-box-state:
 			</$reveal>
 		</$let>
 		<$list
-		 template="$:/plugins/pjerkins/phil-work/Templates/HomeReadyTaskTemplate"
+		 template="$:/plugins/pjerkins/phil-work/ViewTemplate/HomeReadyTaskTemplate"
 		 filter="[filter<taskReadyTodayFilter>filter<noGoalFilter>filter<noProjectFilter>]" />
 		<$list
-		 template="$:/plugins/pjerkins/phil-work/Templates/HomeFollowUpTaskTemplate"
+		 template="$:/plugins/pjerkins/phil-work/ViewTemplate/HomeFollowUpTaskTemplate"
 		 filter="[filter<taskFollowUpTodayFilter>filter<noGoalFilter>filter<noProjectFilter>]" />
 	</$let>
 
