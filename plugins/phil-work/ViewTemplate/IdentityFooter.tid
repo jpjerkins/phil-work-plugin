@@ -10,46 +10,46 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/IdentityFooter
 <$let
  currentGoal=<<currentTiddler>>
  noProjectFilter="[kin::from:[]tag[Project]count[]compare:number:eq[0]]" >
-<$list filter="[is[current]tag[IdentityStatements]]">
+    <$list filter="[is[current]tag[IdentityStatements]]">
 
-<$list filter="[tag<currentGoal>tag[Project]!tag[Parked]first[]]">
-<h2>Active Projects</h2>
-<<list-links filter:"[tag<currentGoal>!tag[Parked]tag[Project]]">>
-</$list>
+        <$list filter="[tag<currentGoal>tag[Project]!tag[Parked]first[]]">
+            <h2>Active Projects</h2>
+            <<list-links filter:"[tag<currentGoal>!tag[Parked]tag[Project]]">>
+        </$list>
 
-<$list filter="[tag<currentGoal>tag[Project]tag[Parked]first[]]">
-<h2>Parked Projects</h2>
-<<list-links filter:"[tag<currentGoal>tag[Parked]tag[Project]]">>
-</$list>
+        <$list filter="[tag<currentGoal>tag[Project]tag[Parked]first[]]">
+            <h2>Parked Projects</h2>
+            <<list-links filter:"[tag<currentGoal>tag[Parked]tag[Project]]">>
+        </$list>
 
-<$list filter="[tag<currentGoal>tag[Task]!tag[Done]filter<noProjectFilter>first[]]">
-<h2>No Project</h2>
-<ul>
-<$list filter="[tag<currentGoal>tag[Task]!tag[FollowUpItem]!tag[Done]filter<noProjectFilter>]">
-<li>
-<$link />
-</li>
-</$list>
-<$list filter="[tag<currentGoal>tag[Task]tag[FollowUpItem]!tag[Done]filter<noProjectFilter>]">
-<li>
-<$link />
-<i>({{!!follow-up-folder}})</i>
-</li>
-</$list>
-</ul>
-</$list>
-<$edit-text tiddler="$:/state/new-goal-item" tag="input" default="" />
-<$button>
-<$action-createtiddler $basetitle={{$:/state/new-goal-item}} tags=<<newTodoTags>> />
-<$action-deletetiddler $tiddler="$:/state/new-goal-item" />
-+Task
-</$button>
-<$button>
-<$action-createtiddler $basetitle={{$:/state/new-goal-item}} tags=<<newProjectTags>> />
-<$action-navigate $to={{$:/state/new-goal-item}} />
-<$action-deletetiddler $tiddler="$:/state/new-goal-item" />
-+Project
-</$button>
+        <$list filter="[tag<currentGoal>tag[Task]!tag[Done]filter<noProjectFilter>first[]]">
+            <h2>No Project</h2>
+            <ul>
+                <$list filter="[tag<currentGoal>tag[Task]!tag[FollowUpItem]!tag[Done]filter<noProjectFilter>]">
+                    <li>
+                        <$link />
+                    </li>
+                </$list>
+                <$list filter="[tag<currentGoal>tag[Task]tag[FollowUpItem]!tag[Done]filter<noProjectFilter>]">
+                    <li>
+                        <$link />
+                        <i>({{!!follow-up-folder}})</i>
+                    </li>
+                </$list>
+            </ul>
+        </$list>
+        <$edit-text tiddler="$:/state/new-goal-item" tag="input" default="" />
+        <$button>
+            <$action-createtiddler $basetitle={{$:/state/new-goal-item}} tags=<<newTodoTags>> />
+            <$action-deletetiddler $tiddler="$:/state/new-goal-item" />
+            +Task
+        </$button>
+        <$button>
+            <$action-createtiddler $basetitle={{$:/state/new-goal-item}} tags=<<newProjectTags>> />
+            <$action-navigate $to={{$:/state/new-goal-item}} />
+            <$action-deletetiddler $tiddler="$:/state/new-goal-item" />
+            +Project
+        </$button>
 
-</$list>
+    </$list>
 </$let>
