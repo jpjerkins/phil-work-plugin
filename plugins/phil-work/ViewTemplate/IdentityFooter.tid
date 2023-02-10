@@ -22,22 +22,20 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/IdentityFooter
             <<list-links filter:"[tag<currentGoal>tag[Parked]tag[Project]]">>
         </$list>
 
-        <$list filter="[tag<currentGoal>tag[Task]!tag[Done]filter<noProjectFilter>first[]]">
-            <h2>No Project</h2>
-            <ul>
-                <$list filter="[tag<currentGoal>tag[Task]!tag[FollowUpItem]!tag[Done]filter<noProjectFilter>]">
-                    <li>
-                        <$link />
-                    </li>
-                </$list>
-                <$list filter="[tag<currentGoal>tag[Task]tag[FollowUpItem]!tag[Done]filter<noProjectFilter>]">
-                    <li>
-                        <$link />
-                        <i>({{!!follow-up-folder}})</i>
-                    </li>
-                </$list>
-            </ul>
+        <$list filter="[tag<currentGoal>tag[Task]!tag[Done]!tag[Parked]filter<noProjectFilter>first[]]">
+            <h2>Active Tasks</h2>
+            <$list
+             template="$:/plugins/pjerkins/phil-work/ViewTemplate/TaskTemplate"
+             filter="[tag<currentGoal>tag[Task]!tag[Done]!tag[Parked]filter<noProjectFilter>]" />
         </$list>
+
+        <$list filter="[tag<currentGoal>tag[Task]!tag[Done]tag[Parked]filter<noProjectFilter>first[]]">
+            <h2>Parked Tasks</h2>
+            <$list
+             template="$:/plugins/pjerkins/phil-work/ViewTemplate/TaskTemplate"
+             filter="[tag<currentGoal>tag[Task]!tag[Done]tag[Parked]filter<noProjectFilter>]" />
+        </$list>
+
         <$edit-text tiddler="$:/state/new-goal-item" tag="input" default="" />
         <$button>
             <$action-createtiddler $basetitle={{$:/state/new-goal-item}} tags=<<newTodoTags>> />
