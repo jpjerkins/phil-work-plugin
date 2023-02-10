@@ -5,25 +5,49 @@ modifier: jpjerkins
 tags: $:/tags/StartupAction/PostRender
 title: $:/plugins/pjerkins/phil-work/Macros/StartUp
 
-<$action-setfield
- $tiddler="IdentityStatements"
- $field="tags"
- $value="TableOfContents" />
-<$action-setfield
- $tiddler="IdentityStatements"
- $field="text"
- $value="{{||$:/plugins/pjerkins/phil-work/IdentityStatements}}" />
-<$action-setfield
- $tiddler="IdentityStatements"
- $field="caption"
- $value="Identity Statements" />
 
-<$action-setfield
- $tiddler="Home"
- $field="text"
- $value="{{||$:/plugins/pjerkins/phil-work/Home}}" />
+<$reveal
+ state="IdentityStatements!!caption"
+ text="Identity Statements"
+ type=nomatch>
+    <$action-setfield
+    $tiddler="IdentityStatements"
+    $field="tags"
+    $value="TableOfContents" />
+    <$action-setfield
+    $tiddler="IdentityStatements"
+    $field="text"
+    $value="{{||$:/plugins/pjerkins/phil-work/IdentityStatements}}" />
+    <$action-setfield
+    $tiddler="IdentityStatements"
+    $field="caption"
+    $value="Identity Statements" />
+</$reveal>
 
-<$action-setfield
- $tiddler="Today"
- $field="text"
- $value="{{||$:/plugins/pjerkins/phil-work/Today}}" />
+<$reveal
+ state="Home!!caption"
+ text="Home"
+ type=nomatch>
+    <$action-setfield
+    $tiddler="Home"
+    $field="text"
+    $value="{{||$:/plugins/pjerkins/phil-work/Home}}" />
+    <$action-setfield
+    $tiddler="Home"
+    $field="caption"
+    $value="Home" />
+</$reveal>
+
+<$reveal
+ state="Today!!caption"
+ text="Today"
+ type=nomatch>
+    <$action-setfield
+    $tiddler="Today"
+    $field="text"
+    $value="{{||$:/plugins/pjerkins/phil-work/Today}}" />
+    <$action-setfield
+    $tiddler="Today"
+    $field="caption"
+    $value="Today" />
+</$reveal>
