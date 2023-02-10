@@ -9,17 +9,17 @@ title: $:/plugins/pjerkins/phil-work/Done
 !! Done
 
 <$button>
-<$list filter="Task TaskAction +[tagging[]tag[Done]!tag[$:/plugins/pjerkins/phil-work/Today]sort[title]]">
-<$let todo=<<currentTiddler>> actionFilter={{{[tag<todo>]}}}>
-<$list filter="[is[current]!has[text]!filter<actionFilter>]">
-<$action-deletetiddler $tiddler={{!!title}} />
-</$list>
-</$let>
-</$list>
-Delete Vanilla Done Tasks
+    <$list filter="Task TaskAction +[tagging[]tag[Done]!tag[Today]sort[title]]">
+    <$let todo=<<currentTiddler>> actionFilter={{{[tag<todo>]}}}>
+    <$list filter="[is[current]!has[text]!filter<actionFilter>]">
+    <$action-deletetiddler $tiddler={{!!title}} />
+    </$list>
+    </$let>
+    </$list>
+    Delete Vanilla Done Tasks
 </$button>
 
-<$list filter="Task TaskAction Done +[tagging[]tag[Done]!tag[$:/plugins/pjerkins/phil-work/Today]sort[title]]">
+<$list filter="Task TaskAction Done +[tagging[]tag[Done]!tag[Today]sort[title]]">
 <div styles="width:100%; border: solid 1px #888;">
 <div styles="width:100%; border: solid 1px #888; background-color: #AAA;">
 <$button>
