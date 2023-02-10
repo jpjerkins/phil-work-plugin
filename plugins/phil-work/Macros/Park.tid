@@ -8,3 +8,8 @@ title: $:/plugins/pjerkins/phil-work/Macros/Park
 <$action-listops $tags="Parked -FollowUpItem" />
 <$action-deletefield $field="follow-up-folder" />
 \end
+
+\define unParkCurrent()
+<$action-deletetiddler $tiddler=<<actionMenuState>>/>
+<$action-listops $tags="-Parked" />
+\end

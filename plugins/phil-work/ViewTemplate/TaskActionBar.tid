@@ -16,10 +16,18 @@ todo-action-box-state:
 <$let actionMenuState={{{ [all[current]addprefix[$:/temp/]addsuffix[/action-menu-state]] }}} >
 	<$reveal state=<<actionMenuState>> type="match" text="prompt-for-todo-action">
 		<div>
-			<$button>
-				<<parkCurrent>>
-				P!
-			</$button>
+			<$list filter="[all[current]!tag[Parked]]">
+				<$button>
+					<<parkCurrent>>
+					P!
+				</$button>
+			</$list>
+			<$list filter="[all[current]tag[Parked]]">
+				<$button>
+					<<unParkCurrent>>
+					!P
+				</$button>
+			</$list>
 			<$button set=<<actionMenuState>> setTo="">
 				<$action-listops $tags="TodayCandidate" />
 				T!

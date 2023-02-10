@@ -3,8 +3,10 @@ creator: jpjerkins
 modified: 20230203180054664
 modifier: jpjerkins
 tags: 
-title: $:/plugins/pjerkins/phil-work/ViewTemplate/HomeTaskTemplate
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/TaskTemplate
 todo-action-box-state: 
+
+\import [all[shadows]prefix:title[$:/plugins/pjerkins/phil-work/Macros/FollowUp]]
 
 {{||$:/plugins/pjerkins/phil-work/ViewTemplate/TaskActionBarHamburger}}<$link />
 <$list filter="[all[current]tag[FollowUpItem]]" variable="_">

@@ -38,18 +38,9 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/ProjectFooter
             Candidate
         </$button>
 
-        <$list variable="firstToDo" filter="[tag<initiativeTag>tag[Task]!tag[Waiting]!tag[Done]!tag[FollowUpItem]first[1]]">
-            <ul>
-                <$list filter="[tag<initiativeTag>tag[Task]!tag[Waiting]!tag[Done]!tag[FollowUpItem]]">
-                    <li>
-                        <$link $tiddler={{!!title}}>{{!!title}}</$link>
-                        <$list filter="[tag{!!title}tag[TodoNextAction]!tag[Done]sort[created]nth[1]]">
-                            <br/>{{!!title}}
-                        </$list>
-                    </li>
-                </$list>
-            </ul>
-        </$list>
+        <$list
+         template="$:/plugins/pjerkins/phil-work/ViewTemplate/TaskTemplate"
+         filter="[tag<initiativeTag>tag[Task]!tag[Waiting]!tag[Done]!tag[Parked]!tag[FollowUpItem]]" />
 
         <$list variable="firstWaiting" filter="[tag<initiativeTag>tag[Task]tag[Waiting]!tag[Done]!tag[FollowUpItem]first[1]]">
 
@@ -66,34 +57,22 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/ProjectFooter
             </ul>
         </$list>
 
-        <$list variable="firstFollowUp" filter="[tag<initiativeTag>tag[Task]!tag[Done]tag[FollowUpItem]first[1]]">
+        <$list variable="firstFollowUp" filter="[tag<initiativeTag>tag[Task]!tag[Done]!tag[Parked]tag[FollowUpItem]first[1]]">
 
             !! Follow Up Items
-            <ul>
-                <$list filter="[tag<initiativeTag>tag[Task]!tag[Done]tag[FollowUpItem]]">
-                    <li>
-                        <$link $tiddler={{!!title}}>{{!!title}}</$link>
-                        <$list filter="[tag{!!title}tag[TodoNextAction]!tag[Done]sort[created]nth[1]]">
-                            <br/>{{!!title}}
-                        </$list>
-                    </li>
-                </$list>
-            </ul>
+            <$list
+             template="$:/plugins/pjerkins/phil-work/ViewTemplate/TaskTemplate"
+             filter="[tag<initiativeTag>tag[Task]!tag[Done]!tag[Parked]tag[FollowUpItem]]" />
+
         </$list>
 
         <$list variable="firstFollowUp" filter="[tag<initiativeTag>tag[Task]!tag[Done]tag[Parked]first[1]]">
 
             !! Parked Items
-            <ul>
-                <$list filter="[tag<initiativeTag>tag[Task]!tag[Done]tag[Parked]]">
-                    <li>
-                        <$link $tiddler={{!!title}}>{{!!title}}</$link>
-                        <$list filter="[tag{!!title}tag[TodoNextAction]!tag[Done]sort[created]nth[1]]">
-                            <br/>{{!!title}}
-                        </$list>
-                    </li>
-                </$list>
-            </ul>
+            <$list
+             template="$:/plugins/pjerkins/phil-work/ViewTemplate/TaskTemplate"
+             filter="[tag<initiativeTag>tag[Task]!tag[Done]tag[Parked]]" />
+
         </$list>
 
         !! Notes
