@@ -15,7 +15,9 @@ title: $:/plugins/pjerkins/phil-work/Today
  totalPotentialPoints={{{ [tag[Today]get[today-potential-points]sum[]] }}}
  totalActualPoints={{{ [tag[Today]get[today-actual-points]sum[]] }}}
  currentScore={{{ [<totalActualPoints>divide<totalPotentialPoints>multiply[100]round[]] }}}
- today=<<now "YYYY-0MM-0DD">>  >
+ today=<<now "YYYY-0MM-0DD">>
+ year=<<now "YYYY">>
+ week=<<now "0WW">> >
 
 	<<showTodayList
 	 totalPotentialPoints:'<<totalPotentialPoints>>'
