@@ -1,7 +1,7 @@
 created: 20230203045011008
 modified: 20230204194207672
 tags: 
-title: $:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBar
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/TaskActionBar
 todo-action-box-state: 
 
 \define newDatedCandidateLabel() $(newCandidateLabel)$ $(newCandidateLabelDate)$

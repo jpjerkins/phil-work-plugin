@@ -6,10 +6,10 @@ tags:
 title: $:/plugins/pjerkins/phil-work/ViewTemplate/HomeTaskTemplate
 todo-action-box-state: 
 
-{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBarHamburger}}<$link />
+{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TaskActionBarHamburger}}<$link />
 <$list filter="[all[current]tag[FollowUpItem]]" variable="_">
     <span style="color: gray;">
         <i>({{!!follow-up-folder}})</i>
     </span>
 </$list>
-{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBar}}
+{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TaskActionBar}}

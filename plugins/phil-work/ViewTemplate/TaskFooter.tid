@@ -3,7 +3,7 @@ creator: jpjerkins
 modified: 20230204194227852
 modifier: jpjerkins
 tags: template $:/tags/ViewTemplate
-title: $:/plugins/pjerkins/phil-work/ViewTemplate/TodoFooter
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/TaskFooter
 
 \import [all[shadows]prefix:title[$:/plugins/pjerkins/phil-work/Macros/FollowUp]]
 \import [all[shadows]title[$:/plugins/pjerkins/phil-work/Macros/Park]]
