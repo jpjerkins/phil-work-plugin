@@ -2,7 +2,7 @@ created: 20190401130822042
 creator: jpjerkins
 modified: 20230201031547111
 modifier: jpjerkins
-tags: $:/tags/SideBarSegment
+tags:
 title: $:/plugins/pjerkins/phil-work/GtdTabs
 
 \define linkRow(rowNumber, startWithDelimiter)
