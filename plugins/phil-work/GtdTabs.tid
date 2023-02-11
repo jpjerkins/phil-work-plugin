@@ -5,17 +5,24 @@ modifier: jpjerkins
 tags: $:/tags/SideBarSegment
 title: $:/plugins/pjerkins/phil-work/GtdTabs
 
-\define linkRow(rowNumber)
-<$list filter="[tag[$:/plugins/pjerkins/phil-work/GtdTabs]link-row[$rowNumber$]]">
-| <$link><$view field=caption>{{!!title}}</$view></$link>
+\define linkRow(rowNumber, startWithDelimiter)
+
+<$list filter="[tag[$:/plugins/pjerkins/phil-work/GtdTabs]link-row[$rowNumber$]first[1]]">
+    <$list filter="[[$startWithDelimiter$]match[yes]]"> | </$list>
+
+    <$link><$view field=caption>{{!!title}}</$view></$link>
+
+    <$list filter="[tag[$:/plugins/pjerkins/phil-work/GtdTabs]link-row[$rowNumber$]rest[1]]">
+        | <$link><$view field=caption>{{!!title}}</$view></$link>
+    </$list>
 </$list>
 \end
 
 [[What IS this "Work Notes Journal"?|$:/plugins/pjerkins/phil-work/What IS This Thing?]]<br/>
-[[Today]] | [[Home]] <<linkRow 1>><br/>
-[[MDScratch]] <<linkRow 2>>
+[[Today]] | [[Home]] <<linkRow 1 yes>><br/>
+<<linkRow 2 no>>
 <div class="tc-table-of-contents">
 <<toc-selective-expandable 'TableOfContents' "sort[title]">>
 </div>
 
-[[Notes|NotesWithSupervisor]] <<linkRow 3>>
+<<linkRow 3 no>>
