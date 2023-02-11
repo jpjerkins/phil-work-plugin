@@ -28,7 +28,7 @@ todo-action-box-state:
 		 hasParkedProject={{{ [kin::from:<currentTiddler>tag[Parked]tag[Project]count[]multiply[10]] }}}
 		 hasGoal={{{ [kin::from:<currentTiddler>tag[IdentityStatements]count[]multiply[2]] }}}
 		 todoType={{{ [<hasGoal>add<hasProject>subtract<hasParkedProject>] }}} >
-		 	{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBarHamburger}}
+		 	{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TaskActionBarHamburger}}
 			<$list variable="result" filter="[<todoType>compare:number:gteq[2]]">
 				<$link overrideClass="goal-link" tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
 			</$list>
@@ -38,7 +38,7 @@ todo-action-box-state:
 			<$list variable="result" filter="[<todoType>compare:number:eq[0]]">
 				<$link tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
 			</$list>
-			{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TodoActionBar}}
+			{{||$:/plugins/pjerkins/phil-work/ViewTemplate/TaskActionBar}}
 		</$let>	
 	</$list>
 </$let>
