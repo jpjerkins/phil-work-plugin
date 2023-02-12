@@ -71,6 +71,7 @@ title: $:/plugins/pjerkins/phil-work/Today
 		<$button>
 			<$list filter="[tag[Today]]">
 				<$action-listops $field="tags" $subfilter="-Today -FollowUpItem" />
+				<$action-deletefield $field="follow-up-folder" />
 			</$list>
 			Done!
 		</$button>
