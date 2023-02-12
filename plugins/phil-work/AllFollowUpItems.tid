@@ -15,36 +15,36 @@ Move To: <<followUpFolderBoundSelect target-folder>>
  currentTiddler=<<qualify "target-folder">>
  targetFolder={{!!text}}>
 
-!! Follow-up Folders
-<$list filter="[list[$:/plugins/pjerkins/phil-work/FollowUpFolders]]">
-<$let
- folder={{!!title}}
- targetFolderTiddler=<<qualify 'target-folder'>>>
-<$list filter="[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]!tag[Parked]first[1]]">
+    !! Follow-up Folders
+    <$list filter="[list[$:/plugins/pjerkins/phil-work/FollowUpFolders]]">
+    <$let
+     folder={{!!title}}
+     targetFolderTiddler=<<qualify 'target-folder'>>>
+        <$list filter="[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]!tag[Parked]first[1]]">
+    
+            !!! <<folder>>
+    
+            <$button>
+                <$list filter="[field:follow-up-folder<folder>tag[FollowUpItem]!tag[Done]!tag[Parked]]">
+                    <$action-setfield follow-up-folder=<<targetFolder>>/>
+                </$list>
+                Move all
+            </$button>
+    
+            <ul>
+                <$list filter="[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]!tag[Parked]]">
+                    <li>
+                        <$link $tiddler={{!!title}}>{{!!title}}</$link>
+                        <$list filter="[tag{!!title}tag[TodoNextAction]!tag[Done]sort[created]nth[1]]">
+                            <br/>{{!!title}}
+                        </$list>
+                    </li>
+                </$list>
+            </ul>
+    
+        </$list>
+    </$let>
 
-!!! <<folder>>
-
-<$button>
-<$list filter="[field:follow-up-folder<folder>tag[FollowUpItem]!tag[Done]!tag[Parked]]">
-<$action-setfield follow-up-folder=<<targetFolder>>/>
-</$list>
-Move all
-</$button>
-
-<ul>
-<$list filter="[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]!tag[Parked]]">
-<li>
-<$link $tiddler={{!!title}}>{{!!title}}</$link>
-<$list filter="[tag{!!title}tag[TodoNextAction]!tag[Done]sort[created]nth[1]]">
-<br/>{{!!title}}
-</$list>
-</li>
-</$list>
-</ul>
-
-</$list>
-</$let>
-
-</$list>
+    </$list>
 
 </$let>
