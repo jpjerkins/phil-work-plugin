@@ -12,7 +12,10 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/TodayCardDraggableTemplate
  hasProject={{{ [kin::from:<currentTiddler>tag[Project]count[]] }}}
  hasGoal={{{ [kin::from:<currentTiddler>tag[IdentityStatements]count[]multiply[2]] }}}
  todoType={{{ [<hasGoal>add<hasProject>] }}} >
-    <<todayPoints>>
+    <$link to={{!!title}}>
+        &#9776;
+        <<todayPoints>>
+    </$link>
     <$button>
         <$action-deletetiddler $tiddler={{!!title}} />
         <$action-listops $tiddler="TodayCandidate" $filter="[tag[TodayCandidate]]"/>
@@ -21,7 +24,7 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/TodayCardDraggableTemplate
     <$button>
         <$action-listops $tags="-TodayCandidate"/>
         <$action-listops $tiddler="TodayCandidate" $filter="[tag[TodayCandidate]]"/>
-        Remove
+        !T
     </$button>
     <$list variable="result" filter="[<todoType>compare:number:gteq[2]]">
         <$link overrideClass="goal-link" tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
