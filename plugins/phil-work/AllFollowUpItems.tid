@@ -24,23 +24,18 @@ Move To: <<followUpFolderBoundSelect target-folder>>
     
             !!! <<folder>>
     
-            <$button>
-                <$list filter="[field:follow-up-folder<folder>tag[FollowUpItem]!tag[Done]!tag[Parked]]">
-                    <$action-setfield follow-up-folder=<<targetFolder>>/>
-                </$list>
-                Move all
-            </$button>
+            <p>
+                <$button>
+                    <$list filter="[field:follow-up-folder<folder>tag[FollowUpItem]!tag[Done]!tag[Parked]]">
+                        <$action-setfield follow-up-folder=<<targetFolder>>/>
+                    </$list>
+                    Move all
+                </$button>
+            </p>
     
-            <ul>
-                <$list filter="[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]!tag[Parked]]">
-                    <li>
-                        <$link $tiddler={{!!title}}>{{!!title}}</$link>
-                        <$list filter="[tag{!!title}tag[TodoNextAction]!tag[Done]sort[created]nth[1]]">
-                            <br/>{{!!title}}
-                        </$list>
-                    </li>
-                </$list>
-            </ul>
+            <$list
+             template="$:/plugins/pjerkins/phil-work/ViewTemplate/TaskTemplate"
+             filter="[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]!tag[Parked]]" />
     
         </$list>
     </$let>
