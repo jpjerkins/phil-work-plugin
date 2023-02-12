@@ -27,19 +27,21 @@ title: $:/plugins/pjerkins/phil-work/Today
 	<p>
 		<$button>
 			<$wikify
-			 name=wikitext
+			 name=wikitextraw
 			 mode=inline
 			 output=html
 			 text=<<showTodayList totalPotentialPoints:'<<totalPotentialPoints>>' totalActualPoints:'<<totalActualPoints>>' currentScore:'<<currentScore>>' >> >
-				<$action-createtiddler
-				 $basetitle=<<scoreTitle>>
-				 $overwrite="yes"
-				 tags="DailyScore"
-				 text=<<wikitext>>
-				 totalPotentialPoints=<<totalPotentialPoints>>
-				 totalActualPoints=<<totalActualPoints>>
-				 score=<<currentScore>>
-				 weekOfYear=<<weekTitle>> />
+			 	<$let wikitext={{{ [<wikitextraw>splitregexp[>\s+<]join[><]] }}} >
+				   <$action-createtiddler
+				    $basetitle=<<scoreTitle>>
+				    $overwrite="yes"
+				    tags="DailyScore"
+				    text=<<wikitext>>
+				    totalPotentialPoints=<<totalPotentialPoints>>
+				    totalActualPoints=<<totalActualPoints>>
+				    score=<<currentScore>>
+				    weekOfYear=<<weekTitle>> />
+				</$let>
 			</$wikify>
 			&#9655; D
 		</$button>
