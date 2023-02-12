@@ -26,14 +26,21 @@ title: $:/plugins/pjerkins/phil-work/Today
 
 	<p>
 		<$button>
-			<$action-createtiddler
-			 $basetitle=<<scoreTitle>>
-			 $overwrite="yes"
-			 tags="DailyScore"
-			 totalPotentialPoints=<<totalPotentialPoints>>
-			 totalActualPoints=<<totalActualPoints>>
-			 score=<<currentScore>>
-			 weekOfYear=<<weekTitle>> />
+			<$wikify
+			 name=wikitext
+			 mode=inline
+			 output=html
+			 text=<<showTodayList totalPotentialPoints:'<<totalPotentialPoints>>' totalActualPoints:'<<totalActualPoints>>' currentScore:'<<currentScore>>' >> >
+				<$action-createtiddler
+				 $basetitle=<<scoreTitle>>
+				 $overwrite="yes"
+				 tags="DailyScore"
+				 text=<<wikitext>>
+				 totalPotentialPoints=<<totalPotentialPoints>>
+				 totalActualPoints=<<totalActualPoints>>
+				 score=<<currentScore>>
+				 weekOfYear=<<weekTitle>> />
+			</$wikify>
 			&#9655; D
 		</$button>
 
