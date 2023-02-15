@@ -1,18 +1,15 @@
 created: 20190319140548607
 modified: 20230128045708076
-tags: 
+tags: $:/tags/MoreSideBar
+caption: Rename Tags
 title: $:/plugins/pjerkins/phil-work/Utils/RenameTags
 
 \define replaceTags(search, replace)
 <$action-listops $tags="[[$replace$]] -[[$search$]]" />
 \end
 
-//From http://tw5magick.tiddlyspot.com/ //
-
-This great trick was shown to the tiddlywiki google group by [[Alberto Molina|https://groups.google.com/forum/#!topic/tiddlywiki/OCntQ79DuwM]]. I enhanced it a bit.
-
-|!Search tag: | <$edit-text tiddler="$:/temp/RenameTags/search" tag="input" type="text"/> |
-|!Replace by: | <$edit-text tiddler="$:/temp/RenameTags/replace" tag="input" type="text"/> |
+|!Old: | <$edit-text tiddler="$:/temp/RenameTags/search" tag="input" type="text"/> |
+|!New: | <$edit-text tiddler="$:/temp/RenameTags/replace" tag="input" type="text"/> |
 
 ---
 <$reveal type="nomatch" text="" state="$:/temp/RenameTags/replace">
@@ -28,7 +25,7 @@ This great trick was shown to the tiddlywiki google group by [[Alberto Molina|ht
     Rename All
 </$button>
 
-!! Tiddlers to be updated
+!! Tiddlers affected
 <<list-links filter:"[!has[draft.of]tag{$:/temp/RenameTags/search}!tag{$:/temp/RenameTags/replace}sort[created]]">>
 
 </$reveal>
