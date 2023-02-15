@@ -1,50 +1,37 @@
 created: 20220127133557766
 modified: 20230128044635128
-tags: 
+tags: $:/tags/MoreSideBar
+caption: Rename Fields
 title: $:/plugins/pjerkins/phil-work/Utils/RenameFields
 
 \define oldToNewFilter() [tag[$(tag)$]!field:$(oldField)$[]field:$(newField)$[]]
 \define deleteOldFilter() [tag[$(tag)$]!field:$(oldField)$[]!field:$(newField)$[]]
 
-|!Search tag: | <$edit-text tiddler="$:/temp/RenameFields/tag" tag="input" type="text"/> |
-|!Old field name: | <$edit-text tiddler="$:/temp/RenameFields/old" tag="input" type="text"/> |
-|!New field name: | <$edit-text tiddler="$:/temp/RenameFields/new" tag="input" type="text"/> |
+|!Tag: | <$edit-text tiddler="$:/temp/RenameFields/tag" tag="input" type="text"/> |
+|!Old: | <$edit-text tiddler="$:/temp/RenameFields/old" tag="input" type="text"/> |
+|!New: | <$edit-text tiddler="$:/temp/RenameFields/new" tag="input" type="text"/> |
 
-!! Copy Old to New
 <$let
  tag={{$:/temp/RenameFields/tag}}
  oldField={{$:/temp/RenameFields/old}}
  newField={{$:/temp/RenameFields/new}}
  filter=<<oldToNewFilter>> >
-    <ul>
-        <$list filter=<<filter>> >
-            <li>
-                <$set name="newValue" tiddler={{!!title}} field=<<oldField>> >
-                    <$button>
-                        <$action-setfield $field=<<newField>> $value=<<newValue>>/>
-                        Copy Old to New
-                    </$button>
-                </$set>
-                <$link $to={{!!title}}>{{!!title}}</$link>
-            </li>
-        </$list>
-    </ul>
-</$let>
 
-!! Delete Old
-<$let
- tag={{$:/temp/RenameFields/tag}}
- oldField={{$:/temp/RenameFields/old}}
- newField={{$:/temp/RenameFields/new}}
- filter=<<deleteOldFilter>> >
+    <$button>
+        <$list filter=<<oldToNewFilter>> >
+            <$set name="newValue" tiddler={{!!title}} field=<<oldField>> >
+                <$action-setfield $field=<<newField>> $value=<<newValue>>/>
+                <$action-deletefield $field=<<oldField>> />
+            </$set>
+        </$list>
+        Rename All
+    </$button>
+
+    !! Tiddlers Affected
     <ul>
         <$list filter=<<filter>> >
             <li>
-                <$button>
-                    <$action-deletefield $field=<<oldField>>/>
-                    Remove Old Field
-                </$button>
-                <$link $to={{!!title}}>{{!!title}}</$link>
+                <$link />
             </li>
         </$list>
     </ul>
