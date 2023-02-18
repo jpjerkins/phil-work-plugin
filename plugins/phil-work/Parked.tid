@@ -1,7 +1,8 @@
 created: 20230114194437286
 modified: 20230204191310826
-tags: 
+tags: $:/tags/MoreSideBar
 title: $:/plugins/pjerkins/phil-work/Parked
+caption: Parked
 
 !! Parked projects
 <$list filter="[tag[Project]tag[Parked]]">
