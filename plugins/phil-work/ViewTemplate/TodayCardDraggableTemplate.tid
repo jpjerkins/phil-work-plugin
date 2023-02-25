@@ -12,27 +12,33 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/TodayCardDraggableTemplate
  hasProject={{{ [kin::from:<currentTiddler>tag[Project]count[]] }}}
  hasGoal={{{ [kin::from:<currentTiddler>tag[IdentityStatements]count[]multiply[2]] }}}
  todoType={{{ [<hasGoal>add<hasProject>] }}} >
-    <$link to={{!!title}}>
-        &#9776;
-        <<todayPoints>>
-    </$link>
-    <$button>
-        <$action-deletetiddler $tiddler={{!!title}} />
-        <$action-listops $tiddler="TodayCandidate" $filter="[tag[TodayCandidate]]"/>
-        &#x1f5d1;
-    </$button>
-    <$button>
-        <$action-listops $tags="-TodayCandidate"/>
-        <$action-listops $tiddler="TodayCandidate" $filter="[tag[TodayCandidate]]"/>
-        !T
-    </$button>
-    <$list variable="result" filter="[<todoType>compare:number:gteq[2]]">
-        <$link overrideClass="goal-link" tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
-    </$list>
-    <$list variable="result" filter="[<todoType>compare:number:eq[1]]">
-        <$link overrideClass="project-link" tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
-    </$list>
-    <$list variable="result" filter="[<todoType>compare:number:eq[0]]">
-        <$link tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
-    </$list>
+    <tr>
+        <td style="border: 0px; vertical-align: top; padding: 2px; margin: 0px;" width=40>
+            <$link to={{!!title}}>
+                &#9776;
+                <<todayPoints>>
+            </$link>
+        </td>
+        <td style="border: 0px; vertical-align: top; padding: 2px; margin: 0px;">
+            <$button>
+                <$action-deletetiddler $tiddler={{!!title}} />
+                <$action-listops $tiddler="TodayCandidate" $filter="[tag[TodayCandidate]]"/>
+                &#x1f5d1;
+            </$button>
+            <$button>
+                <$action-listops $tags="-TodayCandidate"/>
+                <$action-listops $tiddler="TodayCandidate" $filter="[tag[TodayCandidate]]"/>
+                !T
+            </$button>
+            <$list variable="result" filter="[<todoType>compare:number:gteq[2]]">
+                <$link overrideClass="goal-link" tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
+            </$list>
+            <$list variable="result" filter="[<todoType>compare:number:eq[1]]">
+                <$link overrideClass="project-link" tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
+            </$list>
+            <$list variable="result" filter="[<todoType>compare:number:eq[0]]">
+                <$link tiddler=<<currentTiddler>> ><<currentTiddler>></$link>
+            </$list>
+        </td>
+    </tr>
 </$let>
