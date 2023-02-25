@@ -34,8 +34,12 @@ todo-action-box-state:
 			</$button> 
 			<$let currentTags={{!!tags}} newCandidateLabel={{!!title}} newCandidateLabelDate=<<now "YYYY-0MM-0DD" >> >
 				<$button set=<<actionMenuState>> setTo="">
-					<$action-createtiddler $basetitle=<<newDatedCandidateLabel>> tags=<<newDatedCandidateTags>> text={{!!text}} />
-					<$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem" />
+					<$action-createtiddler
+					 $basetitle=<<newDatedCandidateLabel>>
+					 tags=<<newDatedCandidateTags>>
+					 parent-task={{!!title}}
+					 text="{{||$:/plugins/pjerkins/phil-work/ViewTemplate/RepeatedTaskListViewer}}" />
+					<$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem -RepeatedTask" />
 					T,,dt,,!
 				</$button>
 			</$let>

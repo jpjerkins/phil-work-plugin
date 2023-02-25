@@ -1,0 +1,8 @@
+created: 20230225044753132
+modified: 20230225044753132
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/RepeatedTaskFooter
+tags: $:/tags/ViewTemplate template
+
+<$list filter="[all[current]tag[RepeatedTask]]">
+{{||$:/plugins/pjerkins/phil-work/ViewTemplate/RepeatedTaskListEditor}}
+</$list>

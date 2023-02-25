@@ -1,0 +1,28 @@
+created: 20230225044753132
+modified: 20230225044753132
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/RepeatedTaskListViewer
+
+\define checkActions()
+<$action-listops
+ $tiddler=<<currentTiddler>>
+ $field="done-list"
+ $filter="[enlist{!!done-list}] [<childTask>]" />
+\end
+
+\define uncheckActions()
+<$action-listops
+ $tiddler=<<currentTiddler>>
+ $field="done-list"
+ $filter="[enlist{!!done-list}] -[<childTask>]" />
+\end
+
+<$list filter="[tag{!!parent-task}]" variable=childTask>
+<div>
+<$checkbox
+ filter="[all[current]contains:done-list<childTask>]"
+ checkactions=<<checkActions>>
+ uncheckactions=<<uncheckActions>> >
+<<childTask>>
+</$checkbox>
+</div>
+</$list>

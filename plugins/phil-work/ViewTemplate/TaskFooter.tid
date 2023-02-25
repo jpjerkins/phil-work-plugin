@@ -39,6 +39,19 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/TaskFooter
                     Park!
                 </$button>
             </$list>
+            |
+            <$list filter="[is[current]tag[RepeatedTask]]">
+                <$button>
+                    <$action-listops $tags="-RepeatedTask" />
+                    !Repeating
+                </$button>
+            </$list>
+            <$list filter="[is[current]!tag[RepeatedTask]]">
+                <$button>
+                    <$action-listops $tags="RepeatedTask" />
+                    Repeating!
+                </$button>
+            </$list>
             <$reveal state="!!todo-waiting-box-state" type="nomatch" text="prompt-for-todo-waiting">
                 | <$button set="!!todo-waiting-box-state" setTo="prompt-for-todo-waiting">
                     Waiting
