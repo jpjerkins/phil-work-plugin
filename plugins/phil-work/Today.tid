@@ -66,7 +66,7 @@ title: $:/plugins/pjerkins/phil-work/Today
 				<$action-listops $tiddler=<<currentTag>> $tags="TodayCandidate -Today" />
 				<$action-listops $tiddler=TodayCandidate $field=list $filter="[tag[TodayCandidate]!nsort[today-potential-points]]" />
 			</$list>
-			Remix
+			&#9661; R
 		</$button>
 		<$button>
 			<$list filter="[tag[Today]]">
@@ -115,7 +115,7 @@ title: $:/plugins/pjerkins/phil-work/Today
 				</$let>
 			</$list>
 			<$action-setfield $tiddler="TodayCandidate" $field="list" $value="" />
-			Commit!
+			&#9651; C
 		</$button>
 	</$list>
 </$let>
