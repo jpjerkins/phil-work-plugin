@@ -24,58 +24,60 @@ title: $:/plugins/pjerkins/phil-work/Today
 	 totalActualPoints:'<<totalActualPoints>>'
 	 currentScore:'<<currentScore>>' >>
 
-	<p>
-		<$button>
-			<$wikify
-			 name=wikitextraw
-			 mode=inline
-			 output=html
-			 text=<<showTodayList totalPotentialPoints:'<<totalPotentialPoints>>' totalActualPoints:'<<totalActualPoints>>' currentScore:'<<currentScore>>' >> >
-			 	<$let wikitext={{{ [<wikitextraw>splitregexp[>\s+<]join[><]] }}} >
-				   <$action-createtiddler
-				    $basetitle=<<scoreTitle>>
-				    $overwrite="yes"
-				    tags="DailyScore"
-				    text=<<wikitext>>
-				    totalPotentialPoints=<<totalPotentialPoints>>
-				    totalActualPoints=<<totalActualPoints>>
-				    score=<<currentScore>>
-				    weekOfYear=<<weekTitle>> />
-				</$let>
-			</$wikify>
-			&#9655; D
-		</$button>
+	<$list filter=<<todayListFilter>> >
+		<p>
+			<$button>
+				<$wikify
+				name=wikitextraw
+				mode=inline
+				output=html
+				text=<<showTodayList totalPotentialPoints:'<<totalPotentialPoints>>' totalActualPoints:'<<totalActualPoints>>' currentScore:'<<currentScore>>' >> >
+					<$let wikitext={{{ [<wikitextraw>splitregexp[>\s+<]join[><]] }}} >
+					<$action-createtiddler
+						$basetitle=<<scoreTitle>>
+						$overwrite="yes"
+						tags="DailyScore"
+						text=<<wikitext>>
+						totalPotentialPoints=<<totalPotentialPoints>>
+						totalActualPoints=<<totalActualPoints>>
+						score=<<currentScore>>
+						weekOfYear=<<weekTitle>> />
+					</$let>
+				</$wikify>
+				&#9655; D
+			</$button>
 
-		<$button>
-			<$let
-			 totalWeekPotentialPoints={{{ [tag[DailyScore]field:weekOfYear<weekTitle>get[totalPotentialPoints]sum[]] }}}
-			 totalWeekActualPoints={{{ [tag[DailyScore]field:weekOfYear<weekTitle>get[totalActualPoints]sum[]] }}}
-			 totalWeekScore={{{ [<totalWeekActualPoints>divide<totalWeekPotentialPoints>multiply[100]round[]] }}} >
-				<$action-createtiddler
-				 $basetitle=<<weekTitle>>
-				 $overwrite="yes"
-				 tags="WeeklyScore"
-				 totalPotentialPoints=<<totalWeekPotentialPoints>>
-				 totalActualPoints=<<totalWeekActualPoints>>
-				 totalScore=<<totalWeekScore>> />
-			</$let>
-			&#9655; W
-		</$button>
-		<$button>
-			<$list filter="[tag[Today]!tag[TodayCandidate]!tag[Parked]sort[today-potential-points]]">
-				<$action-listops $tiddler=<<currentTag>> $tags="TodayCandidate -Today" />
-				<$action-listops $tiddler=TodayCandidate $field=list $filter="[tag[TodayCandidate]!nsort[today-potential-points]]" />
-			</$list>
-			&#9661; R
-		</$button>
-		<$button>
-			<$list filter="[tag[Today]]">
-				<$action-listops $field="tags" $subfilter="-Today -FollowUpItem" />
-				<$action-deletefield $field="follow-up-folder" />
-			</$list>
-			Done!
-		</$button>
-	</p>
+			<$button>
+				<$let
+				totalWeekPotentialPoints={{{ [tag[DailyScore]field:weekOfYear<weekTitle>get[totalPotentialPoints]sum[]] }}}
+				totalWeekActualPoints={{{ [tag[DailyScore]field:weekOfYear<weekTitle>get[totalActualPoints]sum[]] }}}
+				totalWeekScore={{{ [<totalWeekActualPoints>divide<totalWeekPotentialPoints>multiply[100]round[]] }}} >
+					<$action-createtiddler
+					$basetitle=<<weekTitle>>
+					$overwrite="yes"
+					tags="WeeklyScore"
+					totalPotentialPoints=<<totalWeekPotentialPoints>>
+					totalActualPoints=<<totalWeekActualPoints>>
+					totalScore=<<totalWeekScore>> />
+				</$let>
+				&#9655; W
+			</$button>
+			<$button>
+				<$list filter="[tag[Today]!tag[TodayCandidate]!tag[Parked]sort[today-potential-points]]">
+					<$action-listops $tiddler=<<currentTag>> $tags="TodayCandidate -Today" />
+					<$action-listops $tiddler=TodayCandidate $field=list $filter="[tag[TodayCandidate]!nsort[today-potential-points]]" />
+				</$list>
+				&#9661; R
+			</$button>
+			<$button>
+				<$list filter="[tag[Today]]">
+					<$action-listops $field="tags" $subfilter="-Today -FollowUpItem" />
+					<$action-deletefield $field="follow-up-folder" />
+				</$list>
+				Done!
+			</$button>
+		</p>
+	</$list>
 </$let>
 
 !! Candidates

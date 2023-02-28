@@ -5,31 +5,38 @@ title: $:/plugins/pjerkins/phil-work/Macros/ShowTodayList
 
 \define doneActions() <$action-setfield $field="today-actual-points" $value={{!!today-potential-points}} /><$action-listops $tags="Done"/>
 \define notDoneActions() <$action-deletefield $field="today-actual-points"/><$action-listops $tags="-Done"/>
+\define todayListFilter() [tag[Today]!nsort[today-potential-points]first[]]
 \define showTodayList(totalPotentialPoints, totalActualPoints, currentScore)
 
-<$list filter="[tag[Today]!nsort[today-potential-points]]">
-    <$let
-     doneTagCount={{{ [list[!!tags]join[;]] }}}
-     currentTodo=<<currentTiddler>>
-     hasProject={{{ [kin::from:<currentTodo>tag[Project]count[]] }}}
-     hasGoal={{{ [kin::from:<currentTodo>tag[IdentityStatements]count[]multiply[2]] }}}
-     todoType={{{ [<hasGoal>add<hasProject>] }}} >
-        <$checkbox filter="[list[!!tags]]" checked="Done" checkactions=<<doneActions>> uncheckactions=<<notDoneActions>>>
-            {{!!today-potential-points}}
-            <$list variable="result" filter="[<todoType>compare:number:gteq[2]]">
-                <$link overrideClass="goal-link" tiddler=<<currentTodo>> ><<currentTodo>></$link>
-            </$list>
-            <$list variable="result" filter="[<todoType>compare:number:eq[1]]">
-                <$link overrideClass="project-link" tiddler=<<currentTodo>> ><<currentTodo>></$link>
-            </$list>
-            <$list variable="result" filter="[<todoType>compare:number:eq[0]]">
-                <$link tiddler=<<currentTodo>> ><<currentTodo>></$link>
-            </$list>
-        </$checkbox><br/>
-    </$let>
-</$list>
+<$list
+ filter=<<todayListFilter>>
+ emptyMessage="You haven't committed to any work yet Today!">
 
-Possible: $totalPotentialPoints$<br/>
-Actual: $totalActualPoints$<br/>
-Score: <b>$currentScore$</b>
+    <$list filter="[tag[Today]!nsort[today-potential-points]]">
+        <$let
+        doneTagCount={{{ [list[!!tags]join[;]] }}}
+        currentTodo=<<currentTiddler>>
+        hasProject={{{ [kin::from:<currentTodo>tag[Project]count[]] }}}
+        hasGoal={{{ [kin::from:<currentTodo>tag[IdentityStatements]count[]multiply[2]] }}}
+        todoType={{{ [<hasGoal>add<hasProject>] }}} >
+            <$checkbox filter="[list[!!tags]]" checked="Done" checkactions=<<doneActions>> uncheckactions=<<notDoneActions>>>
+                {{!!today-potential-points}}
+                <$list variable="result" filter="[<todoType>compare:number:gteq[2]]">
+                    <$link overrideClass="goal-link" tiddler=<<currentTodo>> ><<currentTodo>></$link>
+                </$list>
+                <$list variable="result" filter="[<todoType>compare:number:eq[1]]">
+                    <$link overrideClass="project-link" tiddler=<<currentTodo>> ><<currentTodo>></$link>
+                </$list>
+                <$list variable="result" filter="[<todoType>compare:number:eq[0]]">
+                    <$link tiddler=<<currentTodo>> ><<currentTodo>></$link>
+                </$list>
+            </$checkbox><br/>
+        </$let>
+    </$list>
+
+    Possible: $totalPotentialPoints$<br/>
+    Actual: $totalActualPoints$<br/>
+    Score: <b>$currentScore$</b>
+
+</$list>
 \end
