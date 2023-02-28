@@ -18,7 +18,9 @@ todo-action-box-state:
 \define newGoalCandidateTags() [[$(currentGoal)$]] Task TodayCandidate
 \import [all[shadows]prefix:title[$:/plugins/pjerkins/phil-work/Macros/FollowUp]]
 
-<<followUpFolderBoundSelect selected-follow-up-folder>> | [[AllFollowUpItems|$:/plugins/pjerkins/phil-work/AllFollowUpItems]] | [[Done|$:/plugins/pjerkins/phil-work/Done]]
+<<followUpFolderBoundSelect selected-follow-up-folder>> |
+[[AllFollowUpItems|$:/plugins/pjerkins/phil-work/AllFollowUpItems]] |
+[[Done|$:/plugins/pjerkins/phil-work/Done]]
 
 <$let currentTiddler=<<qualify "selected-follow-up-folder">> selectedFollowUpFolder={{!!text}}>
 	<$list filter="[field:follow-up-folder<selectedFollowUpFolder>tag[FollowUpItem]!tag[Done]!tag[Parked]!tag[Today]!tag[TodayCandidate]] -[tag[Project]tag[Parked]tagging[]] +[sort[title]]">
