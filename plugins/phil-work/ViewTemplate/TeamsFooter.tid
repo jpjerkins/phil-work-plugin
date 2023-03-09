@@ -6,16 +6,14 @@ list-before: $:/plugins/pjerkins/phil-work/ViewTemplate/GenericFooter
 list-after: $:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter
 
 <$list filter="[is[current]tag[$:/plugins/pjerkins/phil-work/Teams]]">
-<$set name="currentTiddlerTitle" value={{!!title}}>
 
-<$list variable="firstPerson" filter="[tag<currentTiddlerTitle>tag[People]first[1]]">
+<$list variable=_ filter="[tag<currentTiddler>tag[People]first[1]]">
 <h2>Team Members</h2>
 <ul>
-<$list filter="[tag<currentTiddlerTitle>tag[People]]">
+<$list filter="[tag<currentTiddler>tag[People]]">
 <li><$link>{{!!title}}</$link></li>
 </$list>
 </ul>
 </$list>
 
-</$set>
 </$list>

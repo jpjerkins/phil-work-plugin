@@ -9,7 +9,6 @@ list-after: $:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter
 <$action-createtiddler $basetitle="$question$ - $parentTiddler$" $savetitle="$:/state/new-question-title" />
 \end
 <$list filter="[is[current]tag[QuestionsList]]">
-<$set name="questionsListTitle" value={{!!title}}>
 
 New Question: <$edit-text tiddler="$:/state/new-question" tag="input" default="" />
 <$button>
@@ -24,10 +23,10 @@ New Question: <$edit-text tiddler="$:/state/new-question" tag="input" default=""
 {{$:/core/images/cancel-button}}
 </$button>
 
-<$list filter="[tag<questionsListTitle>tag[Question]!tag[Answered]first]">
+<$list filter="[tag<currentTiddler>tag[Question]!tag[Answered]first[]]" variable=_
 <h2>Questions</h2>
 <dl>
-<$list filter="[tag<questionsListTitle>tag[Question]!tag[Answered]]">
+<$list filter="[tag<currentTiddler>tag[Question]!tag[Answered]]">
 <dt>{{!!question}}</dt>
 <dd>
 <div>
@@ -47,10 +46,10 @@ Edit
 </dl>
 </$list>
 
-<$list filter="[tag<questionsListTitle>tag[Question]tag[Answered]first]">
+<$list filter="[tag<currentTiddler>tag[Question]tag[Answered]first[]]" variable=_
 <h2>Answered Questions</h2>
 <dl>
-<$list filter="[tag<questionsListTitle>tag[Question]tag[Answered]]">
+<$list filter="[tag<currentTiddler>tag[Question]tag[Answered]]">
 <dt>{{!!question}}</dt>
 <dd>
 <div>
@@ -60,7 +59,7 @@ Edit
 </$button>
 <$button>
 <$action-navigate />
-<$action-sendmessage $message="tm-edit-tiddler" param={{currentTiddler}} />
+<$action-sendmessage $message="tm-edit-tiddler" param=<<currentTiddler>> />
 Edit
 </$button>
 </div>
@@ -70,5 +69,4 @@ Edit
 </dl>
 </$list>
 
-</$set>
 </$list>

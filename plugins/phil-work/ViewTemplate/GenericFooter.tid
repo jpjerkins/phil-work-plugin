@@ -4,10 +4,8 @@ tags: $:/tags/ViewTemplate
 title: $:/plugins/pjerkins/phil-work/ViewTemplate/GenericFooter
 list-after: $:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter
 
-<$let thisTiddler=<<currentTiddler>>>
-    <$list filter="[<thisTiddler>backlinks[]] -[<thisTiddler>links[]] +[first[]]">
-        <h2>Backlinks</h2>
+<$list filter="[<currentTiddler>backlinks[]] -[<currentTiddler>links[]] +[first[]]" variable=_>
+    <h2>Backlinks</h2>
 
-        <<list-links filter:"[<thisTiddler>backlinks[]] -[<thisTiddler>links[]]">>
-    </$list>
-</$let>
+    <<list-links filter:"[<currentTiddler>backlinks[]] -[<currentTiddler>links[]]">>
+</$list>

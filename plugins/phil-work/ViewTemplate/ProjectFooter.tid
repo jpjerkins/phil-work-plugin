@@ -4,11 +4,11 @@ tags: $:/tags/ViewTemplate template
 title: $:/plugins/pjerkins/phil-work/ViewTemplate/ProjectFooter
 
 \define NewNotesTags() [[$(currentTiddler)$]]
-\define NewNotesLabel() $(newNotesLabelDate)$ - $(initiativeLabel)$
+\define NewNotesLabel() $(newNotesLabelDate)$ - $(currentTiddler)$
 
 <$list filter="[is[current]tag[Project]]">
 
-    <$let initiativeTag={{!!title}} initiativeLabel={{!!title}} newNotesLabelDate=<<now "YYYY-0MM-0DD" >> >
+    <$let newNotesLabelDate=<<now "YYYY-0MM-0DD" >> >
 
         <$list filter="[is[current]tag[Parked]]">
             <$button>
@@ -40,16 +40,16 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/ProjectFooter
 
         <$list
          template="$:/plugins/pjerkins/phil-work/ViewTemplate/TaskTemplate"
-         filter="[tag<initiativeTag>tag[Task]!tag[Waiting]!tag[Done]!tag[Parked]!tag[FollowUpItem]]" />
+         filter="[tag<currentTiddler>tag[Task]!tag[Waiting]!tag[Done]!tag[Parked]!tag[FollowUpItem]]" />
 
-        <$list variable="firstWaiting" filter="[tag<initiativeTag>tag[Task]tag[Waiting]!tag[Done]!tag[FollowUpItem]first[1]]">
+        <$list variable=_ filter="[tag<currentTiddler>tag[Task]tag[Waiting]!tag[Done]!tag[FollowUpItem]first[1]]">
 
             !! Waiting
             <ul>
-                <$list filter="[tag<initiativeTag>tag[Task]tag[Waiting]!tag[Done]!tag[FollowUpItem]]">
+                <$list filter="[tag<currentTiddler>tag[Task]tag[Waiting]!tag[Done]!tag[FollowUpItem]]">
                     <li>
-                        <$link $tiddler={{!!title}}>{{!!title}}</$link>
-                        <$list filter="[tag{!!title}tag[TaskAction]!tag[Done]!sort[created]first[]]">
+                        <$link />
+                        <$list filter="[tag<currentTiddler>tag[TaskAction]!tag[Done]!sort[created]first[]]">
                             <br/><$view field="created" format="date" template="MM/DD"/> {{!!title}}
                         </$list>
                     </li>
@@ -57,21 +57,21 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/ProjectFooter
             </ul>
         </$list>
 
-        <$list variable="firstFollowUp" filter="[tag<initiativeTag>tag[Task]!tag[Done]!tag[Parked]tag[FollowUpItem]first[1]]">
+        <$list variable=_ filter="[tag<currentTiddler>tag[Task]!tag[Done]!tag[Parked]tag[FollowUpItem]first[1]]">
 
             !! Follow Up Items
             <$list
              template="$:/plugins/pjerkins/phil-work/ViewTemplate/TaskTemplate"
-             filter="[tag<initiativeTag>tag[Task]!tag[Done]!tag[Parked]tag[FollowUpItem]]" />
+             filter="[tag<currentTiddler>tag[Task]!tag[Done]!tag[Parked]tag[FollowUpItem]]" />
 
         </$list>
 
-        <$list variable="firstFollowUp" filter="[tag<initiativeTag>tag[Task]!tag[Done]tag[Parked]first[1]]">
+        <$list variable=_ filter="[tag<currentTiddler>tag[Task]!tag[Done]tag[Parked]first[1]]">
 
             !! Parked Items
             <$list
              template="$:/plugins/pjerkins/phil-work/ViewTemplate/TaskTemplate"
-             filter="[tag<initiativeTag>tag[Task]!tag[Done]tag[Parked]]" />
+             filter="[tag<currentTiddler>tag[Task]!tag[Done]tag[Parked]]" />
 
         </$list>
 
@@ -80,7 +80,7 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/ProjectFooter
             <$action-sendmessage $message="tm-new-tiddler" title=<<NewNotesLabel>> tags=<<NewNotesTags>>/>
             New Notes Tiddler
         </$button>
-        <<list-links "[tag<initiativeTag>!tag[Task]!tag[$:/plugins/pjerkins/phil-work/People]!sort[created]]">>
+        <<list-links "[tag<currentTiddler>!tag[Task]!tag[$:/plugins/pjerkins/phil-work/People]!sort[created]]">>
     </$let>
 
 </$list>

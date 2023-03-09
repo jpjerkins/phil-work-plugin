@@ -7,10 +7,9 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/IdentityFooter
 list-before: $:/plugins/pjerkins/phil-work/ViewTemplate/GenericFooter
 list-after: $:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter
 
-\define newTodoTags() [[$(currentGoal)$]] Task
-\define newProjectTags() [[$(currentGoal)$]] Project $:/plugins/pjerkins/phil-work/MyInitiatives
+\define newTodoTags() [[$(currentTiddler)$]] Task
+\define newProjectTags() [[$(currentTiddler)$]] Project $:/plugins/pjerkins/phil-work/MyInitiatives
 <$let
- currentGoal=<<currentTiddler>>
  noProjectFilter="[kin::from:[]tag[Project]count[]compare:number:eq[0]]" >
     <$list filter="[is[current]tag[IdentityStatements]]">
 
@@ -27,28 +26,28 @@ list-after: $:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter
             +Project
         </$button>
 
-        <$list filter="[tag<currentGoal>tag[Project]!tag[Parked]first[]]">
+        <$list filter="[tag<currentTiddler>tag[Project]!tag[Parked]first[]]" variable=_>
             <h2>Active Projects</h2>
-            <<list-links filter:"[tag<currentGoal>!tag[Parked]tag[Project]]">>
+            <<list-links filter:"[tag<currentTiddler>!tag[Parked]tag[Project]]">>
         </$list>
 
-        <$list filter="[tag<currentGoal>tag[Project]tag[Parked]first[]]">
+        <$list filter="[tag<currentTiddler>tag[Project]tag[Parked]first[]]" variable=_>
             <h2>Parked Projects</h2>
-            <<list-links filter:"[tag<currentGoal>tag[Parked]tag[Project]]">>
+            <<list-links filter:"[tag<currentTiddler>tag[Parked]tag[Project]]">>
         </$list>
 
-        <$list filter="[tag<currentGoal>tag[Task]!tag[Done]!tag[Parked]filter<noProjectFilter>first[]]">
+        <$list filter="[tag<currentTiddler>tag[Task]!tag[Done]!tag[Parked]filter<noProjectFilter>first[]]" variable=_>
             <h2>Active Tasks</h2>
             <$list
              template="$:/plugins/pjerkins/phil-work/ViewTemplate/TaskTemplate"
-             filter="[tag<currentGoal>tag[Task]!tag[Done]!tag[Parked]filter<noProjectFilter>]" />
+             filter="[tag<currentTiddler>tag[Task]!tag[Done]!tag[Parked]filter<noProjectFilter>]" />
         </$list>
 
-        <$list filter="[tag<currentGoal>tag[Task]!tag[Done]tag[Parked]filter<noProjectFilter>first[]]">
+        <$list filter="[tag<currentTiddler>tag[Task]!tag[Done]tag[Parked]filter<noProjectFilter>first[]]" variable=_>
             <h2>Parked Tasks</h2>
             <$list
              template="$:/plugins/pjerkins/phil-work/ViewTemplate/TaskTemplate"
-             filter="[tag<currentGoal>tag[Task]!tag[Done]tag[Parked]filter<noProjectFilter>]" />
+             filter="[tag<currentTiddler>tag[Task]!tag[Done]tag[Parked]filter<noProjectFilter>]" />
         </$list>
 
     </$list>
