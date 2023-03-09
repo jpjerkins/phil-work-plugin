@@ -17,17 +17,21 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/ProjectActionBar
 				<<closeProjectActions>>
 				P!
 			</$button>
-			<$edit-text tiddler="$:/state/new-todo" default="" tag="input" />
+			<$edit-text tiddler="$:/temp/new-todo" default="" tag="input" />
 			<$button>
-				<$action-createtiddler $basetitle={{$:/state/new-todo}} tags=<<newProjectTodoTags>> />
-				<$action-deletetiddler $tiddler="$:/state/new-todo" />
-				<<closeProjectActions>>
+				<$list filter="[title[$:/temp/new-todo]get[text]compare:string:ne[]]" variable=_>
+					<$action-createtiddler $basetitle={{$:/temp/new-todo}} tags=<<newProjectTodoTags>> />
+					<$action-deletetiddler $tiddler="$:/temp/new-todo" />
+					<<closeProjectActions>>
+				</$list>
 				{{$:/core/images/save-button}}
 			</$button>
 			<$button>
-				<$action-createtiddler $basetitle={{$:/state/new-todo}} tags=<<newProjectCandidateTags>> />
-				<$action-deletetiddler $tiddler="$:/state/new-todo" />
-				<<closeProjectActions>>
+				<$list filter="[title[$:/temp/new-todo]get[text]compare:string:ne[]]" variable=_>
+					<$action-createtiddler $basetitle={{$:/temp/new-todo}} tags=<<newProjectCandidateTags>> />
+					<$action-deletetiddler $tiddler="$:/temp/new-todo" />
+					<<closeProjectActions>>
+				</$list>
 				T!
 			</$button>
 			<$button>

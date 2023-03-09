@@ -13,16 +13,20 @@ list-after: $:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter
  noProjectFilter="[kin::from:[]tag[Project]count[]compare:number:eq[0]]" >
     <$list filter="[is[current]tag[IdentityStatements]]">
 
-        <$edit-text tiddler="$:/state/new-goal-item" tag="input" default="" />
+        <$edit-text tiddler="$:/temp/new-goal-item" tag="input" default="" />
         <$button>
-            <$action-createtiddler $basetitle={{$:/state/new-goal-item}} tags=<<newTodoTags>> />
-            <$action-deletetiddler $tiddler="$:/state/new-goal-item" />
+            <$list filter="[title[$:/temp/new-goal-item]get[text]compare:string:ne[]]" variable=_>
+                <$action-createtiddler $basetitle={{$:/temp/new-goal-item}} tags=<<newTodoTags>> />
+                <$action-deletetiddler $tiddler="$:/temp/new-goal-item" />
+            </$list>
             +Task
         </$button>
         <$button>
-            <$action-createtiddler $basetitle={{$:/state/new-goal-item}} tags=<<newProjectTags>> />
-            <$action-navigate $to={{$:/state/new-goal-item}} />
-            <$action-deletetiddler $tiddler="$:/state/new-goal-item" />
+            <$list filter="[title[$:/temp/new-goal-item]get[text]compare:string:ne[]]" variable=_>
+                <$action-createtiddler $basetitle={{$:/temp/new-goal-item}} tags=<<newProjectTags>> />
+                <$action-navigate $to={{$:/temp/new-goal-item}} />
+                <$action-deletetiddler $tiddler="$:/temp/new-goal-item" />
+            </$list>
             +Project
         </$button>
 

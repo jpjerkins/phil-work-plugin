@@ -24,17 +24,21 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/ProjectFooter
         </$list>
 
         !! To-Do
-        <$edit-text tiddler="$:/state/new-button-caption" tag="input" default="" />
+        <$edit-text tiddler="$:/temp/new-button-caption" tag="input" default="" />
         <$button>
-            <$action-createtiddler $basetitle={{$:/state/new-button-caption}} $savetitle="$:/state/new-button-caption" />
-            <$action-listops $tiddler={{$:/state/new-button-caption}} $field="tags" $subfilter="[{!!title}] +[append[Task]]" />
-            <$action-deletetiddler $tiddler="$:/state/new-button-caption" />
+            <$list filter="[title[$:/temp/new-button-caption]get[text]compare:string:ne[]]" variable=_>
+                <$action-createtiddler $basetitle={{$:/temp/new-button-caption}} $savetitle="$:/temp/new-button-caption" />
+                <$action-listops $tiddler={{$:/temp/new-button-caption}} $field="tags" $subfilter="[{!!title}] +[append[Task]]" />
+                <$action-deletetiddler $tiddler="$:/temp/new-button-caption" />
+            </$list>
             Add
         </$button>
         <$button>
-            <$action-createtiddler $basetitle={{$:/state/new-button-caption}} $savetitle="$:/state/new-button-caption" />
-            <$action-listops $tiddler={{$:/state/new-button-caption}} $field="tags" $subfilter="[{!!title}] +[append[Task TodayCandidate]]" />
-            <$action-deletetiddler $tiddler="$:/state/new-button-caption" />
+            <$list filter="[title[$:/temp/new-button-caption]get[text]compare:string:ne[]]" variable=_>
+                <$action-createtiddler $basetitle={{$:/temp/new-button-caption}} $savetitle="$:/temp/new-button-caption" />
+                <$action-listops $tiddler={{$:/temp/new-button-caption}} $field="tags" $subfilter="[{!!title}] +[append[Task TodayCandidate]]" />
+                <$action-deletetiddler $tiddler="$:/temp/new-button-caption" />
+            </$list>
             Candidate
         </$button>
 

@@ -81,21 +81,27 @@ title: $:/plugins/pjerkins/phil-work/Today
 </$let>
 
 !! Candidates
-<$edit-text tiddler="$:/state/new-today-candidate" tag="input" default="" />
+<$edit-text tiddler="$:/temp/new-today-candidate" tag="input" default="" />
 <$button>
-	<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags="Task"/>
-	<$action-deletetiddler $tiddler="$:/state/new-today-candidate" />
+	<$list filter="[title[$:/temp/new-today-candidate]get[text]compare:string:ne[]]" variable=_>
+		<$action-createtiddler $basetitle={{$:/temp/new-today-candidate}} tags="Task"/>
+		<$action-deletetiddler $tiddler="$:/temp/new-today-candidate" />
+	</$list>
 	+
 </$button>
 <$button>
-	<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags="Task TodayCandidate"/>
-	<$action-deletetiddler $tiddler="$:/state/new-today-candidate" />
+	<$list filter="[title[$:/temp/new-today-candidate]get[text]compare:string:ne[]]" variable=_>
+		<$action-createtiddler $basetitle={{$:/temp/new-today-candidate}} tags="Task TodayCandidate"/>
+		<$action-deletetiddler $tiddler="$:/temp/new-today-candidate" />
+	</$list>
 	+C
 </$button>
 <$button>
-	<$action-createtiddler $basetitle={{$:/state/new-today-candidate}} tags="Project $:/plugins/pjerkins/phil-work/MyInitiatives" />
-	<$action-navigate $to={{$:/state/new-today-candidate}} />
-	<$action-deletetiddler $tiddler="$:/state/new-today-candidate" />
+	<$list filter="[title[$:/temp/new-today-candidate]get[text]compare:string:ne[]]" variable=_>
+		<$action-createtiddler $basetitle={{$:/temp/new-today-candidate}} tags="Project $:/plugins/pjerkins/phil-work/MyInitiatives" />
+		<$action-navigate $to={{$:/temp/new-today-candidate}} />
+		<$action-deletetiddler $tiddler="$:/temp/new-today-candidate" />
+	</$list>
 	+P
 </$button>
 
