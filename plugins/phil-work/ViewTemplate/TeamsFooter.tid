@@ -2,6 +2,8 @@ created: 20230201045650983
 modified: 20230201045657812
 tags: template $:/tags/ViewTemplate
 title: $:/plugins/pjerkins/phil-work/ViewTemplate/TeamsFooter
+list-before: $:/plugins/pjerkins/phil-work/ViewTemplate/GenericFooter
+list-after: $:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter
 
 <$list filter="[is[current]tag[$:/plugins/pjerkins/phil-work/Teams]]">
 <$set name="currentTiddlerTitle" value={{!!title}}>

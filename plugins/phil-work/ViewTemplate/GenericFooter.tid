@@ -2,6 +2,7 @@ created: 20230201045254139
 modified: 20230201045303077
 tags: $:/tags/ViewTemplate
 title: $:/plugins/pjerkins/phil-work/ViewTemplate/GenericFooter
+list-after: $:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter
 
 <$let thisTiddler=<<currentTiddler>>>
     <$list filter="[<thisTiddler>backlinks[]] -[<thisTiddler>links[]] +[first[]]">

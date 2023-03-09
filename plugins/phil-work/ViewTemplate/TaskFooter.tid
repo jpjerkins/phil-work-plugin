@@ -4,6 +4,8 @@ modified: 20230204194227852
 modifier: jpjerkins
 tags: template $:/tags/ViewTemplate
 title: $:/plugins/pjerkins/phil-work/ViewTemplate/TaskFooter
+list-before: $:/plugins/pjerkins/phil-work/ViewTemplate/GenericFooter
+list-after: $:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter
 
 \import [all[shadows]prefix:title[$:/plugins/pjerkins/phil-work/Macros/FollowUp]]
 \import [all[shadows]title[$:/plugins/pjerkins/phil-work/Macros/Park]]

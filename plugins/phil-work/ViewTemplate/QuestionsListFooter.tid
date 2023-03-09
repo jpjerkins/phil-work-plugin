@@ -2,6 +2,8 @@ created: 20230201045543154
 modified: 20230201045551309
 tags: $:/tags/ViewTemplate template
 title: $:/plugins/pjerkins/phil-work/ViewTemplate/QuestionsListFooter
+list-before: $:/plugins/pjerkins/phil-work/ViewTemplate/GenericFooter
+list-after: $:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter
 
 \define newQuestionTiddlerMacro(question parentTiddler)
 <$action-createtiddler $basetitle="$question$ - $parentTiddler$" $savetitle="$:/state/new-question-title" />

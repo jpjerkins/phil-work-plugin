@@ -2,6 +2,7 @@ created: 20230201045451548
 modified: 20230201045459884
 tags: template $:/tags/ViewTemplate
 title: $:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter
+list-before: $:/plugins/pjerkins/phil-work/ViewTemplate/GenericFooter
 
 <$list filter="[is[current]tag[People]]">
 <$set name="currentTiddlerTitle" value={{!!title}}>

@@ -2,6 +2,8 @@ created: 20230201045200318
 modified: 20230201045222110
 tags: template $:/tags/ViewTemplate
 title: $:/plugins/pjerkins/phil-work/ViewTemplate/ExpertiseFooter
+list-before: $:/plugins/pjerkins/phil-work/ViewTemplate/GenericFooter
+list-after: $:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter
 
 <$list filter="[is[current]tag[$:/plugins/pjerkins/phil-work/Expertise]]">
 

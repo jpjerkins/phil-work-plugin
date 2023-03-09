@@ -3,6 +3,8 @@ modified: 20230201045626146
 tags: template $:/tags/ViewTemplate
 title: $:/plugins/pjerkins/phil-work/ViewTemplate/TagTiddlerFooter
 type: text/vnd.tiddlywiki
+list-before: $:/plugins/pjerkins/phil-work/ViewTemplate/GenericFooter
+list-after: $:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter
 
 <$list filter="[is[current]tag[TagTiddler]sortby[created]]">
 <ul>

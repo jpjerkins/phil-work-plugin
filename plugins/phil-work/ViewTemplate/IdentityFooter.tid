@@ -4,6 +4,8 @@ modified: 20230202041404885
 modifier: jpjerkins
 tags: $:/tags/ViewTemplate template
 title: $:/plugins/pjerkins/phil-work/ViewTemplate/IdentityFooter
+list-before: $:/plugins/pjerkins/phil-work/ViewTemplate/GenericFooter
+list-after: $:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter
 
 \define newTodoTags() [[$(currentGoal)$]] Task
 \define newProjectTags() [[$(currentGoal)$]] Project $:/plugins/pjerkins/phil-work/MyInitiatives
