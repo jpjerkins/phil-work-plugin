@@ -7,5 +7,5 @@ tags: $:/tags/Stylesheet
 title: $:/plugins/pjerkins/phil-work/styles/project-link
 
 .project-link {
-  color: green;
+  color: <<colour tiddler-title-foreground>>;
 }

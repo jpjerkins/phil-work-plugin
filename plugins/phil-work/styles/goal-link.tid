@@ -7,5 +7,5 @@ tags: $:/tags/Stylesheet
 title: $:/plugins/pjerkins/phil-work/styles/goal-link
 
 .goal-link {
-  color: red;
+  color: <<colour alert-highlight>>;
 }
