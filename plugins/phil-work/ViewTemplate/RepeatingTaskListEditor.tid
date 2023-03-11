@@ -1,0 +1,28 @@
+created: 20230225044753132
+modified: 20230225044753132
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/RepeatingTaskListEditor
+
+<$edit-text
+ field=new-repeating-task />
+<$button>
+	<$action-listops
+		$tiddler=<<currentTiddler>>
+		$field=repeating-tasks
+		$filter="[enlist{!!repeating-tasks}] [{!!new-repeating-task}]" />
+	<$action-deletefield
+		$field=new-repeating-task />
+	Add
+</$button>
+
+<$list filter="[enlist{!!repeating-tasks}]">
+	<div>
+		<$button>
+			<$action-listops
+				$tiddler=<<currentTiddler>>
+				$field=repeating-tasks
+				$filter="[enlist{!!repeating-tasks}] -[<currentTiddler>]" />
+			&#x1f5d1;
+		</$button>
+		<$link />
+	</div>
+</$list>

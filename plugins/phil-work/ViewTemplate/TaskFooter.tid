@@ -41,15 +41,15 @@ list-after: $:/plugins/pjerkins/phil-work/ViewTemplate/PeopleFooter
             </$button>
         </$list>
         |
-        <$list filter="[is[current]tag[RepeatedTask]]">
+        <$list filter="[is[current]tag[RepeatingTask]]">
             <$button>
-                <$action-listops $tags="-RepeatedTask" />
+                <$action-listops $tags="-RepeatingTask" />
                 !Repeating
             </$button>
         </$list>
-        <$list filter="[is[current]!tag[RepeatedTask]]">
+        <$list filter="[is[current]!tag[RepeatingTask]]">
             <$button>
-                <$action-listops $tags="RepeatedTask" />
+                <$action-listops $tags="RepeatingTask" />
                 Repeating!
             </$button>
         </$list>

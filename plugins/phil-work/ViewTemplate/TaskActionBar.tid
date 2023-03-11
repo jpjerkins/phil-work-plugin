@@ -4,8 +4,8 @@ tags:
 title: $:/plugins/pjerkins/phil-work/ViewTemplate/TaskActionBar
 todo-action-box-state: 
 
-\define newDatedCandidateLabel() $(newCandidateLabel)$ $(newCandidateLabelDate)$
-\define newDatedCandidateTags() $(currentTags)$ Task TodayCandidate
+\define newDatedCandidateLabel() $(currentTiddler)$ $(newCandidateLabelDate)$
+\define newDatedCandidateTags() $(currentTags)$ Task TodayCandidate RepeatedTask
 \import [[$:/plugins/pjerkins/phil-work/Macros/FollowUpActionsSelect]]
 \import [[$:/plugins/pjerkins/phil-work/Macros/Park]]
 \define closeTodoActions()
@@ -32,14 +32,25 @@ todo-action-box-state:
 				<$action-listops $tags="TodayCandidate" />
 				T!
 			</$button> 
-			<$let currentTags={{!!tags}} newCandidateLabel={{!!title}} newCandidateLabelDate=<<now "YYYY-0MM-0DD" >> >
+			<$let currentTags={{!!tags}} parentTask={{!!title}} newCandidateLabelDate=<<now "YYYY-0MM-0DD" >> >
 				<$button set=<<actionMenuState>> setTo="">
-					<$action-createtiddler
-					 $basetitle=<<newDatedCandidateLabel>>
-					 tags=<<newDatedCandidateTags>>
-					 parent-task={{!!title}}
-					 text="{{||$:/plugins/pjerkins/phil-work/ViewTemplate/RepeatedTaskListViewer}}" />
-					<$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem -RepeatedTask" />
+					<$list filter="[is[current]tag[RepeatingTask]]">
+						<$list filter="[enlist{!!repeating-tasks}]">
+							<$action-createtiddler
+								$basetitle=<<newDatedCandidateLabel>>
+								tags=<<newDatedCandidateTags>>
+								parent-task=<<parentTask>> />
+							<$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem -RepeatingTask" />
+						</$list>
+					</$list>
+					<$list filter="[is[current]!tag[RepeatingTask]]">
+						<$action-createtiddler
+							$basetitle=<<newDatedCandidateLabel>>
+							tags=<<newDatedCandidateTags>>
+							parent-task=<<parentTask>>
+							text={{!!text}} />
+						<$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem" />
+					</$list>
 					T,,dt,,!
 				</$button>
 			</$let>
