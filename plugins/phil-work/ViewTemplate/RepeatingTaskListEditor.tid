@@ -14,15 +14,15 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/RepeatingTaskListEditor
 	Add
 </$button>
 
-<$list filter="[enlist{!!repeating-tasks}]">
+<$list filter="[enlist{!!repeating-tasks}]" variable=currentItem>
 	<div>
 		<$button>
 			<$action-listops
 				$tiddler=<<currentTiddler>>
 				$field=repeating-tasks
-				$filter="[enlist{!!repeating-tasks}] -[<currentTiddler>]" />
+				$filter="[enlist{!!repeating-tasks}] -[<currentItem>]" />
 			&#x1f5d1;
 		</$button>
-		<$text text={{!!title}} />
+		<$text text=<<currentItem>> />
 	</div>
 </$list>
