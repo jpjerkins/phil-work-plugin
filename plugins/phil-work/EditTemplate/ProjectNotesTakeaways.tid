@@ -5,7 +5,7 @@ title: $:/plugins/pjerkins/phil-work/EditTemplate/ProjectNotesTakeaways
 
 \define newTakeawayTags() [[$(project)$]] Task
 
-<$list filter="[is[current]has[draft.of]tags[]tag[Project]first[]]" variable=_>
+<$list filter="[is[current]!tag[Task]has[draft.of]tags[]tag[Project]first[]]" variable=_>
 <$let
     project={{{ [is[current]tags[]tag[Project]first[]] }}}
     context={{{ [is[current]get[draft.of]] }}}>
