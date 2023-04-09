@@ -1,0 +1,11 @@
+created: 20230409003505264
+modified: 20230409003505264
+tags: template $:/tags/ViewTemplate
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/TaskContextHeader
+list-after: $:/core/ui/ViewTemplate/tags
+
+<$list filter="[is[current]tag[Task]has[context]" variable=_>
+
+//Context: <$link to={{!!context}} />//
+
+</$list>
