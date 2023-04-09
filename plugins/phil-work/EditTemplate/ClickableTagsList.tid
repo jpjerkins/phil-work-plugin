@@ -1,0 +1,7 @@
+created: 20230409003505264
+modified: 20230409003505264
+tags: template $:/tags/EditTemplate
+title: $:/plugins/pjerkins/phil-work/EditTemplate/ClickableTagsList
+list-before: $:/core/ui/EditTemplate/tags
+
+<$list filter="[is[current]tags[]]" template="$:/core/ui/TagTemplate" />
