@@ -1,0 +1,25 @@
+created: 20230409003505264
+modified: 20230409003505264
+tags: template $:/tags/ViewTemplate
+title: $:/plugins/pjerkins/phil-work/ViewTemplate/ProjectNotesTakeaways
+
+\define newTakeawayTags() [[$(project)$]] Task
+
+<$list filter="[is[current]tags[]tag[Project]first[]]" variable=_>
+<$let
+    project={{{ [is[current]tags[]tag[Project]first[]] }}} >
+
+!! Takeaways
+<$edit-text tag=input field="new-takeaway" />
+<$button>
+<$action-createtiddler $basetitle={{!!new-takeaway}} context=<<currentTiddler>> tags=<<newTakeawayTags>> />
+<$action-deletefield $tiddler=<<currentTiddler>> $field="new-takeaway"/>
+Add
+</$button>
+
+<$list
+    template="$:/plugins/pjerkins/phil-work/ViewTemplate/TaskTemplate"
+    filter="[tag[Task]!tag[Done]!tag[Parked]tag<project>has[context]field:context<currentTiddler>]" />
+
+</$let>
+</$list>
