@@ -8,7 +8,7 @@ title: $:/plugins/pjerkins/phil-work/EditTemplate/ProjectNotesTakeaways
 <$list filter="[is[current]!tag[Task]has[draft.of]tags[]tag[Project]first[]]" variable=_>
 <$let
     project={{{ [is[current]tags[]tag[Project]first[]] }}}
-    context={{{ [is[current]get[draft.of]] }}}>
+    context={{{ [is[current]get[draft.title]] }}}>
 
 !! Takeaways
 <$edit-text tag=input field="new-takeaway" />
@@ -17,6 +17,8 @@ title: $:/plugins/pjerkins/phil-work/EditTemplate/ProjectNotesTakeaways
 <$action-deletefield $tiddler=<<currentTiddler>> $field="new-takeaway"/>
 Add
 </$button>
+<br/>
+//Context: ''<<context>>''//
 
 <$list
     template="$:/plugins/pjerkins/phil-work/ViewTemplate/TaskTemplate"
