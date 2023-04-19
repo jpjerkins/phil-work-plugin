@@ -5,9 +5,8 @@ title: $:/plugins/pjerkins/phil-work/EditTemplate/ProjectNotesTakeaways
 
 \define newTakeawayTags() [[$(project)$]] Task
 
-<$list filter="[is[current]!tag[Task]has[draft.of]tags[]tag[Project]first[]]" variable=_>
+<$list filter="[is[current]!tag[Task]has[draft.of]tags[]tag[Project]] [is[current]!tag[Task]has[draft.of]tags[]tag[People]] +[first[]]" variable=_>
 <$let
-    project={{{ [is[current]tags[]tag[Project]first[]] }}}
     context={{{ [is[current]get[draft.title]] }}}>
 
 !! Takeaways
@@ -22,7 +21,7 @@ Add
 
 <$list
     template="$:/plugins/pjerkins/phil-work/ViewTemplate/TaskTemplate"
-    filter="[tag[Task]!tag[Done]!tag[Parked]tag<project>has[context]field:context<context>]" />
+    filter="[tag[Task]!tag[Done]!tag[Parked]has[context]field:context<context>]" />
 
 </$let>
 </$list>
