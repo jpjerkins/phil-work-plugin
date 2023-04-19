@@ -84,7 +84,7 @@ title: $:/plugins/pjerkins/phil-work/ViewTemplate/ProjectFooter
             <$action-sendmessage $message="tm-new-tiddler" title=<<NewNotesLabel>> tags=<<NewNotesTags>>/>
             New Notes Tiddler
         </$button>
-        <<list-links "[tag<currentTiddler>!tag[Task]!tag[$:/plugins/pjerkins/phil-work/People]!sort[created]]">>
+        <<list-links "[tag<currentTiddler>!tag[Task]!tag[People]!sort[created]]">>
     </$let>
 
 </$list>

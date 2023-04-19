@@ -8,12 +8,12 @@ type:
 !! Teams
 <$list filter="[tag[$:/plugins/pjerkins/phil-work/Teams]sort[]]">
 <$let team={{!!title}}>
-<$list filter="[tag[$:/plugins/pjerkins/phil-work/People]tag<team>first[1]]">
+<$list filter="[tag[People]tag<team>first[1]]">
 
 <h3><$link to=<<team>>><<team>></$link></h3>
 
 <ul>
-<$list filter="[tag[$:/plugins/pjerkins/phil-work/People]tag<team>]">
+<$list filter="[tag[People]tag<team>]">
 <li>
 <$link $tiddler={{!!title}}>{{!!title}}</$link>
 </li>

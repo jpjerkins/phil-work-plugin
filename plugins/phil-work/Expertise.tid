@@ -7,11 +7,11 @@ title: $:/plugins/pjerkins/phil-work/Expertise
 !! Experts
 <$list variable="expertise" filter="[tag[$:/plugins/pjerkins/phil-work/Expertise]sort[]]">
 
-<$list filter="[tag[$:/plugins/pjerkins/phil-work/People]tag<expertise>first[1]]">
+<$list filter="[tag[People]tag<expertise>first[1]]">
 <h3><$link to=<<expertise>> /></h3>
 
 <ul>
-<$list filter="[tag[$:/plugins/pjerkins/phil-work/People]tag<expertise>]">
+<$list filter="[tag[People]tag<expertise>]">
 <li>
 <$link $tiddler={{!!title}}>{{!!title}}</$link>
 </li>

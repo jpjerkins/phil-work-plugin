@@ -1,11 +1,11 @@
 created: 20220223222807791
 modified: 20230128045559594
 tags: Reference
-title: $:/plugins/pjerkins/phil-work/People
+title: People
 
 !! Meta
 * AreasOfExpertise
 * [[$:/plugins/pjerkins/phil-work/Teams]]
 
 !! People
-<<list-links filter:"[tag[$:/plugins/pjerkins/phil-work/People]sort[]]">>
+<<list-links filter:"[tag[People]sort[]]">>
