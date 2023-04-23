@@ -11,6 +11,19 @@ title: $:/plugins/pjerkins/phil-work/Today
 \define weekTitle() $(year)$-w$(week)$ - Weekly Score
 \import [[$:/plugins/pjerkins/phil-work/Macros/ShowTodayList]]
 
+\define linkRow(startWithDelimiter)
+
+<$list filter="[tag[$:/plugins/pjerkins/phil-work/Today]first[1]]">
+    <$list filter="[[$startWithDelimiter$]match[yes]]"> | </$list>
+
+    <$link><$view field=caption>{{!!title}}</$view></$link>
+
+    <$list filter="[tag[$:/plugins/pjerkins/phil-work/Today]rest[1]]">
+        | <$link><$view field=caption>{{!!title}}</$view></$link>
+    </$list>
+</$list>
+\end
+
 <$let
  totalPotentialPoints={{{ [tag[Today]get[today-potential-points]sum[]] }}}
  totalActualPoints={{{ [tag[Today]get[today-actual-points]sum[]] }}}
@@ -128,4 +141,4 @@ title: $:/plugins/pjerkins/phil-work/Today
 	</$list>
 </$let>
 
-[[Scores|$:/plugins/pjerkins/phil-work/TodayScores]] | [[Home]] | [[Screenshot|$:/plugins/pjerkins/phil-work/TodayScreenshot]]
+[[Scores|$:/plugins/pjerkins/phil-work/TodayScores]] | [[Home]] <<linkRow yes>>
