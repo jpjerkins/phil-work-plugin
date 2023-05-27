@@ -28,10 +28,6 @@ todo-action-box-state:
 					!P
 				</$button>
 			</$list>
-			<$button set=<<actionMenuState>> setTo="">
-				<$action-listops $tags="TodayCandidate" />
-				T!
-			</$button> 
 			<$let currentTags={{!!tags}} parentTask={{!!title}} newCandidateLabelDate=<<now "YYYY-0MM-0DD" >> >
 				<$button set=<<actionMenuState>> setTo="">
 					<$list filter="[is[current]tag[RepeatingTask]]">
@@ -42,16 +38,19 @@ todo-action-box-state:
 								parent-task=<<parentTask>> />
 							<$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem -RepeatingTask" />
 						</$list>
+						<$list filter="[is[current]!has[repeating-tasks]]">
+							<$action-createtiddler
+								$basetitle=<<newDatedCandidateLabel>>
+								tags=<<newDatedCandidateTags>>
+								parent-task=<<parentTask>>
+								text={{!!text}} />
+							<$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem" />
+						</$list>
 					</$list>
 					<$list filter="[is[current]!tag[RepeatingTask]]">
-						<$action-createtiddler
-							$basetitle=<<newDatedCandidateLabel>>
-							tags=<<newDatedCandidateTags>>
-							parent-task=<<parentTask>>
-							text={{!!text}} />
-						<$action-listops $tiddler=<<newDatedCandidateLabel>> $tags="-FollowUpItem" />
+						<$action-listops $tags="TodayCandidate" />
 					</$list>
-					T,,dt,,!
+					T!
 				</$button>
 			</$let>
 			<$button set=<<actionMenuState>> setTo="">
